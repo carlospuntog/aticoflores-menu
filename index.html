@@ -4,12 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carta - Ático Flores</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
     <style>
         @font-face {
             font-family: 'New Spirit Bold Condensed';
-            src: url('https://example.com/fonts/NewSpirit-BoldCondensed.woff2') format('woff2');
+            src: url('https://example.com/fonts/NewSpirit-BoldCondensed.woff2') format('woff2'),
+                 url('https://example.com/fonts/NewSpirit-BoldCondensed.woff') format('woff'),
+                 url('https://example.com/fonts/NewSpirit-BoldCondensed.ttf') format('truetype');
             font-weight: bold;
+            font-display: swap;
         }
         body {
             font-family: 'IBM Plex Sans', sans-serif;
@@ -24,7 +29,7 @@
             left: 0;
             width: 100%;
             background: rgba(255, 255, 255, 0.95);
-            padding: 15px 0;
+            padding: 10px 0;
             text-align: center;
             z-index: 1000;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -32,22 +37,23 @@
         .menu-links {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
         }
         nav a {
             font-family: 'IBM Plex Mono', monospace;
             color: black;
             text-decoration: none;
-            margin: 0 20px;
+            margin: 0 10px;
             font-weight: normal;
-            font-size: 18px;
-            padding: 10px;
+            font-size: 16px;
+            padding: 8px;
         }
         nav a:hover {
             text-decoration: underline;
         }
         .container {
             max-width: 800px;
-            margin: 80px auto 40px;
+            margin: 100px auto 40px;
             padding: 20px;
             background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
@@ -89,21 +95,16 @@
         <div class="menu-item"><span>Flat White</span><span class="price">2,80€</span></div>
         <div class="menu-item"><span>Matcha Latte</span><span class="price">4€</span></div>
         <div class="menu-item"><span>Zumo de naranja</span><span class="price">3,95€ / 4,95€</span></div>
-        <div class="menu-item"><span>Cerveza</span><span class="price">3,25€</span></div>
         
         <h2 id="desayunos-comida">Desayunos y Comida</h2>
         <div class="menu-item"><span>Tostada Clásica</span><span class="price">4€</span></div>
         <div class="menu-item"><span>Ibérica (jamón, tomate, AOVE)</span><span class="price">4,50€</span></div>
         <div class="menu-item"><span>Aguacate, tomate y albahaca</span><span class="price">6,50€</span></div>
-        <div class="menu-item"><span>Bowl Açai con plátano</span><span class="price">6,95€</span></div>
-        <div class="menu-item"><span>Focaccia Ibérica</span><span class="price">5,95€</span></div>
-        <div class="menu-item"><span>Ensalada Caprese</span><span class="price">5,95€</span></div>
         
         <h2 id="pasteleria">Pastelería</h2>
         <div class="menu-item"><span>Gofre clásico con chocolate</span><span class="price">4€</span></div>
         <div class="menu-item"><span>Galleta de chocolate</span><span class="price">3,50€</span></div>
         <div class="menu-item"><span>Tarta de queso</span><span class="price">4,50€</span></div>
-        <div class="menu-item"><span>Croissant de mantequilla</span><span class="price">2,50€</span></div>
     </div>
 </body>
 </html>
