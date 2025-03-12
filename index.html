@@ -8,15 +8,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
     
-    <!-- Añadimos la fuente New Spirit Bold Condensed mediante @font-face -->
+    <!-- Método más fiable para cargar la fuente New Spirit Bold Condensed -->
     <style>
+        /* Múltiples formatos y declaración más sólida para @font-face */
         @font-face {
             font-family: 'New Spirit Bold Condensed';
             src: url('https://yourwebsite.com/fonts/NewSpiritBoldCondensed.woff2') format('woff2'),
-                 url('https://yourwebsite.com/fonts/NewSpiritBoldCondensed.woff') format('woff');
+                 url('https://yourwebsite.com/fonts/NewSpiritBoldCondensed.woff') format('woff'),
+                 url('https://yourwebsite.com/fonts/NewSpiritBoldCondensed.ttf') format('truetype');
             font-weight: bold;
             font-style: normal;
-            font-display: swap; /* Asegura una carga rápida de la fuente */
+            font-display: swap;
+            /* Aseguramos que la fuente se descargue y aplique con prioridad */
+        }
+        
+        /* Clase de respaldo para garantizar que se aplique una fuente condensada si New Spirit falla */
+        .section-title {
+            font-family: 'New Spirit Bold Condensed', 'Arial Narrow', 'Franklin Gothic Medium Condensed', 'Nimbus Sans Condensed', sans-serif-condensed, sans-serif;
+            font-weight: bold;
+            font-stretch: condensed; /* Propiedad moderna para fuentes condensadas */
+            letter-spacing: 0.5px;
+            text-align: center;
+            margin: 30px 0 15px 0;
+            padding-top: 20px;
         }
         
         /* Estilos básicos */
@@ -76,14 +90,9 @@
             margin-bottom: 30px;
         }
         
-        /* Aplicamos New Spirit Bold Condensed a los títulos h2 */
+        /* Aplicamos los estilos a través de la clase, no solo al selector h2 */
         h2 {
-            font-family: 'New Spirit Bold Condensed', sans-serif;
-            text-align: center;
-            margin: 30px 0 15px 0;
-            padding-top: 20px;
-            letter-spacing: 0.5px; /* Mejora la legibilidad */
-            font-size: 28px; /* Tamaño adecuado para móviles y escritorio */
+            font-size: 28px;
         }
         
         /* Elementos del menú */
@@ -98,15 +107,15 @@
             font-weight: bold;
         }
         
-        /* Media queries para asegurar la responsividad */
+        /* Estilos específicos para móviles */
         @media (max-width: 480px) {
             .container {
                 padding: 15px;
                 margin-top: 70px;
             }
             
-            h2 {
-                font-size: 24px; /* Tamaño ligeramente más pequeño para móviles */
+            h2.section-title {
+                font-size: 24px; /* Tamaño específico para móviles */
             }
             
             .navbar a {
@@ -114,6 +123,26 @@
                 margin: 0 5px;
                 padding: 5px;
             }
+            
+            /* Forzar la carga de la fuente en móviles */
+            h2:before {
+                content: "";
+                display: block;
+                font-family: 'New Spirit Bold Condensed', sans-serif;
+                height: 0;
+                visibility: hidden;
+            }
+        }
+        
+        /* Asegurar que la fuente se cargue lo antes posible */
+        body:before {
+            content: "";
+            font-family: 'New Spirit Bold Condensed';
+            opacity: 0;
+            height: 0;
+            width: 0;
+            visibility: hidden;
+            position: absolute;
         }
     </style>
 </head>
@@ -132,9 +161,9 @@
     <div class="container">
         <h1>Ático Flores</h1>
         
-        <!-- Sección Café -->
+        <!-- Sección Café - Añadimos la clase section-title a los h2 -->
         <div id="cafe">
-            <h2>Café y Bebidas</h2>
+            <h2 class="section-title">Café y Bebidas</h2>
             <div class="menu-item"><span>Espresso</span><span class="price">2€</span></div>
             <div class="menu-item"><span>Americano</span><span class="price">2€</span></div>
             <div class="menu-item"><span>Café con leche</span><span class="price">2,20€</span></div>
@@ -145,7 +174,7 @@
         
         <!-- Sección Desayunos -->
         <div id="desayunos">
-            <h2>Desayunos y Comida</h2>
+            <h2 class="section-title">Desayunos y Comida</h2>
             <div class="menu-item"><span>Tostada Clásica</span><span class="price">4€</span></div>
             <div class="menu-item"><span>Ibérica (jamón, tomate, AOVE)</span><span class="price">4,50€</span></div>
             <div class="menu-item"><span>Aguacate, tomate y albahaca</span><span class="price">6,50€</span></div>
@@ -153,7 +182,7 @@
         
         <!-- Sección Pastelería -->
         <div id="pasteleria">
-            <h2>Pastelería</h2>
+            <h2 class="section-title">Pastelería</h2>
             <div class="menu-item"><span>Gofre clásico con chocolate</span><span class="price">4€</span></div>
             <div class="menu-item"><span>Galleta de chocolate</span><span class="price">3,50€</span></div>
             <div class="menu-item"><span>Tarta de queso</span><span class="price">4,50€</span></div>
@@ -180,6 +209,17 @@
                 behavior: 'smooth'
             });
         }
+        
+        // Script adicional para forzar la carga de la fuente
+        document.addEventListener('DOMContentLoaded', function() {
+            // Forzar actualización del DOM para aplicar la fuente
+            document.body.style.visibility = 'hidden';
+            setTimeout(function() {
+                document.body.style.visibility = 'visible';
+            }, 10);
+        });
     </script>
+</body>
+</html>
 </body>
 </html>
