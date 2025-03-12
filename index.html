@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -47,6 +49,7 @@
             font-weight: normal;
             font-size: 16px;
             padding: 8px;
+            cursor: pointer;
         }
         nav a:hover {
             text-decoration: underline;
@@ -75,20 +78,24 @@
             font-weight: bold;
             color: #000;
         }
+        .section {
+            padding-top: 60px;  /* Reducido para que la sección esté más cerca del menú */
+            margin-top: -40px;  /* Ajustado para mejor posicionamiento */
+        }
     </style>
 </head>
 <body>
     <nav>
         <div class="menu-links">
-            <a href="#cafe-bebidas">Café y Bebidas</a>
-            <a href="#desayunos-comida">Desayunos y Comida</a>
-            <a href="#pasteleria">Pastelería</a>
+            <a href="#cafe-bebidas" class="menu-link">Café y Bebidas</a>
+            <a href="#desayunos-comida" class="menu-link">Desayunos y Comida</a>
+            <a href="#pasteleria" class="menu-link">Pastelería</a>
         </div>
     </nav>
     <div class="container">
         <h1>Ático Flores</h1>
         
-        <h2 id="cafe-bebidas">Café y Bebidas</h2>
+        <h2 id="cafe-bebidas" class="section">Café y Bebidas</h2>
         <div class="menu-item"><span>Espresso</span><span class="price">2€</span></div>
         <div class="menu-item"><span>Americano</span><span class="price">2€</span></div>
         <div class="menu-item"><span>Café con leche</span><span class="price">2,20€</span></div>
@@ -96,15 +103,41 @@
         <div class="menu-item"><span>Matcha Latte</span><span class="price">4€</span></div>
         <div class="menu-item"><span>Zumo de naranja</span><span class="price">3,95€ / 4,95€</span></div>
         
-        <h2 id="desayunos-comida">Desayunos y Comida</h2>
+        <h2 id="desayunos-comida" class="section">Desayunos y Comida</h2>
         <div class="menu-item"><span>Tostada Clásica</span><span class="price">4€</span></div>
         <div class="menu-item"><span>Ibérica (jamón, tomate, AOVE)</span><span class="price">4,50€</span></div>
         <div class="menu-item"><span>Aguacate, tomate y albahaca</span><span class="price">6,50€</span></div>
         
-        <h2 id="pasteleria">Pastelería</h2>
+        <h2 id="pasteleria" class="section">Pastelería</h2>
         <div class="menu-item"><span>Gofre clásico con chocolate</span><span class="price">4€</span></div>
         <div class="menu-item"><span>Galleta de chocolate</span><span class="price">3,50€</span></div>
         <div class="menu-item"><span>Tarta de queso</span><span class="price">4,50€</span></div>
     </div>
+    <script>
+        // Obtener la altura del menú de navegación
+        const navHeight = document.querySelector('nav').offsetHeight;
+        
+        // Configurar el evento de clic para los enlaces del menú
+        document.querySelectorAll('.menu-link').forEach(link => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                
+                // Obtener el ID del objetivo
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                // Calcular la posición de desplazamiento
+                // Restamos un pequeño margen (5px) para que quede justo debajo del menú
+                const offset = navHeight + 5;
+                const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+                
+                // Desplazarse a la posición calculada
+                window.scrollTo({
+                    top: elementPosition - offset,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
