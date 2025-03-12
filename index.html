@@ -16,6 +16,13 @@
             font-weight: bold;
             font-display: swap;
         }
+        :root {
+            --nav-height: 50px; /* Variable para la altura del menú */
+        }
+        html {
+            scroll-padding-top: var(--nav-height); /* Esta es la clave para el posicionamiento correcto */
+            scroll-behavior: smooth; /* Mantiene el desplazamiento suave */
+        }
         body {
             font-family: 'IBM Plex Sans', sans-serif;
             margin: 0;
@@ -33,6 +40,8 @@
             text-align: center;
             z-index: 1000;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            height: var(--nav-height);
+            box-sizing: border-box;
         }
         .menu-links {
             display: flex;
@@ -54,7 +63,7 @@
         }
         .container {
             max-width: 800px;
-            margin: 100px auto 40px;
+            margin: 80px auto 40px; /* Ajustado para tener más espacio en la parte superior */
             padding: 20px;
             background: rgba(255, 255, 255, 0.9);
             border-radius: 10px;
@@ -76,76 +85,45 @@
             font-weight: bold;
             color: #000;
         }
-        /* Quitamos las propiedades section que estaban causando problemas */
-        .section-anchor {
-            display: block;
-            position: relative;
-            top: -55px; /* Ajustado para compensar la altura del menú */
-            visibility: hidden;
+        section {
+            padding-top: 10px; /* Pequeño espaciado para las secciones */
         }
     </style>
 </head>
 <body>
     <nav>
         <div class="menu-links">
-            <a href="#cafe-bebidas" class="menu-link">Café y Bebidas</a>
-            <a href="#desayunos-comida" class="menu-link">Desayunos y Comida</a>
-            <a href="#pasteleria" class="menu-link">Pastelería</a>
+            <a href="#cafe-bebidas">Café y Bebidas</a>
+            <a href="#desayunos-comida">Desayunos y Comida</a>
+            <a href="#pasteleria">Pastelería</a>
         </div>
     </nav>
     <div class="container">
         <h1>Ático Flores</h1>
         
-        <!-- Agregamos un ancla invisible antes de cada sección -->
-        <span id="cafe-bebidas" class="section-anchor"></span>
-        <h2>Café y Bebidas</h2>
-        <div class="menu-item"><span>Espresso</span><span class="price">2€</span></div>
-        <div class="menu-item"><span>Americano</span><span class="price">2€</span></div>
-        <div class="menu-item"><span>Café con leche</span><span class="price">2,20€</span></div>
-        <div class="menu-item"><span>Flat White</span><span class="price">2,80€</span></div>
-        <div class="menu-item"><span>Matcha Latte</span><span class="price">4€</span></div>
-        <div class="menu-item"><span>Zumo de naranja</span><span class="price">3,95€ / 4,95€</span></div>
+        <section id="cafe-bebidas">
+            <h2>Café y Bebidas</h2>
+            <div class="menu-item"><span>Espresso</span><span class="price">2€</span></div>
+            <div class="menu-item"><span>Americano</span><span class="price">2€</span></div>
+            <div class="menu-item"><span>Café con leche</span><span class="price">2,20€</span></div>
+            <div class="menu-item"><span>Flat White</span><span class="price">2,80€</span></div>
+            <div class="menu-item"><span>Matcha Latte</span><span class="price">4€</span></div>
+            <div class="menu-item"><span>Zumo de naranja</span><span class="price">3,95€ / 4,95€</span></div>
+        </section>
         
-        <span id="desayunos-comida" class="section-anchor"></span>
-        <h2>Desayunos y Comida</h2>
-        <div class="menu-item"><span>Tostada Clásica</span><span class="price">4€</span></div>
-        <div class="menu-item"><span>Ibérica (jamón, tomate, AOVE)</span><span class="price">4,50€</span></div>
-        <div class="menu-item"><span>Aguacate, tomate y albahaca</span><span class="price">6,50€</span></div>
+        <section id="desayunos-comida">
+            <h2>Desayunos y Comida</h2>
+            <div class="menu-item"><span>Tostada Clásica</span><span class="price">4€</span></div>
+            <div class="menu-item"><span>Ibérica (jamón, tomate, AOVE)</span><span class="price">4,50€</span></div>
+            <div class="menu-item"><span>Aguacate, tomate y albahaca</span><span class="price">6,50€</span></div>
+        </section>
         
-        <span id="pasteleria" class="section-anchor"></span>
-        <h2>Pastelería</h2>
-        <div class="menu-item"><span>Gofre clásico con chocolate</span><span class="price">4€</span></div>
-        <div class="menu-item"><span>Galleta de chocolate</span><span class="price">3,50€</span></div>
-        <div class="menu-item"><span>Tarta de queso</span><span class="price">4,50€</span></div>
+        <section id="pasteleria">
+            <h2>Pastelería</h2>
+            <div class="menu-item"><span>Gofre clásico con chocolate</span><span class="price">4€</span></div>
+            <div class="menu-item"><span>Galleta de chocolate</span><span class="price">3,50€</span></div>
+            <div class="menu-item"><span>Tarta de queso</span><span class="price">4,50€</span></div>
+        </section>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Medir la altura exacta de la barra de navegación
-            const navBar = document.querySelector('nav');
-            const navHeight = navBar.offsetHeight;
-            
-            // Actualizar la posición de los anclajes según la altura de la barra
-            document.querySelectorAll('.section-anchor').forEach(anchor => {
-                anchor.style.top = (-navHeight) + 'px';
-            });
-            
-            // Configuramos el evento de clic para suavizar la navegación
-            document.querySelectorAll('.menu-link').forEach(link => {
-                link.addEventListener('click', function(event) {
-                    // Prevenir el comportamiento predeterminado solo para suavizar el desplazamiento
-                    event.preventDefault();
-                    
-                    // Obtener el ID del objetivo
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetElement = document.getElementById(targetId);
-                    
-                    // Desplazarse suavemente al elemento
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-            });
-        });
-    </script>
 </body>
 </html>
