@@ -7,7 +7,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+    
+    <!-- Añadimos la fuente New Spirit Bold Condensed mediante @font-face -->
     <style>
+        @font-face {
+            font-family: 'New Spirit Bold Condensed';
+            src: url('https://yourwebsite.com/fonts/NewSpiritBoldCondensed.woff2') format('woff2'),
+                 url('https://yourwebsite.com/fonts/NewSpiritBoldCondensed.woff') format('woff');
+            font-weight: bold;
+            font-style: normal;
+            font-display: swap; /* Asegura una carga rápida de la fuente */
+        }
+        
         /* Estilos básicos */
         body {
             font-family: 'IBM Plex Sans', sans-serif;
@@ -65,10 +76,14 @@
             margin-bottom: 30px;
         }
         
+        /* Aplicamos New Spirit Bold Condensed a los títulos h2 */
         h2 {
+            font-family: 'New Spirit Bold Condensed', sans-serif;
             text-align: center;
             margin: 30px 0 15px 0;
             padding-top: 20px;
+            letter-spacing: 0.5px; /* Mejora la legibilidad */
+            font-size: 28px; /* Tamaño adecuado para móviles y escritorio */
         }
         
         /* Elementos del menú */
@@ -81,6 +96,24 @@
         
         .price {
             font-weight: bold;
+        }
+        
+        /* Media queries para asegurar la responsividad */
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+                margin-top: 70px;
+            }
+            
+            h2 {
+                font-size: 24px; /* Tamaño ligeramente más pequeño para móviles */
+            }
+            
+            .navbar a {
+                font-size: 14px;
+                margin: 0 5px;
+                padding: 5px;
+            }
         }
     </style>
 </head>
