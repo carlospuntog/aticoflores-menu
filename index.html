@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carta - Ático Flores</title>
+    <title>Carta - Ático Flores - Primavera 2025</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
@@ -186,6 +186,26 @@
             color: #777;
         }
         
+        /* Seasonal Badge */
+        .season-badge {
+            display: inline-block;
+            background-color: var(--mauve-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        
+        /* Availability Notice */
+        .availability {
+            text-align: center;
+            font-size: 14px;
+            font-style: italic;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
         /* Mobile Optimization */
         @media (max-width: 576px) {
             .container {
@@ -244,8 +264,11 @@
     <div class="navbar">
         <div class="menu-links">
             <a href="#cafe" class="nav-link">Café y Bebidas</a>
-            <a href="#desayunos" class="nav-link">Desayunos y Comida</a>
+            <a href="#bebidas-frias" class="nav-link">Bebidas Frías</a>
+            <a href="#desayunos" class="nav-link">Desayunos</a>
+            <a href="#comida-salada" class="nav-link">Comida Salada</a>
             <a href="#pasteleria" class="nav-link">Pastelería</a>
+            <a href="#combos" class="nav-link">Combos</a>
         </div>
     </div>
 
@@ -254,17 +277,18 @@
         <div class="brand-header">
             <h1 class="brand-title">Ático Flores</h1>
             <p class="brand-subtitle">Cafetería & Pastelería</p>
+            <div class="season-badge">Menú de Primavera 2025</div>
         </div>
         
         <!-- Sección Café -->
         <div id="cafe" class="menu-category">
-            <h2 class="section-title">Café y Bebidas</h2>
+            <h2 class="section-title">Café de Especialidad & Bebidas Calientes</h2>
             <div class="menu-items">
                 <div class="menu-item">
                     <div class="item-details">
                         <h3 class="item-title">Espresso</h3>
                         <p class="item-description">Nuestro espresso de especialidad, elaborado con granos seleccionados.</p>
-                        <span class="item-price">2€</span>
+                        <span class="item-price">2,00€</span>
                     </div>
                     <img src="/api/placeholder/120/120" alt="Espresso" class="item-image">
                 </div>
@@ -273,18 +297,36 @@
                     <div class="item-details">
                         <h3 class="item-title">Americano</h3>
                         <p class="item-description">Espresso con agua caliente añadida para una experiencia más suave.</p>
-                        <span class="item-price">2€</span>
+                        <span class="item-price">2,00€</span>
                     </div>
                     <img src="/api/placeholder/120/120" alt="Americano" class="item-image">
                 </div>
                 
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Café con leche</h3>
+                        <h3 class="item-title">Cortado</h3>
+                        <p class="item-description">Espresso con una pequeña cantidad de leche caliente.</p>
+                        <span class="item-price">2,10€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Cortado" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Café con Leche</h3>
                         <p class="item-description">Equilibrio perfecto entre nuestro espresso y leche cremosa.</p>
                         <span class="item-price">2,20€</span>
                     </div>
                     <img src="/api/placeholder/120/120" alt="Café con leche" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Cappuccino</h3>
+                        <p class="item-description">Espresso con leche vaporizada y espuma de leche.</p>
+                        <span class="item-price">2,75€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Cappuccino" class="item-image">
                 </div>
                 
                 <div class="menu-item">
@@ -298,33 +340,159 @@
                 
                 <div class="menu-item">
                     <div class="item-details">
+                        <h3 class="item-title">Latte Macchiato</h3>
+                        <p class="item-description">Leche vaporizada con espresso vertido suavemente.</p>
+                        <span class="item-price">2,75€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Latte Macchiato" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Chocolate caliente</h3>
+                        <p class="item-description">Chocolate cremoso caliente disponible en dos tamaños.</p>
+                        <span class="item-price">3,50€ / 4,50€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Chocolate caliente" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">ColaCao</h3>
+                        <p class="item-description">Clásico cacao con leche caliente.</p>
+                        <span class="item-price">2,20€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="ColaCao" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Té (variedades)</h3>
+                        <p class="item-description">Selección de tés de alta calidad.</p>
+                        <span class="item-price">3,00€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Té" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Infusiones</h3>
+                        <p class="item-description">Variedad de infusiones aromáticas.</p>
+                        <span class="item-price">3,00€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Infusiones" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
                         <h3 class="item-title">Matcha Latte</h3>
                         <p class="item-description">Té matcha premium mezclado con leche caliente y un toque de vainilla.</p>
-                        <span class="item-price">4€</span>
+                        <span class="item-price">4,00€</span>
                     </div>
                     <img src="/api/placeholder/120/120" alt="Matcha Latte" class="item-image">
                 </div>
                 
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Zumo de naranja</h3>
+                        <h3 class="item-title">Chai Latte</h3>
+                        <p class="item-description">Mezcla de especias y té negro con leche vaporizada.</p>
+                        <span class="item-price">4,00€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Chai Latte" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">+ Mini Bouquet 🌸</h3>
+                        <p class="item-description">Añade un micro bouquet de flores frescas a tu bebida.</p>
+                        <span class="item-price">3,50€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Mini Bouquet" class="item-image">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sección Bebidas Frías -->
+        <div id="bebidas-frias" class="menu-category">
+            <h2 class="section-title">Bebidas Frías</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Refrescos</h3>
+                        <p class="item-description">Variedad de refrescos.</p>
+                        <span class="item-price">3,00€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Refrescos" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Zumo de Naranja natural</h3>
                         <p class="item-description">Recién exprimido a diario. Disponible en dos tamaños.</p>
                         <span class="item-price">3,95€ / 4,95€</span>
                     </div>
                     <img src="/api/placeholder/120/120" alt="Zumo de naranja" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Agua Mineral</h3>
+                        <p class="item-description">Agua mineral natural.</p>
+                        <span class="item-price">1,50€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Agua Mineral" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Agua con Gas</h3>
+                        <p class="item-description">Agua mineral con gas.</p>
+                        <span class="item-price">2,50€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Agua con Gas" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Cerveza</h3>
+                        <p class="item-description">Selección de cervezas.</p>
+                        <span class="item-price">3,25€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Cerveza" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Vermú</h3>
+                        <p class="item-description">Vermú clásico.</p>
+                        <span class="item-price">4,00€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Vermú" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Vino (copa)</h3>
+                        <p class="item-description">Selección de vinos por copa.</p>
+                        <span class="item-price">4,00€ - 6,00€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Vino" class="item-image">
                 </div>
             </div>
         </div>
         
         <!-- Sección Desayunos -->
         <div id="desayunos" class="menu-category">
-            <h2 class="section-title">Desayunos y Comida</h2>
+            <h2 class="section-title">Desayunos</h2>
+            <p class="availability">Disponible de 8:00 a 11:00</p>
+            
+            <h3 class="section-title" style="font-size: 22px;">Tostadas</h3>
             <div class="menu-items">
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Tostada Clásica</h3>
-                        <p class="item-description">Pan artesanal tostado con mantequilla y mermelada casera.</p>
-                        <span class="item-price">4€</span>
+                        <h3 class="item-title">Clásica</h3>
+                        <p class="item-description">Pan tostado con tomate rallado y aceite de oliva virgen extra.</p>
+                        <span class="item-price">4,00€</span>
                     </div>
                     <img src="/api/placeholder/120/120" alt="Tostada Clásica" class="item-image">
                 </div>
@@ -332,95 +500,166 @@
                 <div class="menu-item">
                     <div class="item-details">
                         <h3 class="item-title">Ibérica</h3>
-                        <p class="item-description">Tostada con jamón ibérico, tomate rallado y aceite de oliva virgen extra.</p>
-                        <span class="item-price">4,50€</span>
+                        <p class="item-description">Tostada con tomate, aceite de oliva virgen extra y jamón ibérico.</p>
+                        <span class="item-price">5,50€</span>
                     </div>
                     <img src="/api/placeholder/120/120" alt="Tostada Ibérica" class="item-image">
                 </div>
                 
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Tostada de Aguacate</h3>
-                        <p class="item-description">Pan tostado con aguacate, tomate cherry y albahaca fresca.</p>
+                        <h3 class="item-title">Aguacate</h3>
+                        <p class="item-description">Tostada con aguacate, tomate, albahaca y aceite de oliva virgen extra.</p>
                         <span class="item-price">6,50€</span>
                     </div>
                     <img src="/api/placeholder/120/120" alt="Tostada de Aguacate" class="item-image">
+                </div>
+            </div>
+            
+            <h3 class="section-title" style="font-size: 22px;">Bowls de Fruta y Yogur</h3>
+            <p class="availability">Disponibles de 8:00 a 20:00</p>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Yogur Bowl</h3>
+                        <p class="item-description">Yogur griego con granola y frutos rojos.</p>
+                        <span class="item-price">5,00€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Yogur Bowl" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Super Fruit Bowl</h3>
+                        <p class="item-description">Granada, mango, arándanos, kiwi y fresas (mezcla de frutas de temporada).</p>
+                        <span class="item-price">6,00€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Super Fruit Bowl" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Açaí Bowl</h3>
+                        <p class="item-description">Açaí con plátano, frutos rojos y yogur.</p>
+                        <span class="item-price">6,95€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Açaí Bowl" class="item-image">
+                </div>
+            </div>
+            
+            <h3 class="section-title" style="font-size: 22px;">Gofres</h3>
+            <p class="availability">Disponibles de 8:00 a 20:00</p>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Gofre Clásico</h3>
+                        <p class="item-description">Gofre recién hecho cubierto de salsa de chocolate y nata montada.</p>
+                        <span class="item-price">4,00€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Gofre Clásico" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Gofre Bowl de Fruta</h3>
+                        <p class="item-description">Fruta fresca variada con miel y nata.</p>
+                        <span class="item-price">5,00€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Gofre Bowl de Fruta" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Gofre de Aguacate & Salmón</h3>
+                        <p class="item-description">Tostada con salmón ahumado, crema de queso mascarpone y aguacate.</p>
+                        <span class="item-price">6,50€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Gofre de Aguacate & Salmón" class="item-image">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sección Comida Salada -->
+        <div id="comida-salada" class="menu-category">
+            <h2 class="section-title">Comida Salada</h2>
+            <p class="availability">Disponible de 12:00 a 20:00</p>
+            
+            <h3 class="section-title" style="font-size: 22px;">Focaccias</h3>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Salami & Parmesano</h3>
+                        <p class="item-description">Salami finocchiona, crema de alcachofas, crema de parmesano y rúcula.</p>
+                        <span class="item-price">5,95€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Focaccia Salami & Parmesano" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Jamón Ibérico</h3>
+                        <p class="item-description">Jamón ibérico, tomate triturado y aceite de oliva virgen extra.</p>
+                        <span class="item-price">5,95€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Focaccia Jamón Ibérico" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Mozzarella & Tomate</h3>
+                        <p class="item-description">Mozzarella de búfala marinada, tomate, albahaca, orégano y semillas de hinojo.</p>
+                        <span class="item-price">7,95€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Focaccia Mozzarella & Tomate" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Gorgonzola & Mortadela</h3>
+                        <p class="item-description">Queso gorgonzola dulce, mortadela italiana, tomates secos y pesto de pistacho.</p>
+                        <span class="item-price">5,95€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Focaccia Gorgonzola & Mortadela" class="item-image">
+                </div>
+            </div>
+            
+            <h3 class="section-title" style="font-size: 22px;">Ensaladas</h3>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Ensalada "Ático Flores"</h3>
+                        <p class="item-description">Mezclum de lechugas baby, flores comestibles, frambuesas, arándanos, moras y aguacate, con vinagreta de miel, mostaza y limón.</p>
+                        <span class="item-price">7,95€ (+2,00€ con pollo)</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Ensalada Ático Flores" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Ensalada Caprese</h3>
+                        <p class="item-description">Tomate fresco, mozzarella de búfala, pesto genovés y albahaca.</p>
+                        <span class="item-price">5,95€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Ensalada Caprese" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Ensalada Ático Mezze</h3>
+                        <p class="item-description">Cuscús, hummus, tomate, pepino, cebolla roja, mezcla de ensaladas y espinacas, queso feta, aceitunas y garbanzos especiados.</p>
+                        <span class="item-price">7,95€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Ensalada Ático Mezze" class="item-image">
                 </div>
             </div>
         </div>
         
         <!-- Sección Pastelería -->
         <div id="pasteleria" class="menu-category">
-            <h2 class="section-title">Pastelería</h2>
+            <h2 class="section-title">Pastelería & Dulces</h2>
+            
+            <h3 class="section-title" style="font-size: 22px;">Tartas y Postres</h3>
             <div class="menu-items">
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Gofre clásico</h3>
-                        <p class="item-description">Gofre recién hecho con chocolate belga y azúcar glas.</p>
-                        <span class="item-price">4€</span>
-                    </div>
-                    <img src="/api/placeholder/120/120" alt="Gofre clásico" class="item-image">
-                </div>
-                
-                <div class="menu-item">
-                    <div class="item-details">
-                        <h3 class="item-title">Galleta de chocolate</h3>
-                        <p class="item-description">Galleta artesanal con trozos de chocolate negro y nueces.</p>
-                        <span class="item-price">3,50€</span>
-                    </div>
-                    <img src="/api/placeholder/120/120" alt="Galleta de chocolate" class="item-image">
-                </div>
-                
-                <div class="menu-item">
-                    <div class="item-details">
-                        <h3 class="item-title">Tarta de queso</h3>
-                        <p class="item-description">Nuestra famosa tarta de queso horneada con base de galleta.</p>
-                        <span class="item-price">4,50€</span>
-                    </div>
-                    <img src="/api/placeholder/120/120" alt="Tarta de queso" class="item-image">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Función para resaltar la sección activa en el menú
-        const navLinks = document.querySelectorAll('.nav-link');
-        const sections = document.querySelectorAll('.menu-category');
-        
-        // Desplazamiento suave al hacer clic en los enlaces
-        navLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetSection = document.querySelector(targetId);
-                
-                // Altura de la barra de navegación para compensar el scroll
-                const navHeight = document.querySelector('.navbar').offsetHeight;
-                
-                window.scrollTo({
-                    top: targetSection.offsetTop - navHeight - 20,
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        // Detectar qué sección está visible para actualizar la navegación
-        window.addEventListener('scroll', function() {
-            const scrollPosition = window.scrollY;
-            const navHeight = document.querySelector('.navbar').offsetHeight;
-            
-            sections.forEach((section, index) => {
-                const sectionTop = section.offsetTop - navHeight - 50;
-                const sectionBottom = sectionTop + section.offsetHeight;
-                
-                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-                    navLinks.forEach(link => link.classList.remove('active'));
-                    navLinks[index].classList.add('active');
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+                        <h3
