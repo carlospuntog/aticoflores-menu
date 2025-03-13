@@ -10,9 +10,9 @@
     
     <style>
         :root {
-            --mauve-color: #9370DB;
-            --mauve-light: #D8BFD8;
-            --dark-text: #333333;
+            --mauve-color: #8A4FFF;
+            --mauve-light: #B894FF;
+            --dark-text: #222222;
             --light-bg: #FAFAFA;
             --white: #FFFFFF;
             --gray-light: #EEEEEE;
@@ -29,7 +29,7 @@
             background-color: var(--light-bg);
             color: var(--dark-text);
             line-height: 1.6;
-            padding-top: 100px; /* Ajustado para la nueva barra fija */
+            padding-top: 100px;
         }
         
         /* Header/Navigation - MODIFICADO */
@@ -52,7 +52,7 @@
         
         .navbar {
             position: fixed;
-            top: 35px; /* Ajustado para dar espacio al top-navbar */
+            top: 35px;
             left: 0;
             width: 100%;
             background-color: var(--white);
@@ -63,7 +63,7 @@
         
         .menu-links {
             display: flex;
-            justify-content: center;
+            justify-content: flex-start; /* Modificado: center a flex-start */
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             scroll-behavior: smooth;
@@ -75,11 +75,11 @@
             font-family: 'IBM Plex Mono', monospace;
             color: var(--dark-text);
             text-decoration: none;
-            margin: 0 15px;
+            margin: 0 10px;
             font-size: 16px;
-            padding: 10px 15px;
+            padding: 8px 12px;
             position: relative;
-            border-radius: 20px;
+            border-radius: 4px; /* Modificado: 8px a 4px */
             transition: all 0.3s ease;
         }
         
@@ -90,6 +90,7 @@
         .navbar a.active {
             background-color: var(--mauve-color);
             color: var(--white);
+            font-weight: 600;
         }
         
         /* Main Container */
@@ -107,7 +108,8 @@
             padding-bottom: 15px;
             border-bottom: 2px solid var(--mauve-color);
             position: relative;
-            scroll-margin-top: 120px; /* Ajustado para que el título quede visible */
+            scroll-margin-top: 120px;
+            color: var(--dark-text);
         }
         
         .section-title:after {
@@ -119,6 +121,15 @@
             bottom: -3px;
             left: 50%;
             transform: translateX(-50%);
+        }
+        
+        .subsection-title {
+            font-size: 22px;
+            margin: 25px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--mauve-light);
+            scroll-margin-top: 120px;
+            color: var(--dark-text);
         }
         
         /* Menu Items */
@@ -161,19 +172,24 @@
         
         .item-description {
             font-size: 14px;
-            color: #666;
+            color: #444;
             margin-bottom: 10px;
             flex-grow: 1;
         }
         
         .item-price {
             font-weight: bold;
-            color: var(--mauve-color);
-            font-size: 18px;
+            color: var(--mauve-color); /* Modificado: #FFFFFF a var(--mauve-color) */
+            font-size: 16px;
             align-self: flex-start;
-            background-color: var(--mauve-light);
-            padding: 3px 10px;
-            border-radius: 4px;
+            padding: 4px 0; /* Modificado: eliminado padding horizontal */
+            background-color: transparent; /* Modificado: eliminado fondo */
+            border-radius: 0; /* Modificado: eliminado redondeado */
+        }
+        
+        .double-price {
+            display: flex;
+            gap: 10px;
         }
         
         .item-image {
@@ -197,7 +213,7 @@
         
         .brand-subtitle {
             font-size: 16px;
-            color: #777;
+            color: #555;
         }
         
         /* Seasonal Badge */
@@ -206,9 +222,10 @@
             background-color: var(--mauve-color);
             color: white;
             padding: 5px 15px;
-            border-radius: 20px;
+            border-radius: 8px;
             font-size: 14px;
             margin-top: 10px;
+            font-weight: 600;
         }
         
         /* Availability Notice */
@@ -216,8 +233,12 @@
             text-align: center;
             font-size: 14px;
             font-style: italic;
-            color: #666;
+            color: #555;
             margin-bottom: 15px;
+            background-color: var(--gray-light);
+            padding: 8px;
+            border-radius: 8px;
+            font-weight: 500;
         }
         
         /* Mobile Optimization */
@@ -267,7 +288,7 @@
             }
             
             .item-price {
-                font-size: 16px;
+                font-size: 14px;
             }
             
             .item-image {
@@ -281,36 +302,62 @@
         // Script para manejar la navegación y el scrolling
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
+            let lastScrollPosition = 0;
+            let ticking = false;
             
-            // Función para activar el link correcto según la posición de scroll
+            // Función modificada para activar el link correcto según la posición de scroll
             function setActiveLink() {
-                let found = false;
-                const scrollPosition = window.scrollY + 120; // Compensación para el header fijo
+                const scrollPosition = window.scrollY + 120;
+                const sections = document.querySelectorAll('.menu-category');
+                let currentSection = null;
                 
-                // Recorre las secciones en orden inverso para encontrar la sección actual
-                document.querySelectorAll('.menu-category').forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    const sectionId = section.getAttribute('id');
+                // Encontrar la sección actual (más cercana al tope de la pantalla)
+                for (let i = sections.length - 1; i >= 0; i--) {
+                    const section = sections[i];
+                    const sectionTop = section.offsetTop - 120; // Ajustar offset
                     
-                    if (scrollPosition >= sectionTop && !found) {
-                        found = true;
-                        navLinks.forEach(link => {
-                            link.classList.remove('active');
-                            if (link.getAttribute('href') === '#' + sectionId) {
-                                link.classList.add('active');
-                            }
-                        });
+                    if (scrollPosition >= sectionTop) {
+                        currentSection = section;
+                        break;
                     }
+                }
+                
+                // Si no se encontró sección, usar la primera
+                if (!currentSection && sections.length > 0) {
+                    currentSection = sections[0];
+                }
+                
+                // Desactivar todos los enlaces primero
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
                 });
                 
-                // Si no hay sección activa (al principio de la página), activa la primera
-                if (!found && navLinks.length > 0) {
-                    navLinks[0].classList.add('active');
+                // Activar solo el enlace correspondiente
+                if (currentSection) {
+                    const sectionId = currentSection.getAttribute('id');
+                    const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                    }
+                }
+                
+                ticking = false;
+            }
+            
+            // Optimizar el evento de scroll
+            function onScroll() {
+                lastScrollPosition = window.scrollY;
+                if (!ticking) {
+                    window.requestAnimationFrame(function() {
+                        setActiveLink();
+                        ticking = false;
+                    });
+                    ticking = true;
                 }
             }
             
             // Detectar scroll y activar el link correspondiente
-            window.addEventListener('scroll', setActiveLink);
+            window.addEventListener('scroll', onScroll);
             
             // Inicializar el link activo
             setActiveLink();
@@ -369,6 +416,7 @@
         <div class="menu-links">
             <a href="#cafe" class="nav-link active">Café y Bebidas</a>
             <a href="#bebidas-frias" class="nav-link">Bebidas Frías</a>
+            <a href="#bebidas-alcoholicas" class="nav-link">Bebidas Alcohólicas</a>
             <a href="#desayunos" class="nav-link">Desayunos</a>
             <a href="#comida-salada" class="nav-link">Comida Salada</a>
             <a href="#pasteleria" class="nav-link">Pastelería</a>
@@ -397,7 +445,6 @@
                     <img src="/api/placeholder/120/120" alt="Espresso" class="item-image">
                 </div>
                 
-                <!-- Resto de elementos de café... -->
                 <div class="menu-item">
                     <div class="item-details">
                         <h3 class="item-title">Americano</h3>
@@ -407,7 +454,116 @@
                     <img src="/api/placeholder/120/120" alt="Americano" class="item-image">
                 </div>
                 
-                <!-- Resto de elementos de café omitidos para brevedad -->
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Cortado</h3>
+                        <p class="item-description">Espresso con una pequeña cantidad de leche caliente.</p>
+                        <span class="item-price">2,10€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Cortado" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Café con Leche</h3>
+                        <p class="item-description">Espresso con leche caliente y un toque de espuma.</p>
+                        <span class="item-price">2,20€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Café con Leche" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Cappuccino</h3>
+                        <p class="item-description">Espresso con leche vaporizada y abundante espuma.</p>
+                        <span class="item-price">2,75€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Cappuccino" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Flat White</h3>
+                        <p class="item-description">Doble espresso con leche cremosa y microtexturizada.</p>
+                        <span class="item-price">2,80€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Flat White" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Latte Macchiato</h3>
+                        <p class="item-description">Leche vaporizada manchada con espresso, en capas visibles.</p>
+                        <span class="item-price">2,75€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Latte Macchiato" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Chocolate Caliente</h3>
+                        <p class="item-description">Chocolate rico y cremoso elaborado con cacao de alta calidad.</p>
+                        <div class="double-price">
+                            <span class="item-price">Pequeño 3,50€</span>
+                            <span class="item-price">Grande 4,50€</span>
+                        </div>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Chocolate Caliente" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">ColaCao</h3>
+                        <p class="item-description">El clásico cacao soluble con leche caliente.</p>
+                        <span class="item-price">2,20€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="ColaCao" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Té (variedades)</h3>
+                        <p class="item-description">Selección de tés de alta calidad. Consulte variedades disponibles.</p>
+                        <span class="item-price">3,00€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Té" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Infusiones</h3>
+                        <p class="item-description">Infusiones herbales y frutales. Consulte nuestra selección.</p>
+                        <span class="item-price">3,00€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Infusiones" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Matcha Latte</h3>
+                        <p class="item-description">Té verde matcha ceremonial con leche vaporizada.</p>
+                        <span class="item-price">4,00€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Matcha Latte" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Chai Latte</h3>
+                        <p class="item-description">Mezcla de té negro, especias y leche vaporizada.</p>
+                        <span class="item-price">4,00€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Chai Latte" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">+ Mini Bouquet 🌸</h3>
+                        <p class="item-description">Añade un micro bouquet de flores frescas a tu bebida.</p>
+                        <span class="item-price">3,50€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Mini Bouquet" class="item-image">
+                </div>
             </div>
         </div>
         
@@ -424,7 +580,68 @@
                     <img src="/api/placeholder/120/120" alt="Refrescos" class="item-image">
                 </div>
                 
-                <!-- Resto de elementos de bebidas frías omitidos para brevedad -->
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Zumo de Naranja Natural</h3>
+                        <p class="item-description">Zumo recién exprimido de naranjas seleccionadas.</p>
+                        <div class="double-price">
+                            <span class="item-price">Pequeño 3,95€</span>
+                            <span class="item-price">Grande 4,95€</span>
+                        </div>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Zumo de Naranja" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Agua Mineral</h3>
+                        <p class="item-description">Agua mineral natural.</p>
+                        <span class="item-price">1,50€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Agua Mineral" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Agua con Gas</h3>
+                        <p class="item-description">Agua mineral con gas.</p>
+                        <span class="item-price">2,50€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Agua con Gas" class="item-image">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sección Bebidas Alcohólicas -->
+        <div id="bebidas-alcoholicas" class="menu-category">
+            <h2 class="section-title">Bebidas Alcohólicas</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Cerveza</h3>
+                        <p class="item-description">Cerveza de barril o botella. Consulte variedades disponibles.</p>
+                        <span class="item-price">3,25€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Cerveza" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Vermú</h3>
+                        <p class="item-description">Vermú artesanal servido con hielo y cítricos.</p>
+                        <span class="item-price">4,00€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Vermú" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Vino (copa)</h3>
+                        <p class="item-description">Selección de vinos por copa. Consulte nuestra carta.</p>
+                        <span class="item-price">4,00€ - 6,00€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Vino" class="item-image">
+                </div>
             </div>
         </div>
         
@@ -433,28 +650,79 @@
             <h2 class="section-title">Desayunos</h2>
             <p class="availability">Disponible de 8:00 a 11:00</p>
             
-            <h3 class="section-title" style="font-size: 22px;">Tostadas</h3>
+            <h3 class="subsection-title">Tostadas</h3>
             <div class="menu-items">
-                <!-- Elementos de tostadas omitidos para brevedad -->
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Tostada Clásica</h3>
+                        <p class="item-description">Pan tostado con tomate rallado y aceite de oliva virgen extra.</p>
+                        <span class="item-price">4,00€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Tostada Clásica" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Tostada Ibérica</h3>
+                        <p class="item-description">Tostada con tomate, aceite de oliva virgen extra y jamón ibérico.</p>
+                        <span class="item-price">5,50€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Tostada Ibérica" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Tostada de Aguacate</h3>
+                        <p class="item-description">Tostada con aguacate, tomate, albahaca y aceite de oliva virgen extra.</p>
+                        <span class="item-price">6,50€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Tostada de Aguacate" class="item-image">
+                </div>
             </div>
             
-            <!-- Resto de elementos de desayunos omitidos para brevedad -->
-        </div>
-        
-        <!-- Sección Comida Salada -->
-        <div id="comida-salada" class="menu-category">
-            <h2 class="section-title">Comida Salada</h2>
-            <p class="availability">Disponible de 12:00 a 20:00</p>
+            <h3 class="subsection-title">Bowls de Fruta y Yogur</h3>
+            <p class="availability">Disponible de 8:00 a 20:00</p>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Yogur Bowl</h3>
+                        <p class="item-description">Yogur griego con granola y frutos rojos.</p>
+                        <span class="item-price">5,00€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Yogur Bowl" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Super Fruit Bowl</h3>
+                        <p class="item-description">Granada, mango, arándanos, kiwi y fresas (mezcla de frutas de temporada).</p>
+                        <span class="item-price">6,00€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Super Fruit Bowl" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Açaí Bowl</h3>
+                        <p class="item-description">Açaí con plátano, frutos rojos y yogur.</p>
+                        <span class="item-price">6,95€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Açaí Bowl" class="item-image">
+                </div>
+            </div>
             
-            <!-- Elementos de comida salada omitidos para brevedad -->
-        </div>
-        
-        <!-- Sección Pastelería -->
-        <div id="pasteleria" class="menu-category">
-            <h2 class="section-title">Pastelería & Dulces</h2>
-            
-            <!-- Elementos de pastelería omitidos para brevedad -->
-        </div>
+            <h3 class="subsection-title">Gofres</h3>
+            <p class="availability">Disponible de 8:00 a 20:00</p>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Gofre Clásico</h3>
+                        <p class="item-description">Gofre recién hecho cubierto de salsa de chocolate y nata montada.</p>
+                        <span class="item-price">4,00€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Gofre Clásico" class="item-image">
+                </div>
+                
         
         <!-- Sección Combos -->
         <div id="combos" class="menu-category">
