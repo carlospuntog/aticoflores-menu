@@ -8,141 +8,233 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
     
-    <!-- Método más fiable para cargar la fuente New Spirit Bold Condensed -->
     <style>
-        /* Múltiples formatos y declaración más sólida para @font-face */
-        @font-face {
-            font-family: 'New Spirit Bold Condensed';
-            src: url('https://yourwebsite.com/fonts/NewSpiritBoldCondensed.woff2') format('woff2'),
-                 url('https://yourwebsite.com/fonts/NewSpiritBoldCondensed.woff') format('woff'),
-                 url('https://yourwebsite.com/fonts/NewSpiritBoldCondensed.ttf') format('truetype');
-            font-weight: bold;
-            font-style: normal;
-            font-display: swap;
-            /* Aseguramos que la fuente se descargue y aplique con prioridad */
+        :root {
+            --mauve-color: #9370DB;
+            --mauve-light: #D8BFD8;
+            --dark-text: #333333;
+            --light-bg: #FAFAFA;
+            --white: #FFFFFF;
+            --gray-light: #EEEEEE;
         }
         
-        /* Clase de respaldo para garantizar que se aplique una fuente condensada si New Spirit falla */
-        .section-title {
-            font-family: 'New Spirit Bold Condensed', 'Arial Narrow', 'Franklin Gothic Medium Condensed', 'Nimbus Sans Condensed', sans-serif-condensed, sans-serif;
-            font-weight: bold;
-            font-stretch: condensed; /* Propiedad moderna para fuentes condensadas */
-            letter-spacing: 0.5px;
-            text-align: center;
-            margin: 30px 0 15px 0;
-            padding-top: 20px;
-        }
-        
-        /* Estilos básicos */
-        body {
-            font-family: 'IBM Plex Sans', sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background: white;
-            color: #000;
+            box-sizing: border-box;
         }
         
-        /* Barra de navegación */
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+        
+        /* Header/Navigation */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             z-index: 1000;
-            text-align: center;
             padding: 10px 0;
         }
         
         .menu-links {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            scroll-behavior: smooth;
+            white-space: nowrap;
+            padding: 0 15px;
         }
         
         .navbar a {
             font-family: 'IBM Plex Mono', monospace;
-            color: black;
+            color: var(--dark-text);
             text-decoration: none;
-            margin: 0 10px;
+            margin: 0 15px;
             font-size: 16px;
-            padding: 8px;
+            padding: 10px 5px;
+            position: relative;
         }
         
-        .navbar a:hover {
-            text-decoration: underline;
+        .navbar a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background: var(--mauve-color);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
         }
         
-        /* Contenedor principal */
+        .navbar a:hover:after,
+        .navbar a.active:after {
+            width: 100%;
+        }
+        
+        /* Main Container */
         .container {
             max-width: 800px;
             margin: 80px auto 40px;
             padding: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
         
-        /* Títulos */
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        /* Aplicamos los estilos a través de la clase, no solo al selector h2 */
-        h2 {
+        /* Category Headers */
+        .section-title {
             font-size: 28px;
+            text-align: center;
+            margin: 30px 0 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--mauve-color);
+            position: relative;
         }
         
-        /* Elementos del menú */
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: var(--mauve-color);
+            bottom: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Menu Items */
+        .menu-category {
+            margin-bottom: 40px;
+        }
+        
+        .menu-items {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+        
         .menu-item {
             display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px dashed #000;
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         
-        .price {
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .item-details {
+            flex: 1;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .item-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--dark-text);
+        }
+        
+        .item-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+            flex-grow: 1;
+        }
+        
+        .item-price {
             font-weight: bold;
+            color: var(--mauve-color);
+            font-size: 18px;
+            align-self: flex-start;
+            background-color: var(--mauve-light);
+            padding: 3px 10px;
+            border-radius: 4px;
         }
         
-        /* Estilos específicos para móviles */
-        @media (max-width: 480px) {
+        .item-image {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+        }
+        
+        /* Brand Header */
+        .brand-header {
+            text-align: center;
+            padding: 20px 0;
+        }
+        
+        .brand-title {
+            font-size: 36px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--mauve-color);
+        }
+        
+        .brand-subtitle {
+            font-size: 16px;
+            color: #777;
+        }
+        
+        /* Mobile Optimization */
+        @media (max-width: 576px) {
             .container {
                 padding: 15px;
                 margin-top: 70px;
             }
             
-            h2.section-title {
-                font-size: 24px; /* Tamaño específico para móviles */
+            .menu-links {
+                padding: 0 10px;
             }
             
             .navbar a {
+                margin: 0 10px;
                 font-size: 14px;
-                margin: 0 5px;
-                padding: 5px;
             }
             
-            /* Forzar la carga de la fuente en móviles */
-            h2:before {
-                content: "";
-                display: block;
-                font-family: 'New Spirit Bold Condensed', sans-serif;
-                height: 0;
-                visibility: hidden;
+            .section-title {
+                font-size: 24px;
+                margin: 25px 0 15px;
             }
-        }
-        
-        /* Asegurar que la fuente se cargue lo antes posible */
-        body:before {
-            content: "";
-            font-family: 'New Spirit Bold Condensed';
-            opacity: 0;
-            height: 0;
-            width: 0;
-            visibility: hidden;
-            position: absolute;
+            
+            .menu-item {
+                flex-direction: row;
+            }
+            
+            .item-details {
+                padding: 12px;
+            }
+            
+            .item-title {
+                font-size: 16px;
+            }
+            
+            .item-description {
+                font-size: 13px;
+                -webkit-line-clamp: 3;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            
+            .item-price {
+                font-size: 16px;
+            }
+            
+            .item-image {
+                width: 100px;
+                height: 100px;
+            }
         }
     </style>
 </head>
@@ -151,75 +243,184 @@
     <!-- Barra de navegación -->
     <div class="navbar">
         <div class="menu-links">
-            <a href="javascript:void(0)" onclick="scrollToSection('cafe')">Café y Bebidas</a>
-            <a href="javascript:void(0)" onclick="scrollToSection('desayunos')">Desayunos y Comida</a>
-            <a href="javascript:void(0)" onclick="scrollToSection('pasteleria')">Pastelería</a>
+            <a href="#cafe" class="nav-link">Café y Bebidas</a>
+            <a href="#desayunos" class="nav-link">Desayunos y Comida</a>
+            <a href="#pasteleria" class="nav-link">Pastelería</a>
         </div>
     </div>
 
     <!-- Contenido principal -->
     <div class="container">
-        <h1>Ático Flores</h1>
+        <div class="brand-header">
+            <h1 class="brand-title">Ático Flores</h1>
+            <p class="brand-subtitle">Cafetería & Pastelería</p>
+        </div>
         
-        <!-- Sección Café - Añadimos la clase section-title a los h2 -->
-        <div id="cafe">
+        <!-- Sección Café -->
+        <div id="cafe" class="menu-category">
             <h2 class="section-title">Café y Bebidas</h2>
-            <div class="menu-item"><span>Espresso</span><span class="price">2€</span></div>
-            <div class="menu-item"><span>Americano</span><span class="price">2€</span></div>
-            <div class="menu-item"><span>Café con leche</span><span class="price">2,20€</span></div>
-            <div class="menu-item"><span>Flat White</span><span class="price">2,80€</span></div>
-            <div class="menu-item"><span>Matcha Latte</span><span class="price">4€</span></div>
-            <div class="menu-item"><span>Zumo de naranja</span><span class="price">3,95€ / 4,95€</span></div>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Espresso</h3>
+                        <p class="item-description">Nuestro espresso de especialidad, elaborado con granos seleccionados.</p>
+                        <span class="item-price">2€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Espresso" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Americano</h3>
+                        <p class="item-description">Espresso con agua caliente añadida para una experiencia más suave.</p>
+                        <span class="item-price">2€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Americano" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Café con leche</h3>
+                        <p class="item-description">Equilibrio perfecto entre nuestro espresso y leche cremosa.</p>
+                        <span class="item-price">2,20€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Café con leche" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Flat White</h3>
+                        <p class="item-description">Doble shot de espresso con leche microespumada.</p>
+                        <span class="item-price">2,80€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Flat White" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Matcha Latte</h3>
+                        <p class="item-description">Té matcha premium mezclado con leche caliente y un toque de vainilla.</p>
+                        <span class="item-price">4€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Matcha Latte" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Zumo de naranja</h3>
+                        <p class="item-description">Recién exprimido a diario. Disponible en dos tamaños.</p>
+                        <span class="item-price">3,95€ / 4,95€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Zumo de naranja" class="item-image">
+                </div>
+            </div>
         </div>
         
         <!-- Sección Desayunos -->
-        <div id="desayunos">
+        <div id="desayunos" class="menu-category">
             <h2 class="section-title">Desayunos y Comida</h2>
-            <div class="menu-item"><span>Tostada Clásica</span><span class="price">4€</span></div>
-            <div class="menu-item"><span>Ibérica (jamón, tomate, AOVE)</span><span class="price">4,50€</span></div>
-            <div class="menu-item"><span>Aguacate, tomate y albahaca</span><span class="price">6,50€</span></div>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Tostada Clásica</h3>
+                        <p class="item-description">Pan artesanal tostado con mantequilla y mermelada casera.</p>
+                        <span class="item-price">4€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Tostada Clásica" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Ibérica</h3>
+                        <p class="item-description">Tostada con jamón ibérico, tomate rallado y aceite de oliva virgen extra.</p>
+                        <span class="item-price">4,50€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Tostada Ibérica" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Tostada de Aguacate</h3>
+                        <p class="item-description">Pan tostado con aguacate, tomate cherry y albahaca fresca.</p>
+                        <span class="item-price">6,50€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Tostada de Aguacate" class="item-image">
+                </div>
+            </div>
         </div>
         
         <!-- Sección Pastelería -->
-        <div id="pasteleria">
+        <div id="pasteleria" class="menu-category">
             <h2 class="section-title">Pastelería</h2>
-            <div class="menu-item"><span>Gofre clásico con chocolate</span><span class="price">4€</span></div>
-            <div class="menu-item"><span>Galleta de chocolate</span><span class="price">3,50€</span></div>
-            <div class="menu-item"><span>Tarta de queso</span><span class="price">4,50€</span></div>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Gofre clásico</h3>
+                        <p class="item-description">Gofre recién hecho con chocolate belga y azúcar glas.</p>
+                        <span class="item-price">4€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Gofre clásico" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Galleta de chocolate</h3>
+                        <p class="item-description">Galleta artesanal con trozos de chocolate negro y nueces.</p>
+                        <span class="item-price">3,50€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Galleta de chocolate" class="item-image">
+                </div>
+                
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3 class="item-title">Tarta de queso</h3>
+                        <p class="item-description">Nuestra famosa tarta de queso horneada con base de galleta.</p>
+                        <span class="item-price">4,50€</span>
+                    </div>
+                    <img src="/api/placeholder/120/120" alt="Tarta de queso" class="item-image">
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Script de navegación -->
     <script>
-        // Función para desplazarse a la sección correspondiente
-        function scrollToSection(sectionId) {
-            // Obtenemos el elemento y la barra de navegación
-            const section = document.getElementById(sectionId);
-            const navbar = document.querySelector('.navbar');
-            
-            // Calculamos la altura de la barra de navegación
-            const navbarHeight = navbar.offsetHeight;
-            
-            // Calculamos la posición del elemento respecto al inicio del documento
-            const sectionPosition = section.getBoundingClientRect().top + window.pageYOffset;
-            
-            // Desplazamos la ventana a la posición calculada menos la altura de la barra
-            window.scrollTo({
-                top: sectionPosition - navbarHeight - 10, // 10px extra de margen
-                behavior: 'smooth'
-            });
-        }
+        // Función para resaltar la sección activa en el menú
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('.menu-category');
         
-        // Script adicional para forzar la carga de la fuente
-        document.addEventListener('DOMContentLoaded', function() {
-            // Forzar actualización del DOM para aplicar la fuente
-            document.body.style.visibility = 'hidden';
-            setTimeout(function() {
-                document.body.style.visibility = 'visible';
-            }, 10);
+        // Desplazamiento suave al hacer clic en los enlaces
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                // Altura de la barra de navegación para compensar el scroll
+                const navHeight = document.querySelector('.navbar').offsetHeight;
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - navHeight - 20,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Detectar qué sección está visible para actualizar la navegación
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY;
+            const navHeight = document.querySelector('.navbar').offsetHeight;
+            
+            sections.forEach((section, index) => {
+                const sectionTop = section.offsetTop - navHeight - 50;
+                const sectionBottom = sectionTop + section.offsetHeight;
+                
+                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    navLinks[index].classList.add('active');
+                }
+            });
         });
     </script>
-</body>
-</html>
 </body>
 </html>
