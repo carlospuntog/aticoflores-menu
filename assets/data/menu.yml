@@ -11,11 +11,11 @@
       - name: Americano
         description: Café americano largo.
         price: 2,00€
-        image: https://via.placeholder.com/120x120.png?text=Americano
+        image: assets/images2/cafe_categoria.png
       - name: Cappuccino
         description: Café con espuma de leche.
         price: 2,75€
-        image: https://via.placeholder.com/120x120.png?text=Cappuccino
+        image: assets/images2/cafe_categoria.png
       - name: Matcha latte
         description: Té matcha con leche.
         price: 4,00€
