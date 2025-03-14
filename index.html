@@ -32,7 +32,7 @@
             padding-top: 100px;
         }
         
-        /* Header/Navigation - MODIFICADO */
+        /* Header/Navigation */
         .top-navbar {
             position: fixed;
             top: 0;
@@ -102,28 +102,15 @@
         
         /* Category Headers */
         .section-title {
-            font-size: 28px;
-            font-family: 'Oswald', sans-serif; /* Nueva fuente */
+            font-size: 24px; /* Más pequeño */
+            font-family: 'Oswald', sans-serif;
             font-weight: 700;
-            text-align: center;
+            text-align: left; /* Alineado a la izquierda */
             margin: 30px 0 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--mauve-color);
-            position: relative;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--mauve-color); /* Línea simple */
             scroll-margin-top: 120px;
             color: var(--dark-text);
-            text-transform: uppercase; /* Opcional para un look más condensado */
-        }
-        
-        .section-title:after {
-            content: '';
-            position: absolute;
-            width: 60px;
-            height: 4px;
-            background: var(--mauve-color);
-            bottom: -3px;
-            left: 50%;
-            transform: translateX(-50%);
         }
         
         .subsection-title {
@@ -209,11 +196,11 @@
         
         .brand-title {
             font-size: 36px;
-            font-family: 'Oswald', sans-serif; /* Nueva fuente */
+            font-family: 'Oswald', sans-serif;
             font-weight: 700;
             margin-bottom: 10px;
             color: var(--mauve-color);
-            text-transform: uppercase; /* Opcional */
+            text-transform: uppercase; /* Mantenido en mayúsculas para el título principal */
         }
         
         .brand-subtitle {
@@ -267,13 +254,13 @@
             }
             
             .section-title {
-                font-size: 24px;
+                font-size: 20px; /* Más pequeño en móviles */
                 margin: 25px 0 15px;
                 scroll-margin-top: 100px;
             }
             
             .brand-title {
-                font-size: 30px; /* Ajustado para móviles */
+                font-size: 30px;
             }
             
             .menu-item {
@@ -427,7 +414,7 @@
         
         <!-- Sección Café -->
         <div id="cafe" class="menu-category">
-            <h2 class="section-title">Café de Especialidad & Bebidas Calientes</h2>
+            <h2 class="section-title">Café de especialidad & bebidas calientes</h2>
             <div class="menu-items">
                 <div class="menu-item">
                     <div class="item-details">
@@ -458,7 +445,7 @@
                 
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Café con Leche</h3>
+                        <h3 class="item-title">Café con leche</h3>
                         <p class="item-description">Espresso con leche caliente y un toque de espuma.</p>
                         <span class="item-price">2,20€</span>
                     </div>
@@ -476,7 +463,7 @@
                 
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Flat White</h3>
+                        <h3 class="item-title">Flat white</h3>
                         <p class="item-description">Doble espresso con leche cremosa y microtexturizada.</p>
                         <span class="item-price">2,80€</span>
                     </div>
@@ -485,7 +472,7 @@
                 
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Latte Macchiato</h3>
+                        <h3 class="item-title">Latte macchiato</h3>
                         <p class="item-description">Leche vaporizada manchada con espresso, en capas visibles.</p>
                         <span class="item-price">2,75€</span>
                     </div>
@@ -494,7 +481,7 @@
                 
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Chocolate Caliente</h3>
+                        <h3 class="item-title">Chocolate caliente</h3>
                         <p class="item-description">Chocolate rico y cremoso elaborado con cacao de alta calidad.</p>
                         <div class="double-price">
                             <span class="item-price">Pequeño 3,50€</span>
@@ -533,7 +520,7 @@
                 
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Matcha Latte</h3>
+                        <h3 class="item-title">Matcha latte</h3>
                         <p class="item-description">Té verde matcha ceremonial con leche vaporizada.</p>
                         <span class="item-price">4,00€</span>
                     </div>
@@ -542,7 +529,7 @@
                 
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Chai Latte</h3>
+                        <h3 class="item-title">Chai latte</h3>
                         <p class="item-description">Mezcla de té negro, especias y leche vaporizada.</p>
                         <span class="item-price">4,00€</span>
                     </div>
@@ -551,7 +538,7 @@
                 
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">+ Mini Bouquet 🌸</h3>
+                        <h3 class="item-title">+ Mini bouquet 🌸</h3>
                         <p class="item-description">Añade un micro bouquet de flores frescas a tu bebida.</p>
                         <span class="item-price">3,50€</span>
                     </div>
@@ -562,7 +549,7 @@
         
         <!-- Sección Bebidas Frías -->
         <div id="bebidas-frias" class="menu-category">
-            <h2 class="section-title">Bebidas Frías</h2>
+            <h2 class="section-title">Bebidas frías</h2>
             <div class="menu-items">
                 <div class="menu-item">
                     <div class="item-details">
@@ -575,7 +562,7 @@
                 
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Zumo de Naranja Natural</h3>
+                        <h3 class="item-title">Zumo de naranja natural</h3>
                         <p class="item-description">Zumo recién exprimido de naranjas seleccionadas.</p>
                         <div class="double-price">
                             <span class="item-price">Pequeño 3,95€</span>
@@ -587,7 +574,7 @@
                 
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Agua Mineral</h3>
+                        <h3 class="item-title">Agua mineral</h3>
                         <p class="item-description">Agua mineral natural.</p>
                         <span class="item-price">1,50€</span>
                     </div>
@@ -596,7 +583,7 @@
                 
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Agua con Gas</h3>
+                        <h3 class="item-title">Agua con gas</h3>
                         <p class="item-description">Agua mineral con gas.</p>
                         <span class="item-price">2,50€</span>
                     </div>
@@ -607,7 +594,7 @@
         
         <!-- Sección Bebidas Alcohólicas -->
         <div id="bebidas-alcoholicas" class="menu-category">
-            <h2 class="section-title">Bebidas Alcohólicas</h2>
+            <h2 class="section-title">Bebidas alcohólicas</h2>
             <div class="menu-items">
                 <div class="menu-item">
                     <div class="item-details">
@@ -647,7 +634,7 @@
             <div class="menu-items">
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Tostada Clásica</h3>
+                        <h3 class="item-title">Tostada clásica</h3>
                         <p class="item-description">Pan tostado con tomate rallado y aceite de oliva virgen extra.</p>
                         <span class="item-price">4,00€</span>
                     </div>
@@ -656,7 +643,7 @@
                 
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Tostada Ibérica</h3>
+                        <h3 class="item-title">Tostada ibérica</h3>
                         <p class="item-description">Tostada con tomate, aceite de oliva virgen extra y jamón ibérico.</p>
                         <span class="item-price">5,50€</span>
                     </div>
@@ -665,7 +652,7 @@
                 
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Tostada de Aguacate</h3>
+                        <h3 class="item-title">Tostada de aguacate</h3>
                         <p class="item-description">Tostada con aguacate, tomate, albahaca y aceite de oliva virgen extra.</p>
                         <span class="item-price">6,50€</span>
                     </div>
@@ -673,12 +660,12 @@
                 </div>
             </div>
             
-            <h3 class="subsection-title">Bowls de Fruta y Yogur</h3>
+            <h3 class="subsection-title">Bowls de fruta y yogur</h3>
             <p class="availability">Disponible de 8:00 a 20:00</p>
             <div class="menu-items">
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Yogur Bowl</h3>
+                        <h3 class="item-title">Yogur bowl</h3>
                         <p class="item-description">Yogur griego con granola y frutos rojos.</p>
                         <span class="item-price">5,00€</span>
                     </div>
@@ -687,7 +674,7 @@
                 
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Super Fruit Bowl</h3>
+                        <h3 class="item-title">Super fruit bowl</h3>
                         <p class="item-description">Granada, mango, arándanos, kiwi y fresas (mezcla de frutas de temporada).</p>
                         <span class="item-price">6,00€</span>
                     </div>
@@ -696,7 +683,7 @@
                 
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Açaí Bowl</h3>
+                        <h3 class="item-title">Açaí bowl</h3>
                         <p class="item-description">Açaí con plátano, frutos rojos y yogur.</p>
                         <span class="item-price">6,95€</span>
                     </div>
@@ -709,7 +696,7 @@
             <div class="menu-items">
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Gofre Clásico</h3>
+                        <h3 class="item-title">Gofre clásico</h3>
                         <p class="item-description">Gofre recién hecho cubierto de salsa de chocolate y nata montada.</p>
                         <span class="item-price">4,00€</span>
                     </div>
@@ -724,7 +711,7 @@
             <div class="menu-items">
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Desayuno Clásico</h3>
+                        <h3 class="item-title">Desayuno clásico</h3>
                         <p class="item-description">Café o té + tostada clásica.</p>
                         <span class="item-price">5,00€</span>
                     </div>
@@ -733,7 +720,7 @@
                 
                 <div class="menu-item">
                     <div class="item-details">
-                        <h3 class="item-title">Merienda Dulce</h3>
+                        <h3 class="item-title">Merienda dulce</h3>
                         <p class="item-description">Café o té + porción de tarta del día.</p>
                         <span class="item-price">6,50€</span>
                     </div>
