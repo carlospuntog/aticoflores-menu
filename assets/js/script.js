@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinksContainer = document.getElementById('menu-links');
     const menuContent = document.getElementById('menu-content');
     let isNavbarFixed = false;
-    let isAnimating = false; // Bandera para controlar la animación
 
     // Cargar datos desde menu.yml sin caché
     fetch(`assets/data/menu.yml?nocache=${Date.now()}`)
@@ -89,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function handleScroll() {
             lastScrollPosition = window.scrollY;
-            if (!ticking && !isAnimating) { // Evitar interferencia durante la animación
+            if (!ticking) {
                 window.requestAnimationFrame(() => {
                     setActiveLink();
                     const bannerHeight = document.querySelector('.brand-header').offsetHeight;
@@ -104,7 +103,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     // Limitar scroll hacia arriba para mostrar el primer título como tope
                     if (isNavbarFixed && lastScrollPosition < firstCategory.offsetTop - topNavbarHeight - navbarHeight) {
-                        window.scrollTo(0, firstCategory.offsetTop - topNavbarHeight - navbarHeight);
+                        window.scrollTo({
+                            top: firstCategory.offsetTop - topNavbarHeight - navbarHeight,
+                            behavior: 'instant' // Sin animación para evitar temblores
+                        });
                     }
 
                     ticking = false;
@@ -123,57 +125,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 const targetElement = document.querySelector(targetId);
 
                 if (targetElement) {
-                    const startPosition = window.scrollY;
                     const navbarHeight = navbar.offsetHeight;
                     const topNavbarHeight = document.querySelector('.top-navbar').offsetHeight;
                     const targetPosition = targetElement.offsetTop - topNavbarHeight - navbarHeight - 40;
                     const minScrollPosition = firstCategory.offsetTop - topNavbarHeight - navbarHeight;
 
-                    // Si ya estamos en el límite superior y es la primera categoría, no animar
-                    if (isNavbarFixed && targetId === '#cafe' && Math.abs(startPosition - minScrollPosition) < 50) {
-                        navLinks.forEach(navLink => navLink.classList.remove('active'));
-                        this.classList.add('active');
-                        return;
-                    }
-
-                    // Si el desplazamiento es mínimo, no animar
-                    if (Math.abs(startPosition - targetPosition) < 50) {
-                        navLinks.forEach(navLink => navLink.classList.remove('active'));
-                        this.classList.add('active');
-                        if (!isNavbarFixed) {
-                            navbar.classList.add('fixed');
-                            isNavbarFixed = true;
-                        }
-                        return;
-                    }
-
-                    const distance = targetPosition - startPosition;
-                    const duration = 800;
-                    let start = null;
-                    isAnimating = true; // Activar bandera durante la animación
-
-                    function step(timestamp) {
-                        if (!start) start = timestamp;
-                        const progress = timestamp - start;
-                        const percentage = Math.min(progress / duration, 1);
-                        const easeInOutQuad = t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-                        window.scrollTo(0, startPosition + distance * easeInOutQuad(percentage));
-                        if (progress < duration) {
-                            window.requestAnimationFrame(step);
-                        } else {
-                            isAnimating = false; // Desactivar bandera al finalizar
-                        }
-                    }
-
-                    window.requestAnimationFrame(step);
-                    navLinks.forEach(navLink => navLink.classList.remove('active'));
-                    this.classList.add('active');
-
-                    // Forzar que el menú se fije siempre al hacer clic
+                    // Fijar el menú inmediatamente al hacer clic
                     if (!isNavbarFixed) {
                         navbar.classList.add('fixed');
                         isNavbarFixed = true;
                     }
+
+                    // Desplazar suavemente al objetivo, respetando el límite superior
+                    window.scrollTo({
+                        top: Math.max(targetPosition, minScrollPosition),
+                        behavior: 'smooth'
+                    });
+
+                    // Actualizar clase active
+                    navLinks.forEach(navLink => navLink.classList.remove('active'));
+                    this.classList.add('active');
                 }
             });
         });
