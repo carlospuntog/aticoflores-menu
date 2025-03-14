@@ -1,6 +1,8 @@
 - id: cafe
-  name: Café & bebidas
+  name: Café de especialidad & bebidas calientes
   image: https://via.placeholder.com/92x92.png?text=Café
+  timeSlot: null  # Sin franja horaria
+  priority: false
   items:
     - name: Espresso
       description: Nuestro espresso de especialidad, elaborado con granos seleccionados.
@@ -9,6 +11,8 @@
 - id: bebidas-frias
   name: Bebidas frías
   image: https://via.placeholder.com/92x92.png?text=Bebidas+Frías
+  timeSlot: Merienda
+  priority: false
   items:
     - name: Refrescos
       description: Variedad de refrescos.
@@ -17,6 +21,8 @@
 - id: bebidas-alcoholicas
   name: Bebidas alcohólicas
   image: https://via.placeholder.com/92x92.png?text=Alcohol
+  timeSlot: Comida
+  priority: false
   items:
     - name: Cerveza
       description: Cerveza de barril o botella. Consulte variedades disponibles.
@@ -25,6 +31,8 @@
 - id: desayunos
   name: Desayunos
   image: https://via.placeholder.com/92x92.png?text=Desayunos
+  timeSlot: Desayuno
+  priority: true  # Prioridad en la franja Desayuno
   items:
     - name: Tostada clásica
       description: Pan tostado con tomate rallado y aceite de oliva virgen extra.
@@ -33,6 +41,8 @@
 - id: combos
   name: Combos
   image: https://via.placeholder.com/92x92.png?text=Combos
+  timeSlot: Desayuno
+  priority: false
   items:
     - name: Desayuno clásico
       description: Café o té + tostada clásica.
