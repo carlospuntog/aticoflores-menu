@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const timeSlotsOrder = [
                 { slot: 'Desayuno', start: 6, end: 11 },
                 { slot: 'Comida', start: 12, end: 16 },
-                { slot: 'Merienda', start: 17, end: 5 }
+                { slot: 'Merienda', start: 17, end: 20 }
             ];
 
             // Determinar la franja horaria actual
@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Generar DOM con los datos ordenados
             sortedData.forEach((category, index) => {
+                // Generar enlace de navegación
                 const navLink = document.createElement('a');
                 navLink.href = `#${category.id}`;
                 navLink.className = `nav-link${index === 0 ? ' active' : ''}`;
@@ -67,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
                 navLinksContainer.appendChild(navLink);
 
+                // Generar contenido de categoría
                 const categoryDiv = document.createElement('div');
                 categoryDiv.id = category.id;
                 categoryDiv.className = 'menu-category';
