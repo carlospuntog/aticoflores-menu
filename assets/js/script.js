@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinksContainer = document.getElementById('menu-links');
     const menuContent = document.getElementById('menu-content');
     let isNavbarFixed = false;
+    let isScrollingFromClick = false; // Bandera para evitar interferencia de handleScroll
 
     // Cargar datos desde menu.yml sin caché
     fetch(`assets/data/menu.yml?nocache=${Date.now()}`)
@@ -88,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function handleScroll() {
             lastScrollPosition = window.scrollY;
-            if (!ticking) {
+            if (!ticking && !isScrollingFromClick) { // Solo ejecuta si no viene de un clic
                 window.requestAnimationFrame(() => {
                     setActiveLink();
                     const bannerHeight = document.querySelector('.brand-header').offsetHeight;
@@ -103,10 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     // Limitar scroll hacia arriba para mostrar el primer título como tope
                     if (isNavbarFixed && lastScrollPosition < firstCategory.offsetTop - topNavbarHeight - navbarHeight) {
-                        window.scrollTo({
-                            top: firstCategory.offsetTop - topNavbarHeight - navbarHeight,
-                            behavior: 'instant' // Sin animación para evitar temblores
-                        });
+                        window.scrollTo(0, firstCategory.offsetTop - topNavbarHeight - navbarHeight);
                     }
 
                     ticking = false;
@@ -136,15 +134,18 @@ document.addEventListener('DOMContentLoaded', function() {
                         isNavbarFixed = true;
                     }
 
-                    // Desplazar suavemente al objetivo, respetando el límite superior
-                    window.scrollTo({
-                        top: Math.max(targetPosition, minScrollPosition),
-                        behavior: 'smooth'
-                    });
+                    // Desplazar instantáneamente al objetivo, respetando el límite superior
+                    isScrollingFromClick = true; // Activar bandera para pausar handleScroll
+                    window.scrollTo(0, Math.max(targetPosition, minScrollPosition));
 
                     // Actualizar clase active
                     navLinks.forEach(navLink => navLink.classList.remove('active'));
                     this.classList.add('active');
+
+                    // Desactivar la bandera después de un breve retraso para permitir que el scroll se estabilice
+                    setTimeout(() => {
+                        isScrollingFromClick = false;
+                    }, 100);
                 }
             });
         });
