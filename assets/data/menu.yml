@@ -1,24 +1,40 @@
 - id: cafe
   name: Café de especialidad & bebidas calientes
-  image: cafe.jpg
+  image: https://via.placeholder.com/92x92.png?text=Café
   items:
     - name: Espresso
       description: Nuestro espresso de especialidad, elaborado con granos seleccionados.
       price: 2,00€
-      image: espresso.jpg
+      image: https://via.placeholder.com/120x120.png?text=Espresso
 - id: bebidas-frias
   name: Bebidas frías
-  image: refrescos.jpg
+  image: https://via.placeholder.com/92x92.png?text=Bebidas+Frías
   items:
     - name: Refrescos
       description: Variedad de refrescos.
       price: 3,00€
-      image: refrescos.jpg
+      image: https://via.placeholder.com/120x120.png?text=Refrescos
+- id: bebidas-alcoholicas
+  name: Bebidas alcohólicas
+  image: https://via.placeholder.com/92x92.png?text=Alcohol
+  items:
+    - name: Cerveza
+      description: Cerveza de barril o botella. Consulte variedades disponibles.
+      price: 3,25€
+      image: https://via.placeholder.com/120x120.png?text=Cerveza
 - id: desayunos
   name: Desayunos
-  image: tostada.jpg
+  image: https://via.placeholder.com/92x92.png?text=Desayunos
   items:
     - name: Tostada clásica
       description: Pan tostado con tomate rallado y aceite de oliva virgen extra.
       price: 4,00€
-      image: tostada.jpg
+      image: https://via.placeholder.com/120x120.png?text=Tostada
+- id: combos
+  name: Combos
+  image: https://via.placeholder.com/92x92.png?text=Combos
+  items:
+    - name: Desayuno clásico
+      description: Café o té + tostada clásica.
+      price: 5,00€
+      image: https://via.placeholder.com/120x120.png?text=Desayuno+Clásico
