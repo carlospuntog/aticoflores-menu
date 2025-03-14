@@ -1,5 +1,5 @@
 - id: cafe
-  name: Café de especialidad & bebidas calientes
+  name: Café & bebidas
   image: https://via.placeholder.com/92x92.png?text=Café
   items:
     - name: Espresso
