@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const topNavbarHeight = document.querySelector('.top-navbar').offsetHeight;
                     const navbarHeight = navbar.offsetHeight;
 
-                    // Fijar el menú cuando pasa el banner, pero no revertirlo al subir
+                    // Fijar el menú cuando pasa el banner
                     if (lastScrollPosition > bannerHeight && !isNavbarFixed) {
                         navbar.classList.add('fixed');
                         isNavbarFixed = true;
@@ -126,6 +126,18 @@ document.addEventListener('DOMContentLoaded', function() {
                     const navbarHeight = navbar.offsetHeight;
                     const topNavbarHeight = document.querySelector('.top-navbar').offsetHeight;
                     const targetPosition = targetElement.offsetTop - topNavbarHeight - navbarHeight - 40;
+                    const minScrollPosition = firstCategory.offsetTop - topNavbarHeight - navbarHeight;
+
+                    // Evitar animación si ya estamos cerca del objetivo o en el límite superior
+                    if (Math.abs(startPosition - targetPosition) < 50 || (isNavbarFixed && targetPosition <= minScrollPosition && startPosition <= minScrollPosition)) {
+                        navLinks.forEach(navLink => navLink.classList.remove('active'));
+                        this.classList.add('active');
+                        if (!isNavbarFixed) {
+                            navbar.classList.add('fixed');
+                            isNavbarFixed = true;
+                        }
+                        return;
+                    }
 
                     const distance = targetPosition - startPosition;
                     const duration = 800;
@@ -144,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     navLinks.forEach(navLink => navLink.classList.remove('active'));
                     this.classList.add('active');
 
-                    // Forzar que el menú se fije siempre al hacer clic, incluso en la primera categoría
+                    // Forzar que el menú se fije siempre al hacer clic
                     if (!isNavbarFixed) {
                         navbar.classList.add('fixed');
                         isNavbarFixed = true;
