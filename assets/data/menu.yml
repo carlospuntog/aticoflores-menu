@@ -1,6 +1,6 @@
   - id: cafe
     name: Café & bebidas calientes
-    image: https://via.placeholder.com/92x92.png?text=Café
+    image: assets/images/cafe_categoria.png
     timeSlot: null  # Disponible todo el día
     priority: false
     items:
