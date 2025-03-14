@@ -4,24 +4,19 @@ document.addEventListener('DOMContentLoaded', function() {
     let isNavbarFixed = false;
     let isScrollingFromClick = false;
 
-    // Cargar datos desde menu.yml sin caché
     fetch(`assets/data/menu.yml?nocache=${Date.now()}`)
         .then(response => response.text())
         .then(yamlText => {
             const data = jsyaml.load(yamlText);
-
-            // Obtener la hora actual del cliente
             const now = new Date();
             const currentHour = now.getHours();
 
-            // Definir franjas horarias (ajusta según necesites)
             const timeSlotsOrder = [
                 { slot: 'Desayuno', start: 6, end: 11 },
                 { slot: 'Comida', start: 12, end: 16 },
                 { slot: 'Merienda', start: 17, end: 20 }
             ];
 
-            // Determinar la franja horaria actual
             let currentSlot = null;
             for (const slot of timeSlotsOrder) {
                 if (currentHour >= slot.start && currentHour <= slot.end) {
@@ -29,36 +24,31 @@ document.addEventListener('DOMContentLoaded', function() {
                     break;
                 }
             }
-            if (!currentSlot) currentSlot = null; // Sin franja si no coincide
+            if (!currentSlot) currentSlot = null;
 
-            // Ordenar categorías
             const sortedData = data.sort((a, b) => {
-                // 1. Orden por franja horaria
                 const aSlotIndex = a.timeSlot ? timeSlotsOrder.findIndex(s => s.slot === a.timeSlot) : -1;
                 const bSlotIndex = b.timeSlot ? timeSlotsOrder.findIndex(s => s.slot === b.timeSlot) : -1;
                 const aIsCurrent = a.timeSlot === currentSlot;
                 const bIsCurrent = b.timeSlot === currentSlot;
 
-                // Priorizar la franja actual, luego el orden definido, y Sin Franja al final
                 if (aIsCurrent && !bIsCurrent) return -1;
                 if (!aIsCurrent && bIsCurrent) return 1;
                 if (aSlotIndex !== bSlotIndex) {
-                    if (aSlotIndex === -1) return 1; // Sin franja al final
+                    if (aSlotIndex === -1) return 1;
                     if (bSlotIndex === -1) return -1;
                     return aSlotIndex - bSlotIndex;
                 }
 
-                // 2. Dentro de la misma franja, prioridad primero
                 if (a.priority && !b.priority) return -1;
                 if (!a.priority && b.priority) return 1;
-
-                // 3. Si no hay prioridad, orden aleatorio dentro de la franja
                 return Math.random() - 0.5;
             });
 
-            // Generar DOM con los datos ordenados
+            navLinksContainer.innerHTML = '';
+            menuContent.innerHTML = '';
+
             sortedData.forEach((category, index) => {
-                // Generar enlace de navegación
                 const navLink = document.createElement('a');
                 navLink.href = `#${category.id}`;
                 navLink.className = `nav-link${index === 0 ? ' active' : ''}`;
@@ -68,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
                 navLinksContainer.appendChild(navLink);
 
-                // Generar contenido de categoría
                 const categoryDiv = document.createElement('div');
                 categoryDiv.id = category.id;
                 categoryDiv.className = 'menu-category';
@@ -86,14 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h2 class="section-title">${category.name}</h2>
                     <div class="menu-items">${itemsHtml}</div>
                 `;
-                if (category.id === 'desayunos') {
-                    categoryDiv.innerHTML = `
-                        <h2 class="section-title">${category.name}</h2>
-                        <p class="availability">Disponible de 8:00 a 11:00</p>
-                        <h3 class="subsection-title">Tostadas</h3>
-                        <div class="menu-items">${itemsHtml}</div>
-                    `;
-                }
                 menuContent.appendChild(categoryDiv);
             });
 
@@ -132,6 +113,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 const sectionId = currentSection.getAttribute('id');
                 const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
                 if (activeLink) activeLink.classList.add('active');
+
+                // Desplazar el menú colapsado suavemente hacia la categoría visible
+                if (isNavbarFixed && activeLink) {
+                    const linkRect = activeLink.getBoundingClientRect();
+                    const containerRect = menuLinks.getBoundingClientRect();
+                    const scrollLeft = activeLink.offsetLeft - (containerRect.width / 2) + (linkRect.width / 2);
+                    menuLinks.scrollTo({
+                        left: scrollLeft,
+                        behavior: 'smooth'
+                    });
+                }
             }
 
             ticking = false;
@@ -173,8 +165,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (targetElement) {
                     const navbarHeight = navbar.offsetHeight;
                     const topNavbarHeight = document.querySelector('.top-navbar').offsetHeight;
-                    const targetPosition = targetElement.offsetTop - topNavbarHeight - navbarHeight - 40;
-                    const minScrollPosition = firstCategory.offsetTop - topNavbarHeight - navbarHeight;
+                    const titleHeight = targetElement.querySelector('.section-title').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - topNavbarHeight - navbarHeight - titleHeight - 10; // Margen dinámico
 
                     if (!isNavbarFixed) {
                         navbar.classList.add('fixed');
@@ -182,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
 
                     isScrollingFromClick = true;
-                    window.scrollTo(0, Math.max(targetPosition, minScrollPosition));
+                    window.scrollTo(0, Math.max(targetPosition, firstCategory.offsetTop - topNavbarHeight - navbarHeight));
                     navLinks.forEach(navLink => navLink.classList.remove('active'));
                     this.classList.add('active');
 
@@ -194,11 +186,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         menuLinks.addEventListener('wheel', function(e) {
-            if (window.innerWidth > 576) {
-                e.preventDefault();
-                const scrollAmount = e.deltaY * 1.5;
-                menuLinks.scrollLeft += scrollAmount;
-            }
+            e.preventDefault();
+            const scrollAmount = e.deltaY * 1.5;
+            const currentScroll = menuLinks.scrollLeft;
+            menuLinks.scrollTo({
+                left: currentScroll + scrollAmount,
+                behavior: 'smooth'
+            });
         });
     }
 });
