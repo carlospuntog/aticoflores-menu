@@ -53,8 +53,8 @@
         .navbar {
             position: static;
             width: 100%;
-            background-color: transparent; /* Fondo transparente al principio */
-            box-shadow: none; /* Sin sombra al principio */
+            background-color: transparent;
+            box-shadow: none;
             z-index: 1000;
             padding: 10px 0;
             transition: all 0.3s ease;
@@ -64,7 +64,7 @@
             position: fixed;
             top: 35px;
             left: 0;
-            background-color: var(--white); /* Fondo blanco al fijarse */
+            background-color: var(--white);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
@@ -94,25 +94,26 @@
             border-radius: 4px;
             transition: all 0.3s ease;
             display: flex;
-            flex-direction: column; /* Imagen encima del texto */
-            align-items: center; /* Centrado horizontal */
-            gap: 6px; /* Espacio entre imagen y texto */
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
         }
         
-        .navbar a.nav-link:hover {
+        .navbar a.nav-link:hover .nav-text {
             background-color: var(--mauve-light);
         }
         
-        .navbar a.nav-link.active {
+        .navbar a.nav-link.active .nav-text {
             background-color: var(--mauve-color);
             color: var(--white);
             font-weight: 600;
+            border-radius: 4px; /* Mantengo el borde redondeado solo en el texto */
         }
         
         /* Imagen de categoría */
         .nav-link img {
-            width: 84px; /* 30% menos que 120px */
-            height: 84px;
+            width: 92.4px; /* 84px + 10% */
+            height: 92.4px;
             border-radius: 50%;
             border: 2px solid var(--mauve-color);
             object-fit: cover;
@@ -120,6 +121,12 @@
         
         .navbar.fixed .nav-link img {
             display: none;
+        }
+        
+        /* Texto de la categoría */
+        .nav-text {
+            padding: 4px 8px; /* Padding interno para el texto */
+            transition: all 0.3s ease;
         }
         
         /* Main Container */
@@ -138,7 +145,7 @@
             margin: 30px 0 20px;
             padding-bottom: 10px;
             border-bottom: 1px solid var(--mauve-color);
-            scroll-margin-top: 80px; /* Margen para respirar debajo de la barra */
+            scroll-margin-top: 80px;
             color: var(--dark-text);
         }
         
@@ -283,8 +290,8 @@
             }
             
             .nav-link img {
-                width: 60px; /* Ajustado para móviles */
-                height: 60px;
+                width: 66px; /* 60px + 10% */
+                height: 66px;
             }
             
             .section-title {
@@ -397,7 +404,7 @@
                     
                     if (targetElement) {
                         const startPosition = window.scrollY;
-                        const targetPosition = targetElement.offsetTop - 80; // Compensación ajustada
+                        const targetPosition = targetElement.offsetTop - 80;
                         const distance = targetPosition - startPosition;
                         const duration = 800;
                         let start = null;
@@ -444,25 +451,32 @@
         <div class="navbar">
             <div class="menu-links">
                 <a href="#cafe" class="nav-link active">
-                    <img src="/api/placeholder/84/84" alt="Café"> Café y bebidas
+                    <img src="/api/placeholder/92/92" alt="Café">
+                    <span class="nav-text">Café y bebidas</span>
                 </a>
                 <a href="#bebidas-frias" class="nav-link">
-                    <img src="/api/placeholder/84/84" alt="Bebidas frías"> Bebidas frías
+                    <img src="/api/placeholder/92/92" alt="Bebidas frías">
+                    <span class="nav-text">Bebidas frías</span>
                 </a>
                 <a href="#bebidas-alcoholicas" class="nav-link">
-                    <img src="/api/placeholder/84/84" alt="Bebidas alcohólicas"> Bebidas alcohólicas
+                    <img src="/api/placeholder/92/92" alt="Bebidas alcohólicas">
+                    <span class="nav-text">Bebidas alcohólicas</span>
                 </a>
                 <a href="#desayunos" class="nav-link">
-                    <img src="/api/placeholder/84/84" alt="Desayunos"> Desayunos
+                    <img src="/api/placeholder/92/92" alt="Desayunos">
+                    <span class="nav-text">Desayunos</span>
                 </a>
                 <a href="#comida-salada" class="nav-link">
-                    <img src="/api/placeholder/84/84" alt="Comida salada"> Comida salada
+                    <img src="/api/placeholder/92/92" alt="Comida salada">
+                    <span class="nav-text">Comida salada</span>
                 </a>
                 <a href="#pasteleria" class="nav-link">
-                    <img src="/api/placeholder/84/84" alt="Pastelería"> Pastelería
+                    <img src="/api/placeholder/92/92" alt="Pastelería">
+                    <span class="nav-text">Pastelería</span>
                 </a>
                 <a href="#combos" class="nav-link">
-                    <img src="/api/placeholder/84/84" alt="Combos"> Combos
+                    <img src="/api/placeholder/92/92" alt="Combos">
+                    <span class="nav-text">Combos</span>
                 </a>
             </div>
         </div>
