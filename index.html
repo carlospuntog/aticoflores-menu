@@ -342,7 +342,7 @@
             const menuLinks = document.querySelector('.menu-links');
             let lastScrollPosition = 0;
             let ticking = false;
-            let isNavbarFixed = false; // Bandera para rastrear si el menú ya se fijó
+            let isNavbarFixed = false;
             
             function setActiveLink() {
                 const scrollPosition = window.scrollY + 80;
@@ -384,10 +384,9 @@
                     window.requestAnimationFrame(function() {
                         setActiveLink();
                         const bannerHeight = document.querySelector('.brand-header').offsetHeight;
-                        // Solo fijamos el menú la primera vez que pasamos el banner
                         if (lastScrollPosition > bannerHeight && !isNavbarFixed) {
                             navbar.classList.add('fixed');
-                            isNavbarFixed = true; // Una vez fijado, no lo quitamos
+                            isNavbarFixed = true;
                         }
                         ticking = false;
                     });
@@ -407,7 +406,15 @@
                     if (targetElement) {
                         const startPosition = window.scrollY;
                         const navbarHeight = navbar.offsetHeight;
-                        const targetPosition = targetElement.offsetTop - navbarHeight - 40; // Más espacio (40px)
+                        let targetPosition;
+
+                        // Si es el primer clic y el menú no está fijo, usamos la altura inicial completa
+                        if (!isNavbarFixed) {
+                            targetPosition = targetElement.offsetTop - navbarHeight - 40; // Altura inicial + margen
+                        } else {
+                            targetPosition = targetElement.offsetTop - navbarHeight - 40; // Altura fija + margen
+                        }
+
                         const distance = targetPosition - startPosition;
                         const duration = 800;
                         let start = null;
