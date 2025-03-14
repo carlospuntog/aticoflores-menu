@@ -104,15 +104,15 @@
         }
         
         .navbar a.nav-link.active .nav-text {
-            background-color: var(--mauve-color);
+            background-color: var(--mauve-color) !important; /* Prioridad sobre hover */
             color: var(--white);
             font-weight: 600;
-            border-radius: 4px; /* Mantengo el borde redondeado solo en el texto */
+            border-radius: 4px;
         }
         
         /* Imagen de categoría */
         .nav-link img {
-            width: 92.4px; /* 84px + 10% */
+            width: 92.4px;
             height: 92.4px;
             border-radius: 50%;
             border: 2px solid var(--mauve-color);
@@ -125,7 +125,7 @@
         
         /* Texto de la categoría */
         .nav-text {
-            padding: 4px 8px; /* Padding interno para el texto */
+            padding: 4px 8px;
             transition: all 0.3s ease;
         }
         
@@ -290,7 +290,7 @@
             }
             
             .nav-link img {
-                width: 66px; /* 60px + 10% */
+                width: 66px;
                 height: 66px;
             }
             
@@ -404,7 +404,8 @@
                     
                     if (targetElement) {
                         const startPosition = window.scrollY;
-                        const targetPosition = targetElement.offsetTop - 80;
+                        const navbarHeight = navbar.offsetHeight; // Altura de la barra de categorías
+                        const targetPosition = targetElement.offsetTop - navbarHeight; // Ajustado para quedar debajo de .navbar
                         const distance = targetPosition - startPosition;
                         const duration = 800;
                         let start = null;
