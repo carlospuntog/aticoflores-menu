@@ -6,7 +6,7 @@
     <title>Carta - Ático Flores - Primavera 2025</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Mono:wght@400&family=Oswald:wght@700&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -63,7 +63,7 @@
         
         .menu-links {
             display: flex;
-            justify-content: flex-start; /* Modificado: center a flex-start */
+            justify-content: flex-start;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             scroll-behavior: smooth;
@@ -79,7 +79,7 @@
             font-size: 16px;
             padding: 8px 12px;
             position: relative;
-            border-radius: 4px; /* Modificado: 8px a 4px */
+            border-radius: 4px;
             transition: all 0.3s ease;
         }
         
@@ -103,6 +103,8 @@
         /* Category Headers */
         .section-title {
             font-size: 28px;
+            font-family: 'Oswald', sans-serif; /* Nueva fuente */
+            font-weight: 700;
             text-align: center;
             margin: 30px 0 20px;
             padding-bottom: 15px;
@@ -110,6 +112,7 @@
             position: relative;
             scroll-margin-top: 120px;
             color: var(--dark-text);
+            text-transform: uppercase; /* Opcional para un look más condensado */
         }
         
         .section-title:after {
@@ -179,12 +182,12 @@
         
         .item-price {
             font-weight: bold;
-            color: var(--mauve-color); /* Modificado: #FFFFFF a var(--mauve-color) */
+            color: var(--mauve-color);
             font-size: 16px;
             align-self: flex-start;
-            padding: 4px 0; /* Modificado: eliminado padding horizontal */
-            background-color: transparent; /* Modificado: eliminado fondo */
-            border-radius: 0; /* Modificado: eliminado redondeado */
+            padding: 4px 0;
+            background-color: transparent;
+            border-radius: 0;
         }
         
         .double-price {
@@ -206,9 +209,11 @@
         
         .brand-title {
             font-size: 36px;
-            font-weight: 600;
+            font-family: 'Oswald', sans-serif; /* Nueva fuente */
+            font-weight: 700;
             margin-bottom: 10px;
             color: var(--mauve-color);
+            text-transform: uppercase; /* Opcional */
         }
         
         .brand-subtitle {
@@ -267,6 +272,10 @@
                 scroll-margin-top: 100px;
             }
             
+            .brand-title {
+                font-size: 30px; /* Ajustado para móviles */
+            }
+            
             .menu-item {
                 flex-direction: row;
             }
@@ -305,16 +314,14 @@
             let lastScrollPosition = 0;
             let ticking = false;
             
-            // Función modificada para activar el link correcto según la posición de scroll
             function setActiveLink() {
                 const scrollPosition = window.scrollY + 120;
                 const sections = document.querySelectorAll('.menu-category');
                 let currentSection = null;
                 
-                // Encontrar la sección actual (más cercana al tope de la pantalla)
                 for (let i = sections.length - 1; i >= 0; i--) {
                     const section = sections[i];
-                    const sectionTop = section.offsetTop - 120; // Ajustar offset
+                    const sectionTop = section.offsetTop - 120;
                     
                     if (scrollPosition >= sectionTop) {
                         currentSection = section;
@@ -322,17 +329,14 @@
                     }
                 }
                 
-                // Si no se encontró sección, usar la primera
                 if (!currentSection && sections.length > 0) {
                     currentSection = sections[0];
                 }
                 
-                // Desactivar todos los enlaces primero
                 navLinks.forEach(link => {
                     link.classList.remove('active');
                 });
                 
-                // Activar solo el enlace correspondiente
                 if (currentSection) {
                     const sectionId = currentSection.getAttribute('id');
                     const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
@@ -344,7 +348,6 @@
                 ticking = false;
             }
             
-            // Optimizar el evento de scroll
             function onScroll() {
                 lastScrollPosition = window.scrollY;
                 if (!ticking) {
@@ -356,13 +359,9 @@
                 }
             }
             
-            // Detectar scroll y activar el link correspondiente
             window.addEventListener('scroll', onScroll);
-            
-            // Inicializar el link activo
             setActiveLink();
             
-            // Añadir comportamiento de click a los links
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
@@ -370,21 +369,17 @@
                     const targetElement = document.querySelector(targetId);
                     
                     if (targetElement) {
-                        // Scroll controlado con velocidad visible
                         const startPosition = window.scrollY;
-                        const targetPosition = targetElement.offsetTop - 110; // Compensación para el header
+                        const targetPosition = targetElement.offsetTop - 110;
                         const distance = targetPosition - startPosition;
-                        const duration = 800; // Duración en ms (ajusta para cambiar velocidad)
+                        const duration = 800;
                         let start = null;
                         
                         function step(timestamp) {
                             if (!start) start = timestamp;
                             const progress = timestamp - start;
                             const percentage = Math.min(progress / duration, 1);
-                            
-                            // Función de easing para un scroll más natural
                             const easeInOutQuad = t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-                            
                             window.scrollTo(0, startPosition + distance * easeInOutQuad(percentage));
                             
                             if (progress < duration) {
@@ -393,8 +388,6 @@
                         }
                         
                         window.requestAnimationFrame(step);
-                        
-                        // Actualizar clase active
                         navLinks.forEach(navLink => {
                             navLink.classList.remove('active');
                         });
@@ -722,7 +715,8 @@
                     </div>
                     <img src="/api/placeholder/120/120" alt="Gofre Clásico" class="item-image">
                 </div>
-                
+            </div>
+        </div>
         
         <!-- Sección Combos -->
         <div id="combos" class="menu-category">
