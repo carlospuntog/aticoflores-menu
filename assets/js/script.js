@@ -114,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
                 if (activeLink) activeLink.classList.add('active');
 
-                // Desplazar el menú colapsado suavemente hacia la categoría visible
                 if (isNavbarFixed && activeLink) {
                     const linkRect = activeLink.getBoundingClientRect();
                     const containerRect = menuLinks.getBoundingClientRect();
@@ -166,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const navbarHeight = navbar.offsetHeight;
                     const topNavbarHeight = document.querySelector('.top-navbar').offsetHeight;
                     const titleHeight = targetElement.querySelector('.section-title').offsetHeight;
-                    const targetPosition = targetElement.offsetTop - topNavbarHeight - navbarHeight - titleHeight - 10; // Margen dinámico
+                    const targetPosition = targetElement.offsetTop - topNavbarHeight - navbarHeight - titleHeight - 10;
 
                     if (!isNavbarFixed) {
                         navbar.classList.add('fixed');
