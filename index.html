@@ -104,7 +104,7 @@
         }
         
         .navbar a.nav-link.active .nav-text {
-            background-color: var(--mauve-color) !important; /* Prioridad sobre hover */
+            background-color: var(--mauve-color) !important;
             color: var(--white);
             font-weight: 600;
             border-radius: 4px;
@@ -405,7 +405,7 @@
                     if (targetElement) {
                         const startPosition = window.scrollY;
                         const navbarHeight = navbar.offsetHeight; // Altura de la barra de categorías
-                        const targetPosition = targetElement.offsetTop - navbarHeight; // Ajustado para quedar debajo de .navbar
+                        const targetPosition = targetElement.offsetTop - navbarHeight - 20; // Margen extra de 20px
                         const distance = targetPosition - startPosition;
                         const duration = 800;
                         let start = null;
