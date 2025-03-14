@@ -1,6 +1,6 @@
   - id: cafe
     name: Café & bebidas calientes
-    image: assets/images/cafe_categoria.png
+    image: assets/images2/cafe_categoria.png
     timeSlot: null  # Disponible todo el día
     priority: false
     items:
