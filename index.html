@@ -29,7 +29,7 @@
             background-color: var(--light-bg);
             color: var(--dark-text);
             line-height: 1.6;
-            padding-top: 35px; /* Ajustado para la barra superior más gruesa */
+            padding-top: 35px;
         }
         
         /* Header/Navigation */
@@ -41,7 +41,7 @@
             background-color: #000000;
             color: var(--white);
             z-index: 1001;
-            padding: 9.2px 0; /* 15% más gruesa (8px * 1.15) */
+            padding: 9.2px 0;
             text-align: center;
             font-family: 'IBM Plex Mono', monospace;
             font-weight: 600;
@@ -51,19 +51,21 @@
         }
         
         .navbar {
-            position: static; /* No fija al cargar */
+            position: static;
             width: 100%;
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: transparent; /* Fondo transparente al principio */
+            box-shadow: none; /* Sin sombra al principio */
             z-index: 1000;
             padding: 10px 0;
-            transition: all 0.3s ease; /* Transición suave al fijarse */
+            transition: all 0.3s ease;
         }
         
         .navbar.fixed {
             position: fixed;
-            top: 35px; /* Debajo de la barra superior */
+            top: 35px;
             left: 0;
+            background-color: var(--white); /* Fondo blanco al fijarse */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
         .menu-links {
@@ -74,11 +76,11 @@
             scroll-behavior: smooth;
             white-space: nowrap;
             padding: 0 15px;
-            scrollbar-width: none; /* Oculta scrollbar en Firefox */
+            scrollbar-width: none;
         }
         
         .menu-links::-webkit-scrollbar {
-            display: none; /* Oculta scrollbar en Chrome/Safari */
+            display: none;
         }
         
         .navbar a.nav-link {
@@ -92,8 +94,9 @@
             border-radius: 4px;
             transition: all 0.3s ease;
             display: flex;
-            align-items: center;
-            gap: 8px; /* Espacio entre imagen y texto */
+            flex-direction: column; /* Imagen encima del texto */
+            align-items: center; /* Centrado horizontal */
+            gap: 6px; /* Espacio entre imagen y texto */
         }
         
         .navbar a.nav-link:hover {
@@ -108,15 +111,15 @@
         
         /* Imagen de categoría */
         .nav-link img {
-            width: 24px;
-            height: 24px;
+            width: 84px; /* 30% menos que 120px */
+            height: 84px;
             border-radius: 50%;
             border: 2px solid var(--mauve-color);
             object-fit: cover;
         }
         
         .navbar.fixed .nav-link img {
-            display: none; /* Oculta imágenes cuando la barra se fija */
+            display: none;
         }
         
         /* Main Container */
@@ -135,7 +138,7 @@
             margin: 30px 0 20px;
             padding-bottom: 10px;
             border-bottom: 1px solid var(--mauve-color);
-            scroll-margin-top: 70px; /* Ajustado para la barra fija */
+            scroll-margin-top: 80px; /* Margen para respirar debajo de la barra */
             color: var(--dark-text);
         }
         
@@ -144,7 +147,7 @@
             margin: 25px 0 15px;
             padding-bottom: 10px;
             border-bottom: 1px solid var(--mauve-light);
-            scroll-margin-top: 70px;
+            scroll-margin-top: 80px;
             color: var(--dark-text);
         }
         
@@ -234,7 +237,7 @@
             color: #555;
         }
         
-        /* Seasonal Badge */
+        /* Seasonal Badge (Comentado) */
         .season-badge {
             display: inline-block;
             background-color: var(--mauve-color);
@@ -279,15 +282,15 @@
                 padding: 8px 10px;
             }
             
-            .navbar a.nav-link img {
-                width: 20px;
-                height: 20px;
+            .nav-link img {
+                width: 60px; /* Ajustado para móviles */
+                height: 60px;
             }
             
             .section-title {
                 font-size: 20px;
                 margin: 25px 0 15px;
-                scroll-margin-top: 70px;
+                scroll-margin-top: 80px;
             }
             
             .brand-title {
@@ -333,13 +336,13 @@
             let ticking = false;
             
             function setActiveLink() {
-                const scrollPosition = window.scrollY + 70;
+                const scrollPosition = window.scrollY + 80;
                 const sections = document.querySelectorAll('.menu-category');
                 let currentSection = null;
                 
                 for (let i = sections.length - 1; i >= 0; i--) {
                     const section = sections[i];
-                    const sectionTop = section.offsetTop - 70;
+                    const sectionTop = section.offsetTop - 80;
                     
                     if (scrollPosition >= sectionTop) {
                         currentSection = section;
@@ -371,7 +374,6 @@
                 if (!ticking) {
                     window.requestAnimationFrame(function() {
                         setActiveLink();
-                        // Fijar la barra al hacer scroll más allá del banner
                         const bannerHeight = document.querySelector('.brand-header').offsetHeight;
                         if (lastScrollPosition > bannerHeight) {
                             navbar.classList.add('fixed');
@@ -395,7 +397,7 @@
                     
                     if (targetElement) {
                         const startPosition = window.scrollY;
-                        const targetPosition = targetElement.offsetTop - 70; // Compensación para la barra fija
+                        const targetPosition = targetElement.offsetTop - 80; // Compensación ajustada
                         const distance = targetPosition - startPosition;
                         const duration = 800;
                         let start = null;
@@ -417,7 +419,7 @@
                             navLink.classList.remove('active');
                         });
                         this.classList.add('active');
-                        navbar.classList.add('fixed'); // Fija la barra al hacer clic
+                        navbar.classList.add('fixed');
                     }
                 });
             });
@@ -435,32 +437,32 @@
         <div class="brand-header">
             <h1 class="brand-title">Ático Flores</h1>
             <p class="brand-subtitle">Cafetería & Pastelería</p>
-            <div class="season-badge">Menú de Primavera 2025</div>
+            <!-- <div class="season-badge">Menú de Primavera 2025</div> -->
         </div>
         
         <!-- Barra de navegación -->
         <div class="navbar">
             <div class="menu-links">
                 <a href="#cafe" class="nav-link active">
-                    <img src="/api/placeholder/24/24" alt="Café"> Café y bebidas
+                    <img src="/api/placeholder/84/84" alt="Café"> Café y bebidas
                 </a>
                 <a href="#bebidas-frias" class="nav-link">
-                    <img src="/api/placeholder/24/24" alt="Bebidas frías"> Bebidas frías
+                    <img src="/api/placeholder/84/84" alt="Bebidas frías"> Bebidas frías
                 </a>
                 <a href="#bebidas-alcoholicas" class="nav-link">
-                    <img src="/api/placeholder/24/24" alt="Bebidas alcohólicas"> Bebidas alcohólicas
+                    <img src="/api/placeholder/84/84" alt="Bebidas alcohólicas"> Bebidas alcohólicas
                 </a>
                 <a href="#desayunos" class="nav-link">
-                    <img src="/api/placeholder/24/24" alt="Desayunos"> Desayunos
+                    <img src="/api/placeholder/84/84" alt="Desayunos"> Desayunos
                 </a>
                 <a href="#comida-salada" class="nav-link">
-                    <img src="/api/placeholder/24/24" alt="Comida salada"> Comida salada
+                    <img src="/api/placeholder/84/84" alt="Comida salada"> Comida salada
                 </a>
                 <a href="#pasteleria" class="nav-link">
-                    <img src="/api/placeholder/24/24" alt="Pastelería"> Pastelería
+                    <img src="/api/placeholder/84/84" alt="Pastelería"> Pastelería
                 </a>
                 <a href="#combos" class="nav-link">
-                    <img src="/api/placeholder/24/24" alt="Combos"> Combos
+                    <img src="/api/placeholder/84/84" alt="Combos"> Combos
                 </a>
             </div>
         </div>
