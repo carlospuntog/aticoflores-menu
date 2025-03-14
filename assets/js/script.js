@@ -164,8 +164,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (targetElement) {
                     const navbarHeight = navbar.offsetHeight;
                     const topNavbarHeight = document.querySelector('.top-navbar').offsetHeight;
-                    const titleHeight = targetElement.querySelector('.section-title').offsetHeight;
-                    const targetPosition = targetElement.offsetTop - topNavbarHeight - navbarHeight - titleHeight - 10;
+                    const baseOffset = firstCategory.offsetTop - topNavbarHeight - navbarHeight; // Espacio perfecto de la primera categoría
+                    const targetPosition = targetElement.offsetTop - topNavbarHeight - navbarHeight - (firstCategory.offsetTop - targetElement.offsetTop > 0 ? 0 : 20); // Ajuste relativo
 
                     if (!isNavbarFixed) {
                         navbar.classList.add('fixed');
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
 
                     isScrollingFromClick = true;
-                    window.scrollTo(0, Math.max(targetPosition, firstCategory.offsetTop - topNavbarHeight - navbarHeight));
+                    window.scrollTo(0, Math.max(targetPosition, baseOffset));
                     navLinks.forEach(navLink => navLink.classList.remove('active'));
                     this.classList.add('active');
 
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         menuLinks.addEventListener('wheel', function(e) {
             e.preventDefault();
-            const scrollAmount = e.deltaY * 1.5;
+            const scrollAmount = e.deltaY * 3;
             const currentScroll = menuLinks.scrollLeft;
             menuLinks.scrollTo({
                 left: currentScroll + scrollAmount,
