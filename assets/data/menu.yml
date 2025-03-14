@@ -1,5 +1,5 @@
 - id: cafe
-  name: Café de especialidad & bebidas calientes
+  name: Café & bebidas calientes
   image: https://via.placeholder.com/92x92.png?text=Café
   timeSlot: null  # Sin franja horaria
   priority: false
@@ -11,7 +11,7 @@
 - id: bebidas-frias
   name: Bebidas frías
   image: https://via.placeholder.com/92x92.png?text=Bebidas+Frías
-  timeSlot: Merienda
+  timeSlot: null
   priority: false
   items:
     - name: Refrescos
@@ -21,7 +21,7 @@
 - id: bebidas-alcoholicas
   name: Bebidas alcohólicas
   image: https://via.placeholder.com/92x92.png?text=Alcohol
-  timeSlot: Comida
+  timeSlot: null
   priority: false
   items:
     - name: Cerveza
@@ -42,7 +42,7 @@
   name: Combos
   image: https://via.placeholder.com/92x92.png?text=Combos
   timeSlot: Desayuno
-  priority: false
+  priority: true
   items:
     - name: Desayuno clásico
       description: Café o té + tostada clásica.
