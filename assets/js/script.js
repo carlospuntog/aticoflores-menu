@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinksContainer = document.getElementById('menu-links');
     const menuContent = document.getElementById('menu-content');
     let isNavbarFixed = false;
+    let isAnimating = false; // Bandera para controlar la animación
 
     // Cargar datos desde menu.yml sin caché
     fetch(`assets/data/menu.yml?nocache=${Date.now()}`)
@@ -88,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function handleScroll() {
             lastScrollPosition = window.scrollY;
-            if (!ticking) {
+            if (!ticking && !isAnimating) { // Evitar interferencia durante la animación
                 window.requestAnimationFrame(() => {
                     setActiveLink();
                     const bannerHeight = document.querySelector('.brand-header').offsetHeight;
@@ -128,8 +129,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     const targetPosition = targetElement.offsetTop - topNavbarHeight - navbarHeight - 40;
                     const minScrollPosition = firstCategory.offsetTop - topNavbarHeight - navbarHeight;
 
-                    // Evitar animación si ya estamos cerca del objetivo o en el límite superior
-                    if (Math.abs(startPosition - targetPosition) < 50 || (isNavbarFixed && targetPosition <= minScrollPosition && startPosition <= minScrollPosition)) {
+                    // Si ya estamos en el límite superior y es la primera categoría, no animar
+                    if (isNavbarFixed && targetId === '#cafe' && Math.abs(startPosition - minScrollPosition) < 50) {
+                        navLinks.forEach(navLink => navLink.classList.remove('active'));
+                        this.classList.add('active');
+                        return;
+                    }
+
+                    // Si el desplazamiento es mínimo, no animar
+                    if (Math.abs(startPosition - targetPosition) < 50) {
                         navLinks.forEach(navLink => navLink.classList.remove('active'));
                         this.classList.add('active');
                         if (!isNavbarFixed) {
@@ -142,6 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const distance = targetPosition - startPosition;
                     const duration = 800;
                     let start = null;
+                    isAnimating = true; // Activar bandera durante la animación
 
                     function step(timestamp) {
                         if (!start) start = timestamp;
@@ -149,7 +158,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         const percentage = Math.min(progress / duration, 1);
                         const easeInOutQuad = t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
                         window.scrollTo(0, startPosition + distance * easeInOutQuad(percentage));
-                        if (progress < duration) window.requestAnimationFrame(step);
+                        if (progress < duration) {
+                            window.requestAnimationFrame(step);
+                        } else {
+                            isAnimating = false; // Desactivar bandera al finalizar
+                        }
                     }
 
                     window.requestAnimationFrame(step);
