@@ -125,12 +125,12 @@ body {
 .section-title {
     font-size: 24px;
     font-family: 'IBM Plex Mono', monospace;
-    font-weight: 700;
+    font-weight: 400; /* Quitamos negrita */
     text-align: left;
     margin: 30px 0 20px;
     padding-bottom: 10px;
     border-bottom: 1px solid var(--mauve-color);
-    scroll-margin-top: 80px;
+    scroll-margin-top: 120px; /* Más espacio para el título */
     color: var(--dark-text);
 }
 
@@ -141,7 +141,7 @@ body {
     margin: 25px 0 15px;
     padding-bottom: 10px;
     border-bottom: 1px solid var(--mauve-light);
-    scroll-margin-top: 80px;
+    scroll-margin-top: 120px;
     color: var(--dark-text);
 }
 
@@ -266,7 +266,7 @@ body {
     .section-title {
         font-size: 20px;
         margin: 25px 0 15px;
-        scroll-margin-top: 80px;
+        scroll-margin-top: 120px;
     }
     
     .brand-title {
