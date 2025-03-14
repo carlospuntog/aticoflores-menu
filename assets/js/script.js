@@ -2,14 +2,62 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinksContainer = document.getElementById('menu-links');
     const menuContent = document.getElementById('menu-content');
     let isNavbarFixed = false;
-    let isScrollingFromClick = false; // Bandera para evitar interferencia de handleScroll
+    let isScrollingFromClick = false;
 
     // Cargar datos desde menu.yml sin caché
     fetch(`assets/data/menu.yml?nocache=${Date.now()}`)
         .then(response => response.text())
         .then(yamlText => {
             const data = jsyaml.load(yamlText);
-            data.forEach((category, index) => {
+
+            // Obtener la hora actual del cliente
+            const now = new Date();
+            const currentHour = now.getHours();
+
+            // Definir franjas horarias (ajusta según necesites)
+            const timeSlotsOrder = [
+                { slot: 'Desayuno', start: 6, end: 11 },
+                { slot: 'Comida', start: 12, end: 16 },
+                { slot: 'Merienda', start: 17, end: 5 }
+            ];
+
+            // Determinar la franja horaria actual
+            let currentSlot = null;
+            for (const slot of timeSlotsOrder) {
+                if (currentHour >= slot.start && currentHour <= slot.end) {
+                    currentSlot = slot.slot;
+                    break;
+                }
+            }
+            if (!currentSlot) currentSlot = null; // Sin franja si no coincide
+
+            // Ordenar categorías
+            const sortedData = data.sort((a, b) => {
+                // 1. Orden por franja horaria
+                const aSlotIndex = a.timeSlot ? timeSlotsOrder.findIndex(s => s.slot === a.timeSlot) : -1;
+                const bSlotIndex = b.timeSlot ? timeSlotsOrder.findIndex(s => s.slot === b.timeSlot) : -1;
+                const aIsCurrent = a.timeSlot === currentSlot;
+                const bIsCurrent = b.timeSlot === currentSlot;
+
+                // Priorizar la franja actual, luego el orden definido, y Sin Franja al final
+                if (aIsCurrent && !bIsCurrent) return -1;
+                if (!aIsCurrent && bIsCurrent) return 1;
+                if (aSlotIndex !== bSlotIndex) {
+                    if (aSlotIndex === -1) return 1; // Sin franja al final
+                    if (bSlotIndex === -1) return -1;
+                    return aSlotIndex - bSlotIndex;
+                }
+
+                // 2. Dentro de la misma franja, prioridad primero
+                if (a.priority && !b.priority) return -1;
+                if (!a.priority && b.priority) return 1;
+
+                // 3. Si no hay prioridad, orden aleatorio dentro de la franja
+                return Math.random() - 0.5;
+            });
+
+            // Generar DOM con los datos ordenados
+            sortedData.forEach((category, index) => {
                 const navLink = document.createElement('a');
                 navLink.href = `#${category.id}`;
                 navLink.className = `nav-link${index === 0 ? ' active' : ''}`;
@@ -89,20 +137,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
         function handleScroll() {
             lastScrollPosition = window.scrollY;
-            if (!ticking && !isScrollingFromClick) { // Solo ejecuta si no viene de un clic
+            if (!ticking && !isScrollingFromClick) {
                 window.requestAnimationFrame(() => {
                     setActiveLink();
                     const bannerHeight = document.querySelector('.brand-header').offsetHeight;
                     const topNavbarHeight = document.querySelector('.top-navbar').offsetHeight;
                     const navbarHeight = navbar.offsetHeight;
 
-                    // Fijar el menú cuando pasa el banner
                     if (lastScrollPosition > bannerHeight && !isNavbarFixed) {
                         navbar.classList.add('fixed');
                         isNavbarFixed = true;
                     }
 
-                    // Limitar scroll hacia arriba para mostrar el primer título como tope
                     if (isNavbarFixed && lastScrollPosition < firstCategory.offsetTop - topNavbarHeight - navbarHeight) {
                         window.scrollTo(0, firstCategory.offsetTop - topNavbarHeight - navbarHeight);
                     }
@@ -128,21 +174,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     const targetPosition = targetElement.offsetTop - topNavbarHeight - navbarHeight - 40;
                     const minScrollPosition = firstCategory.offsetTop - topNavbarHeight - navbarHeight;
 
-                    // Fijar el menú inmediatamente al hacer clic
                     if (!isNavbarFixed) {
                         navbar.classList.add('fixed');
                         isNavbarFixed = true;
                     }
 
-                    // Desplazar instantáneamente al objetivo, respetando el límite superior
-                    isScrollingFromClick = true; // Activar bandera para pausar handleScroll
+                    isScrollingFromClick = true;
                     window.scrollTo(0, Math.max(targetPosition, minScrollPosition));
-
-                    // Actualizar clase active
                     navLinks.forEach(navLink => navLink.classList.remove('active'));
                     this.classList.add('active');
 
-                    // Desactivar la bandera después de un breve retraso para permitir que el scroll se estabilice
                     setTimeout(() => {
                         isScrollingFromClick = false;
                     }, 100);
