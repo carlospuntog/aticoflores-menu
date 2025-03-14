@@ -1,13 +1,13 @@
   - id: cafe
     name: Café & bebidas calientes
     image: assets/images2/cafe_categoria.png
-    timeSlot: null  # Disponible todo el día
+    timeSlot: Desayuno  # Disponible todo el día
     priority: false
     items:
       - name: Espresso
         description: Café espresso de especialidad.
         price: 2,00€
-        image: https://via.placeholder.com/120x120.png?text=Espresso
+        image: assets/images2/cafe_categoria.png
       - name: Americano
         description: Café americano largo.
         price: 2,00€
