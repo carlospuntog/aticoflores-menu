@@ -3,23 +3,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuContent = document.getElementById('menu-content');
     let isNavbarFixed = false;
 
-    // Cargar datos desde menu.yml
-    fetch('assets/data/menu.yml')
+    // Cargar datos desde menu.yml sin caché
+    fetch(`assets/data/menu.yml?nocache=${Date.now()}`)
         .then(response => response.text())
         .then(yamlText => {
-            const data = jsyaml.load(yamlText); // Convertir YAML a JSON
-            // Generar enlaces de navegación
+            const data = jsyaml.load(yamlText);
             data.forEach((category, index) => {
                 const navLink = document.createElement('a');
                 navLink.href = `#${category.id}`;
                 navLink.className = `nav-link${index === 0 ? ' active' : ''}`;
                 navLink.innerHTML = `
-                    <img src="assets/images/${category.image}" alt="${category.name}">
+                    <img src="${category.image}" alt="${category.name}">
                     <span class="nav-text">${category.name}</span>
                 `;
                 navLinksContainer.appendChild(navLink);
 
-                // Generar contenido de categoría
                 const categoryDiv = document.createElement('div');
                 categoryDiv.id = category.id;
                 categoryDiv.className = 'menu-category';
@@ -30,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <p class="item-description">${item.description}</p>
                             <span class="item-price">${item.price}</span>
                         </div>
-                        <img src="assets/images/${item.image}" alt="${item.name}" class="item-image">
+                        <img src="${item.image}" alt="${item.name}" class="item-image">
                     </div>
                 `).join('');
                 categoryDiv.innerHTML = `
@@ -48,7 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 menuContent.appendChild(categoryDiv);
             });
 
-            // Configurar eventos después de generar el DOM
             setupEvents();
         })
         .catch(error => console.error('Error al cargar menu.yml:', error));
@@ -57,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const navLinks = document.querySelectorAll('.nav-link');
         const navbar = document.querySelector('.navbar');
         const menuLinks = document.querySelector('.menu-links');
+        const firstCategory = document.querySelector('.menu-category');
         let lastScrollPosition = 0;
         let ticking = false;
 
@@ -94,10 +92,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.requestAnimationFrame(() => {
                     setActiveLink();
                     const bannerHeight = document.querySelector('.brand-header').offsetHeight;
+                    const topNavbarHeight = document.querySelector('.top-navbar').offsetHeight;
+                    const navbarHeight = navbar.offsetHeight;
+
                     if (lastScrollPosition > bannerHeight && !isNavbarFixed) {
                         navbar.classList.add('fixed');
                         isNavbarFixed = true;
+                    } else if (lastScrollPosition <= firstCategory.offsetTop - topNavbarHeight - navbarHeight && isNavbarFixed) {
+                        navbar.classList.remove('fixed');
+                        isNavbarFixed = false;
                     }
+
+                    // Limitar scroll hacia arriba cuando el menú está fijo
+                    if (isNavbarFixed && lastScrollPosition < firstCategory.offsetTop - topNavbarHeight - navbarHeight) {
+                        window.scrollTo(0, firstCategory.offsetTop - topNavbarHeight - navbarHeight);
+                    }
+
                     ticking = false;
                 });
                 ticking = true;
@@ -116,9 +126,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (targetElement) {
                     const startPosition = window.scrollY;
                     const navbarHeight = navbar.offsetHeight;
-                    const targetPosition = isNavbarFixed
-                        ? targetElement.offsetTop - navbarHeight - 40
-                        : targetElement.offsetTop - navbarHeight - 40;
+                    const topNavbarHeight = document.querySelector('.top-navbar').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - topNavbarHeight - navbarHeight - 40; // Más margen inicial
 
                     const distance = targetPosition - startPosition;
                     const duration = 800;
