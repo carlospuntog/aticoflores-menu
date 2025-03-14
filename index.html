@@ -339,8 +339,10 @@
         document.addEventListener('DOMContentLoaded', function() {
             const navLinks = document.querySelectorAll('.nav-link');
             const navbar = document.querySelector('.navbar');
+            const menuLinks = document.querySelector('.menu-links');
             let lastScrollPosition = 0;
             let ticking = false;
+            let isNavbarFixed = false; // Bandera para rastrear si el menú ya se fijó
             
             function setActiveLink() {
                 const scrollPosition = window.scrollY + 80;
@@ -382,10 +384,10 @@
                     window.requestAnimationFrame(function() {
                         setActiveLink();
                         const bannerHeight = document.querySelector('.brand-header').offsetHeight;
-                        if (lastScrollPosition > bannerHeight) {
+                        // Solo fijamos el menú la primera vez que pasamos el banner
+                        if (lastScrollPosition > bannerHeight && !isNavbarFixed) {
                             navbar.classList.add('fixed');
-                        } else {
-                            navbar.classList.remove('fixed');
+                            isNavbarFixed = true; // Una vez fijado, no lo quitamos
                         }
                         ticking = false;
                     });
@@ -404,8 +406,8 @@
                     
                     if (targetElement) {
                         const startPosition = window.scrollY;
-                        const navbarHeight = navbar.offsetHeight; // Altura de la barra de categorías
-                        const targetPosition = targetElement.offsetTop - navbarHeight - 20; // Margen extra de 20px
+                        const navbarHeight = navbar.offsetHeight;
+                        const targetPosition = targetElement.offsetTop - navbarHeight - 40; // Más espacio (40px)
                         const distance = targetPosition - startPosition;
                         const duration = 800;
                         let start = null;
@@ -428,8 +430,18 @@
                         });
                         this.classList.add('active');
                         navbar.classList.add('fixed');
+                        isNavbarFixed = true; // Fijamos el menú al hacer clic
                     }
                 });
+            });
+
+            // Desplazamiento horizontal con rueda del mouse solo en ordenadores
+            menuLinks.addEventListener('wheel', function(e) {
+                if (window.innerWidth > 576) {
+                    e.preventDefault();
+                    const scrollAmount = e.deltaY * 1.5;
+                    menuLinks.scrollLeft += scrollAmount;
+                }
             });
         });
     </script>
