@@ -6,7 +6,7 @@
     <title>Carta - Ático Flores - Primavera 2025</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Mono:wght@400&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -25,7 +25,7 @@
         }
         
         body {
-            font-family: 'IBM Plex Sans', sans-serif;
+            font-family: 'IBM Plex Mono', monospace;
             background-color: var(--light-bg);
             color: var(--dark-text);
             line-height: 1.6;
@@ -127,6 +127,7 @@
         .nav-text {
             padding: 4px 8px;
             transition: all 0.3s ease;
+            font-family: 'IBM Plex Mono', monospace;
         }
         
         /* Main Container */
@@ -139,7 +140,7 @@
         /* Category Headers */
         .section-title {
             font-size: 24px;
-            font-family: 'Oswald', sans-serif;
+            font-family: 'IBM Plex Mono', monospace;
             font-weight: 700;
             text-align: left;
             margin: 30px 0 20px;
@@ -151,6 +152,8 @@
         
         .subsection-title {
             font-size: 22px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 700;
             margin: 25px 0 15px;
             padding-bottom: 10px;
             border-bottom: 1px solid var(--mauve-light);
@@ -191,12 +194,14 @@
         }
         
         .item-title {
+            font-family: 'IBM Plex Mono', monospace;
             font-weight: 600;
             margin-bottom: 5px;
             color: var(--dark-text);
         }
         
         .item-description {
+            font-family: 'IBM Plex Mono', monospace;
             font-size: 14px;
             color: #444;
             margin-bottom: 10px;
@@ -204,7 +209,8 @@
         }
         
         .item-price {
-            font-weight: bold;
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 700;
             color: var(--mauve-color);
             font-size: 16px;
             align-self: flex-start;
@@ -232,7 +238,7 @@
         
         .brand-title {
             font-size: 36px;
-            font-family: 'Oswald', sans-serif;
+            font-family: 'IBM Plex Mono', monospace;
             font-weight: 700;
             margin-bottom: 10px;
             color: var(--mauve-color);
@@ -241,6 +247,7 @@
         
         .brand-subtitle {
             font-size: 16px;
+            font-family: 'IBM Plex Mono', monospace;
             color: #555;
         }
         
@@ -252,6 +259,7 @@
             padding: 5px 15px;
             border-radius: 8px;
             font-size: 14px;
+            font-family: 'IBM Plex Mono', monospace;
             margin-top: 10px;
             font-weight: 600;
         }
@@ -261,6 +269,7 @@
             text-align: center;
             font-size: 14px;
             font-style: italic;
+            font-family: 'IBM Plex Mono', monospace;
             color: #555;
             margin-bottom: 15px;
             background-color: var(--gray-light);
@@ -408,11 +417,10 @@
                         const navbarHeight = navbar.offsetHeight;
                         let targetPosition;
 
-                        // Si es el primer clic y el menú no está fijo, usamos la altura inicial completa
                         if (!isNavbarFixed) {
-                            targetPosition = targetElement.offsetTop - navbarHeight - 40; // Altura inicial + margen
+                            targetPosition = targetElement.offsetTop - navbarHeight - 40;
                         } else {
-                            targetPosition = targetElement.offsetTop - navbarHeight - 40; // Altura fija + margen
+                            targetPosition = targetElement.offsetTop - navbarHeight - 40;
                         }
 
                         const distance = targetPosition - startPosition;
@@ -437,12 +445,11 @@
                         });
                         this.classList.add('active');
                         navbar.classList.add('fixed');
-                        isNavbarFixed = true; // Fijamos el menú al hacer clic
+                        isNavbarFixed = true;
                     }
                 });
             });
 
-            // Desplazamiento horizontal con rueda del mouse solo en ordenadores
             menuLinks.addEventListener('wheel', function(e) {
                 if (window.innerWidth > 576) {
                     e.preventDefault();
@@ -513,7 +520,6 @@
                     </div>
                     <img src="/api/placeholder/120/120" alt="Espresso" class="item-image">
                 </div>
-                <!-- (Resto de los items de Café) -->
             </div>
         </div>
         
@@ -529,7 +535,6 @@
                     </div>
                     <img src="/api/placeholder/120/120" alt="Refrescos" class="item-image">
                 </div>
-                <!-- (Resto de los items de Bebidas Frías) -->
             </div>
         </div>
         
@@ -545,7 +550,6 @@
                     </div>
                     <img src="/api/placeholder/120/120" alt="Cerveza" class="item-image">
                 </div>
-                <!-- (Resto de los items de Bebidas Alcohólicas) -->
             </div>
         </div>
         
@@ -563,7 +567,6 @@
                     </div>
                     <img src="/api/placeholder/120/120" alt="Tostada Clásica" class="item-image">
                 </div>
-                <!-- (Resto de los items de Desayunos) -->
             </div>
         </div>
         
@@ -579,7 +582,6 @@
                     </div>
                     <img src="/api/placeholder/120/120" alt="Desayuno Clásico" class="item-image">
                 </div>
-                <!-- (Resto de los items de Combos) -->
             </div>
         </div>
     </div>
