@@ -27,18 +27,18 @@
 
   - id: bebidas-frias
     name: Bebidas frías
-    image: https://via.placeholder.com/92x92.png?text=Bebidas+Frías
+    image: assets/images2/limonada.png
     timeSlot: null  # Disponible todo el día
     priority: false
     items:
       - name: Zumo de naranja
         description: Zumo de naranja natural recién exprimido.
         price: 3,95€/4,95€
-        image: https://via.placeholder.com/120x120.png?text=Zumo+de+Naranja
+        image: assets/images2/zumonaranja2.png
       - name: Refrescos
         description: Selección de refrescos disponibles.
         price: 3,00€
-        image: https://via.placeholder.com/120x120.png?text=Refrescos
+        image: assets/images2/cocacola.png
       - name: Agua mineral
         description: Agua natural o con gas.
         price: 1,50€/2,50€
