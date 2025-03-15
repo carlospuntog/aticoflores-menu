@@ -234,10 +234,10 @@ body {
 }
 
 .item-image {
-       width: 120px;
+    width: 120px;
     height: 120px;
     border-radius: 8px;
-    object-fit: contain; /* Muestra toda la imagen sin recortarla */
+    object-fit: contain;
     object-position: center;
 }
 
@@ -305,8 +305,8 @@ body {
     }
     
     .item-image {
-        width: 120px; /* Ajustado a 87px como solicitaste */
-        height: 120px; /* Ajustado a 87px */
+        width: 90px; /* Reducido a 90px solo en móvil */
+        height: 90px; /* Reducido a 90px solo en móvil */
         border-radius: 0px;
         object-fit: contain;
         object-position: center;
