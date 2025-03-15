@@ -302,7 +302,8 @@ body {
     .item-image {
         width: 100px;
         height: 100px;
-        object-fit: cover; /* o contain, según prefieras */
+        border-radius: 8px;
+        object-fit: contain; /* Cambiado de cover a contain para evitar recortes */
         object-position: center;
     }
 }
