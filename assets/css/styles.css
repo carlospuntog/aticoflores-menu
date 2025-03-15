@@ -277,6 +277,8 @@ body {
     
     .menu-item {
         flex-direction: row;
+        align-items: center; /* Centra verticalmente la imagen y el texto */
+        overflow: visible; /* Evita que el contenedor recorte la imagen */
     }
     
     .item-details {
@@ -300,10 +302,10 @@ body {
     }
     
     .item-image {
-        width: 100px;
-        height: 100px;
-        border-radius: 8px;
-        object-fit: contain; /* Cambiado de cover a contain para evitar recortes */
+        width: 85px; /* Reducido de 100px a 85px (15% menos) */
+        height: 85px; /* Reducido de 100px a 85px */
+        border-radius: 4px; /* Reducido de 8px a 4px para menos recorte visual */
+        object-fit: contain;
         object-position: center;
     }
 }
