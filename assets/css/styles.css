@@ -305,8 +305,8 @@ body {
     }
     
     .item-image {
-        width: 81px; /* Aumentado de 74px a 81px (10% más) */
-        height: 81px; /* Aumentado de 74px a 81px */
+        width: 87px; /* Ajustado a 87px como solicitaste */
+        height: 87px; /* Ajustado a 87px */
         border-radius: 0px;
         object-fit: contain;
         object-position: center;
