@@ -134,8 +134,8 @@
       image: assets/images2/ensalada_flores.png
 
 - id: focaccia
-  name: Focaccia
-  image: assets/images2/focaccia.png
+  name: Focaccias
+  image: assets/images2/focaccias.png
   priority: true
   timeSlot: Comida
   items:
