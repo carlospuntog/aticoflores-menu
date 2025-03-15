@@ -277,12 +277,15 @@ body {
     
     .menu-item {
         flex-direction: row;
-        align-items: center; /* Centra verticalmente la imagen y el texto */
-        overflow: visible; /* Evita que el contenedor recorte la imagen */
+        align-items: center; /* Centra verticalmente */
+        justify-content: space-between; /* Distribuye el espacio entre imagen y texto */
+        overflow: visible; /* Evita recortes */
+        padding: 10px; /* Añade padding para dar más espacio interno */
     }
     
     .item-details {
         padding: 12px;
+        flex: 1; /* Asegura que el texto ocupe el espacio restante */
     }
     
     .item-title {
@@ -302,10 +305,11 @@ body {
     }
     
     .item-image {
-        width: 85px; /* Reducido de 100px a 85px (15% menos) */
-        height: 85px; /* Reducido de 100px a 85px */
-        border-radius: 4px; /* Reducido de 8px a 4px para menos recorte visual */
-        object-fit: contain;
-        object-position: center;
+        width: 70px; /* Reducido a 70px (30% menos que 100px) */
+        height: 70px; /* Reducido a 70px */
+        border-radius: 0px; /* Eliminamos el border-radius para evitar recortes */
+        object-fit: contain; /* Muestra la imagen completa */
+        object-position: center; /* Centra la imagen */
+        background-color: var(--white); /* Fondo blanco para coherencia */
     }
 }
