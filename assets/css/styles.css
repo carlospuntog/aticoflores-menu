@@ -99,8 +99,8 @@ body {
 }
 
 .nav-link img {
-    width: 111px; /* Aumentado un 20% desde 92.4px (redondeado a 111px) */
-    height: 111px; /* Aumentado un 20% desde 92.4px */
+    width: 1251px; /* Aumentado un 20% desde 92.4px (redondeado a 111px) */
+    height: 125px; /* Aumentado un 20% desde 92.4px */
     border-radius: 0px; /* Eliminado el círculo */
     border: none; /* Eliminado el borde morado */
     object-fit: contain; /* Cambiado a contain para evitar cortes */
@@ -262,8 +262,8 @@ body {
     }
     
     .nav-link img {
-        width: 79px; /* Aumentado un 20% desde 66px (redondeado a 79px) */
-        height: 79px; /* Aumentado un 20% desde 66px */
+        width: 85px; /* Aumentado un 20% desde 66px (redondeado a 79px) */
+        height: 85px; /* Aumentado un 20% desde 66px */
         border-radius: 0px; /* Eliminado el círculo */
         border: none; /* Eliminado el borde morado */
         object-fit: contain; /* Cambiado a contain para evitar cortes */
