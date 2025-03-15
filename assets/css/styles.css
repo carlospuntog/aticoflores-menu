@@ -234,9 +234,11 @@ body {
 }
 
 .item-image {
-    width: 120px;
+       width: 120px;
     height: 120px;
-    object-fit: cover;
+    border-radius: 8px;
+    object-fit: contain; /* Muestra toda la imagen sin recortarla */
+    object-position: center;
 }
 
 @media (max-width: 576px) {
@@ -300,5 +302,7 @@ body {
     .item-image {
         width: 100px;
         height: 100px;
+        object-fit: cover; /* o contain, según prefieras */
+        object-position: center;
     }
 }
