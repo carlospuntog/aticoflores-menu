@@ -277,15 +277,15 @@ body {
     
     .menu-item {
         flex-direction: row;
-        align-items: center; /* Centra verticalmente */
-        justify-content: space-between; /* Distribuye el espacio entre imagen y texto */
-        overflow: visible; /* Evita recortes */
-        padding: 10px; /* Añade padding para dar más espacio interno */
+        align-items: center;
+        justify-content: space-between;
+        overflow: visible;
+        padding: 10px;
     }
     
     .item-details {
         padding: 12px;
-        flex: 1; /* Asegura que el texto ocupe el espacio restante */
+        flex: 1;
     }
     
     .item-title {
@@ -305,11 +305,11 @@ body {
     }
     
     .item-image {
-        width: 70px; /* Reducido a 70px (30% menos que 100px) */
-        height: 70px; /* Reducido a 70px */
-        border-radius: 0px; /* Eliminamos el border-radius para evitar recortes */
-        object-fit: contain; /* Muestra la imagen completa */
-        object-position: center; /* Centra la imagen */
-        background-color: var(--white); /* Fondo blanco para coherencia */
+        width: 74px; /* Aumentado de 70px a 74px (5% más) */
+        height: 74px; /* Aumentado de 70px a 74px */
+        border-radius: 0px;
+        object-fit: contain;
+        object-position: center;
+        background-color: var(--white);
     }
 }
