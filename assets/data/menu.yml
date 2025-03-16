@@ -69,7 +69,7 @@
     - name: Latte Macchiato
       description: Leche vaporizada con un shot de espresso
       price: 2,75€
-      image: assets/images2/latte_macchiato.png
+      image: assets/images2/flat_white.png
     - name: Chocolate
       description: Chocolate caliente
       price: 3,50€/4,50€
