@@ -19,22 +19,22 @@
 
 - id: bebidas-alcoholicas
   name: Bebidas con Alcohol
-  image: https://via.placeholder.com/92x92.png
+  image: assets/images2/cerveza.png
   priority: false
   timeSlot: Comida
   items:
     - name: Cerveza
       description: Cerveza de barril o botella. Consulte variedades
       price: 3,25€
-      image: https://via.placeholder.com/92x92.png
+      image: assets/images2/cerveza.png
     - name: Vino
       description: Selección de vinos disponibles
       price: 4,00€ - 6,00€
-      image: https://via.placeholder.com/92x92.png
+      image: assets/images2/vino.png
     - name: Vermú
       description: Vermú tradicional servido con hielo y naranja
       price: 4,00€
-      image: https://via.placeholder.com/92x92.png
+      image: assets/images2/vermu.png
       
 - id: cafes
   name: Cafés
@@ -177,27 +177,27 @@
 
 - id: Dulces & Snacks
   name: Postres y Pastelería
-  image: https://via.placeholder.com/92x92.png
+  image: assets/images2/cookie.png
   priority: false
   timeSlot: Merienda
   items:
     - name: Cookies / Bizcochos
       description: Variedad de galletas y bizcochos caseros
       price: 3,50€
-      image: https://via.placeholder.com/92x92.png
+      image: assets/images2/cookie.png
     - name: Minipostres
       description: Surtido de pequeñas porciones de postres del día
       price: 6,95€
-      image: https://via.placeholder.com/92x92.png
+      image: assets/images2/postre.png
     - name: Croissant
       description: Croissant de mantequilla
       price: 1,75€
-      image: https://via.placeholder.com/92x92.png
+      image: assets/images2/croissant.png
     - name: Croissant vegano
       description: Croissant sin ingredientes de origen animal
       price: 2,45€
-      image: https://via.placeholder.com/92x92.png
+      image: assets/images2/croissant_vegano.png
     - name: Tarta del día
       description: Porción de tarta, consulta opciones disponibles
       price: 5,95€
-      image: https://via.placeholder.com/92x92.png
+      image: assets/images2/tartas.png
