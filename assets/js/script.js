@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 `).join('');
                 categoryDiv.innerHTML = `
-                    <h2 class="section-title">${category.name}</h2>
+                    <h2 class="section-title">${category.extended_title || category.name}</h2>
                     <div class="menu-items">${itemsHtml}</div>
                 `;
                 menuContent.appendChild(categoryDiv);
