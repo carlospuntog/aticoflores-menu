@@ -1,21 +1,21 @@
 - id: refrescos
   name: Refrescos y Zumos
-  image: assets/images2/refrescos.jpeg
+  image: assets/images2/refrescos.png
   priority: false
   timeSlot: Comida
   items:
     - name: Zumo de naranja
       description: Zumo de naranja natural recién exprimido
       price: 3,95€/4,95€
-      image: assets/images2/zumo_naranja.jpeg
+      image: assets/images2/zumo_naranja.png
     - name: Agua mineral
       description: Agua natural o con gas
       price: 1,50€/2,50€
-      image: assets/images2/agua_mineral.jpeg
+      image: assets/images2/agua_mineral.png
     - name: Refrescos
       description: Selección de refrescos disponibles
       price: 3,00€
-      image: assets/images2/sodas.jpeg
+      image: assets/images2/sodas.png
 
 - id: bebidas-alcoholicas
   name: Bebidas con Alcohol
