@@ -163,7 +163,8 @@
 
 - id: gofres
   name: Gofres
-  extended_title: Gofres hechos al momento con receta propia  image: assets/images2/gofres.png
+  extended_title: Gofres hechos al momento con receta propia  
+  image: assets/images2/gofres.png
   priority: true
   timeSlot: Merienda
   items:
