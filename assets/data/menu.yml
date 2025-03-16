@@ -1,5 +1,6 @@
 - id: refrescos
-  name: Refrescos y Zumos
+  name: Zumos y Refrescos
+  extended_title: Zumos "cold pressed" y refrescos   # Añadido como ejemplo
   image: assets/images2/refrescos.png
   priority: false
   timeSlot: Comida
@@ -18,7 +19,7 @@
       image: assets/images2/sodas.png
 
 - id: bebidas-alcoholicas
-  name: Bebidas con Alcohol
+  name: Bebidas
   image: assets/images2/cerveza.png
   priority: false
   timeSlot: Comida
@@ -38,6 +39,7 @@
       
 - id: cafes
   name: Cafés
+  extended_title: Cafés de especialidad arabica 100%
   image: assets/images2/cafes.png
   priority: false
   timeSlot: Desayuno
@@ -75,9 +77,9 @@
       price: 3,50€/4,50€
       image: assets/images2/chocolate.png
 
-
 - id: tostadas
   name: Tostadas
+  extended_title: Tostadas con pan cristal # Añadido como ejemplo
   image: assets/images2/tostadas.png
   priority: false
   timeSlot: Desayuno
@@ -97,6 +99,7 @@
 
 - id: bowls
   name: Bowls
+  extended_title: Bowls sanos
   image: assets/images2/bowls.png
   priority: true
   timeSlot: Desayuno
@@ -116,6 +119,7 @@
 
 - id: ensaladas
   name: Ensaladas
+  extended_title: Ensaladas frescas y completas
   image: assets/images2/ensaladas.png
   priority: true
   timeSlot: Comida
@@ -135,6 +139,7 @@
 
 - id: focaccia
   name: Focaccias
+  extended_title: Focaccias hechas al momento con ingredientes premium
   image: assets/images2/focaccias.png
   priority: true
   timeSlot: Comida
@@ -158,7 +163,7 @@
 
 - id: gofres
   name: Gofres
-  image: assets/images2/gofres.png
+  extended_title: Gofres hechos al momento con receta propia  image: assets/images2/gofres.png
   priority: true
   timeSlot: Merienda
   items:
@@ -177,6 +182,7 @@
 
 - id: snacks-dulces
   name: Snacks dulces
+  extended_title: Snacks dulces artesanales  # Añadido como ejemplo
   image: assets/images2/cookie.png
   priority: false
   timeSlot: Merienda
