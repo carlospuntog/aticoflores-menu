@@ -117,7 +117,7 @@
 - id: ensaladas
   name: Ensaladas
   image: assets/images2/ensaladas.png
-  priority: false
+  priority: true
   timeSlot: Comida
   items:
     - name: Ensalada Caprese
