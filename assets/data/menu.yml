@@ -79,7 +79,7 @@
 
 - id: tostadas
   name: Tostadas
-  extended_title: Tostadas con pan cristal # Añadido como ejemplo
+  extended_title: Tostadas con pan cristal - Incluye café o infusión # Añadido como ejemplo
   image: assets/images2/tostadas.png
   priority: false
   timeSlot: Desayuno
