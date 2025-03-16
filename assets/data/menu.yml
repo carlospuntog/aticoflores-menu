@@ -175,7 +175,7 @@
       price: 6,50€
       image: assets/images2/gofre_aguacate.png
 
-- id: Snacks dulces
+- id: snacks-dulces
   name: Snacks dulces
   image: assets/images2/cookie.png
   priority: false
