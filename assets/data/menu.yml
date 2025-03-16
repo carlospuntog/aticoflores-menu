@@ -175,8 +175,8 @@
       price: 6,50€
       image: assets/images2/gofre_aguacate.png
 
-- id: Dulces & Snacks
-  name: Postres y Pastelería
+- id: Snacks dulces
+  name: Snacks dulces
   image: assets/images2/cookie.png
   priority: false
   timeSlot: Merienda
