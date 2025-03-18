@@ -135,7 +135,7 @@
     - name: Ensalada Ático Flores
       description: Mezclum de lechugas baby, flores comestibles, frambuesas, arándanos, moras y aguacate, con vinagreta de miel, mostaza y limón
       price: 7,95€
-      image: assets/images2/ensalada_flores.png
+      image: assets/images2/ensalada_atico.png
 
 - id: focaccia
   name: Focaccias
