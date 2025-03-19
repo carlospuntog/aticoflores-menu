@@ -151,7 +151,7 @@
     - name: Gorgonzola y mortadela
       description: Gorgonzola dulce, mortadela boloñesa, tomates secos, pesto de pistachos
       price: 5,95€
-      image: assets/images2/focaccia_gorgonzola.png
+      image: assets/images2/focaccia_gorgonzola.jpg
     - name: Salami y parmesano
       description: Salami Finocchiona, crema de alcachofas, crema de parmesano, rúcula
       price: 5,95€
