@@ -147,7 +147,7 @@
     - name: Ibérica
       description: Jamón ibérico, tomate, AOVE
       price: 5,95€
-      image: assets/images2/focaccia_iberica.jpg
+      image: assets/images2/focaccia_iberico.jpg
     - name: Gorgonzola y mortadela
       description: Gorgonzola dulce, mortadela boloñesa, tomates secos, pesto de pistachos
       price: 5,95€
