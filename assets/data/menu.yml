@@ -155,7 +155,7 @@
     - name: Salami y parmesano
       description: Salami Finocchiona, crema de alcachofas, crema de parmesano, rúcula
       price: 5,95€
-      image: assets/images2/focaccia_salami.png
+      image: assets/images2/focaccia_salami.jpg
     - name: Tomate y mozzarella
       description: Tomate, mozzarella de búfala, pesto, albahaca fresca
       price: 5,95€
