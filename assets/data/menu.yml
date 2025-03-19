@@ -140,7 +140,7 @@
 - id: focaccia
   name: Focaccias
   extended_title: Focaccias hechas al momento con ingredientes premium
-  image: assets/images2/focaccias.png
+  image: assets/images2/focaccia_salami.jpg
   priority: true
   timeSlot: Comida
   items:
