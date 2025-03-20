@@ -172,11 +172,11 @@
       description: Gofre recién hecho cubierto de salsa de chocolate y nata montada
       price: 4,00€
       image: assets/images2/gofre_clasico.png
-    - name: Bowl de fruta
+    - name: Fruta fresca
       description: Gofre con fruta fresca variada con miel y nata
       price: 5,00€
       image: assets/images2/gofre_fruta.png
-    - name: Aguacate y salmón
+    - name: Aguacate, salmón y mascarpone
       description: Con salmón ahumado, crema de queso mascarpone y aguacate
       price: 6,50€
       image: assets/images2/gofre_aguacate.png
