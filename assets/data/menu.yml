@@ -115,7 +115,7 @@
     - name: Açai
       description: Açaí con plátano, frutos rojos y yogur
       price: 6,95€
-      image: assets/images2/bowl_acai.png
+      image: assets/images2/bowl_acai.jpg
 
 - id: ensaladas
   name: Ensaladas
@@ -127,11 +127,11 @@
     - name: Ensalada Caprese
       description: Tomate fresco, mozzarella de búfala, pesto genovés y albahaca
       price: 5,95€
-      image: assets/images2/ensalada_caprese.png
+      image: assets/images2/ensalada_caprese.jpg
     - name: Ensalada Ático Mezze
       description: Cuscús, hummus, tomate, pepino, cebolla roja, mezcla de ensaladas y espinacas, queso feta, aceitunas y garbanzos especiados
       price: 7,95€
-      image: assets/images2/ensalada_mezze.png
+      image: assets/images2/ensalada_mezze.jpg
     - name: Ensalada Ático Flores
       description: Mezclum de lechugas baby, flores comestibles, frambuesas, arándanos, moras y aguacate, con vinagreta de miel, mostaza y limón
       price: 7,95€
