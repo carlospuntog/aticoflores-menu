@@ -5,6 +5,9 @@
     --light-bg: #FAFAFA;
     --white: #FFFFFF;
     --gray-light: #EEEEEE;
+    --soft-pink: #F9E6E9; /* Rosa suave */
+    --soft-green: #D4F0D4; /* Verde suave */
+    --soft-blue-gray: #E6ECEF; /* Gris azulado suave */
 }
 
 * {
@@ -373,4 +376,16 @@ body {
 
 .menu-category.with-background.bg-accent-light {
     background-color: rgba(184, 148, 255, 0.5); /* --mauve-light con 50% de transparencia */
+}
+
+.menu-category.with-background.bg-soft-pink {
+    background-color: rgba(249, 230, 233, 0.5); /* --soft-pink con 50% de transparencia */
+}
+
+.menu-category.with-background.bg-soft-green {
+    background-color: rgba(212, 240, 212, 0.5); /* --soft-green con 50% de transparencia */
+}
+
+.menu-category.with-background.bg-soft-blue-gray {
+    background-color: rgba(230, 236, 239, 0.5); /* --soft-blue-gray con 50% de transparencia */
 }
