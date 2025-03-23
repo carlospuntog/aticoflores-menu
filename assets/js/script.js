@@ -1,8 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     const navLinksContainer = document.getElementById('menu-links');
     const menuContent = document.getElementById('menu-content');
+    const modal = document.getElementById('item-modal');
+    const modalBody = modal.querySelector('.modal-body');
+    const modalClose = modal.querySelector('.modal-close');
     let isNavbarFixed = false;
     let isScrollingFromClick = false;
+    let isFirstClick = true; // Nueva variable para detectar el primer clic
 
     fetch(`assets/data/menu.yml?nocache=${Date.now()}`)
         .then(response => response.text())
@@ -79,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 categoryDiv.className = categoryClasses;
 
                 let itemsHtml = category.items.map(item => `
-                    <div class="menu-item">
+                    <div class="menu-item" data-name="${item.name}" data-image="${item.image}" data-description="${item.description}" data-background="${category.backgroundColor}">
                         <div class="item-details">
                             <h3 class="item-title">${item.name}</h3>
                             <p class="item-description">${item.description}</p>
@@ -106,6 +110,39 @@ document.addEventListener('DOMContentLoaded', function() {
         const firstCategory = document.querySelector('.menu-category');
         let lastScrollPosition = 0;
         let ticking = false;
+
+        // Evento para abrir el modal al hacer clic en un ítem
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const name = this.getAttribute('data-name');
+                const image = this.getAttribute('data-image');
+                const description = this.getAttribute('data-description');
+                const backgroundColor = this.getAttribute('data-background');
+
+                modalBody.innerHTML = `
+                    <div class="modal-image-container">
+                        <img src="${image}" alt="${name}" class="modal-image">
+                        <div class="modal-title-container bg-${backgroundColor}">
+                            <h3 class="modal-title">${name}</h3>
+                        </div>
+                    </div>
+                    <p class="modal-description">${description}</p>
+                `;
+                modal.style.display = 'block';
+            });
+        });
+
+        // Evento para cerrar el modal
+        modalClose.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        // Cerrar el modal al hacer clic fuera del contenido
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
 
         function setActiveLink() {
             const scrollPosition = window.scrollY + 80;
@@ -179,20 +216,33 @@ document.addEventListener('DOMContentLoaded', function() {
                 const targetElement = document.querySelector(targetId);
 
                 if (targetElement) {
-                    const navbarHeight = navbar.offsetHeight;
                     const topNavbarHeight = document.querySelector('.top-navbar').offsetHeight;
-                    const baseOffset = firstCategory.offsetTop - topNavbarHeight - navbarHeight; // Espacio perfecto de la primera categoría
-                    const targetPosition = targetElement.offsetTop - topNavbarHeight - navbarHeight - (firstCategory.offsetTop - targetElement.offsetTop > 0 ? 0 : 20); // Ajuste relativo
+                    let navbarHeight = navbar.offsetHeight;
 
-                    if (!isNavbarFixed) {
+                    // Forzar el estado fijo del navbar en el primer clic
+                    if (isFirstClick && !isNavbarFixed) {
                         navbar.classList.add('fixed');
                         isNavbarFixed = true;
+                        // Recalcular la altura del navbar después de colapsar las imágenes
+                        navbarHeight = navbar.offsetHeight; // Altura después de aplicar .fixed
                     }
 
+                    const baseOffset = firstCategory.offsetTop - topNavbarHeight - navbarHeight;
+                    const targetPosition = targetElement.offsetTop - topNavbarHeight - navbarHeight - (firstCategory.offsetTop - targetElement.offsetTop > 0 ? 0 : 20);
+
                     isScrollingFromClick = true;
-                    window.scrollTo(0, Math.max(targetPosition, baseOffset));
+                    window.scrollTo({
+                        top: Math.max(targetPosition, baseOffset),
+                        behavior: 'smooth'
+                    });
+
                     navLinks.forEach(navLink => navLink.classList.remove('active'));
                     this.classList.add('active');
+
+                    // Marcar que el primer clic ya ocurrió
+                    if (isFirstClick) {
+                        isFirstClick = false;
+                    }
 
                     setTimeout(() => {
                         isScrollingFromClick = false;
