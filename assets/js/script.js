@@ -68,6 +68,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         categoryClasses += ' bg-accent';
                     } else if (category.backgroundColor === 'accent-light') {
                         categoryClasses += ' bg-accent-light';
+                    } else if (category.backgroundColor === 'soft-pink') {
+                        categoryClasses += ' bg-soft-pink';
+                    } else if (category.backgroundColor === 'soft-green') {
+                        categoryClasses += ' bg-soft-green';
+                    } else if (category.backgroundColor === 'soft-blue-gray') {
+                        categoryClasses += ' bg-soft-blue-gray';
                     }
                 }
                 categoryDiv.className = categoryClasses;
