@@ -5,9 +5,9 @@
     --light-bg: #FAFAFA;
     --white: #FFFFFF;
     --gray-light: #EEEEEE;
-    --soft-pink: #F9E6E9; /* Rosa de Joe & the Juice */
-    --soft-green: #C2E8C2; /* Verde más vivo */
-    --soft-blue-gray: #F5F5F5; /* Gris claro de Joe & the Juice */
+    --soft-pink: #F5C8D1; /* Rosa más vivo (antes #F9E6E9) */
+    --soft-green: #C2E8C2; /* Verde más vivo (antes #D4F0D4) */
+    --soft-blue-gray: #D1DCE5; /* Gris azulado más vivo (antes #E6ECEF) */
 }
 
 * {
@@ -24,55 +24,29 @@ body {
     padding-top: 35px;
 }
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-
 .top-navbar {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    background: #000;
+    width: 100%;
+    background-color: #000000;
     color: var(--white);
-    padding: 5px 15px;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 12px;
-}
-
-.top-navbar .availability {
-    background: var(--gray-light);
-    color: var(--dark-text);
-    padding: 2px 8px;
-    border-radius: 12px;
-    font-size: 10px;
-}
-
-.brand-header {
+    z-index: 1001;
+    padding: 9.2px 0;
     text-align: center;
-    padding: 20px 0;
-}
-
-.brand-title {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--dark-text);
-}
-
-.brand-subtitle {
-    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
     font-size: 16px;
-    color: #666;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
 .navbar {
-    background: var(--white);
+    position: static;
+    width: 100%;
+    background-color: transparent;
+    box-shadow: none;
+    z-index: 1000;
     padding: 10px 0;
     transition: all 0.3s ease;
 }
@@ -81,17 +55,18 @@ body {
     position: fixed;
     top: 35px;
     left: 0;
-    right: 0;
+    background-color: var(--white);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 999;
 }
 
 .menu-links {
     display: flex;
+    justify-content: flex-start;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
     white-space: nowrap;
     padding: 0 15px;
-    -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
 }
 
@@ -99,77 +74,109 @@ body {
     display: none;
 }
 
-.nav-link {
-    display: inline-flex;
+.navbar a.nav-link {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--dark-text);
+    text-decoration: none;
+    margin: 0 10px;
+    font-size: 16px;
+    padding: 8px 12px;
+    position: relative;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    margin-right: 20px;
-    text-decoration: none;
-    color: var(--dark-text);
-    font-size: 12px;
-    transition: color 0.3s ease;
+    gap: 6px;
+}
+
+.navbar a.nav-link:hover .nav-text {
+    background-color: var(--mauve-light);
+}
+
+.navbar a.nav-link.active .nav-text {
+    background-color: var(--mauve-color) !important;
+    color: var(--white);
+    font-weight: 600;
+    border-radius: 4px;
 }
 
 .nav-link img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 5px;
-    border: 2px solid transparent;
-    transition: border-color 0.3s ease;
+    width: 111px; /* Aumentado un 20% desde 92.4px (redondeado a 111px) */
+    height: 111px; /* Aumentado un 20% desde 92.4px */
+    border-radius: 0px; /* Eliminado el círculo */
+    border: none; /* Eliminado el borde morado */
+    object-fit: contain; /* Cambiado a contain para evitar cortes */
+    object-position: center;
 }
 
-.nav-link.active img {
-    border-color: var(--mauve-color);
+.navbar.fixed .nav-link img {
+    display: none;
 }
 
-.nav-link .nav-text {
+.nav-text {
+    padding: 4px 8px;
+    transition: all 0.3s ease;
     font-family: 'IBM Plex Mono', monospace;
-    font-weight: 500;
 }
 
-.nav-link.active .nav-text {
-    color: var(--mauve-color);
-    font-weight: 700;
-}
-
-.menu-category {
-    margin-bottom: 30px; /* Reducido de 40px a 30px */
+.container {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    padding: 20px;
 }
 
 .section-title {
     font-size: 20px;
     font-family: 'IBM Plex Mono', monospace;
-    font-weight: 700; /* Negrita */
-    text-transform: uppercase; /* Mayúsculas */
+    font-weight: 400; /* Quitamos negrita */
     text-align: left;
-    margin: 30px 0 10px; /* Reducimos margin-bottom de 20px a 10px */
+    margin: 30px 0 20px;
     padding-bottom: 10px;
     border-bottom: 1px solid var(--mauve-color);
+    scroll-margin-top: 120px; /* Más espacio para el título */
+    color: var(--dark-text);
+}
+
+.subsection-title {
+    font-size: 18px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    margin: 25px 0 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--mauve-light);
     scroll-margin-top: 120px;
     color: var(--dark-text);
 }
 
+.menu-category {
+    margin-bottom: 40px;
+}
+
+.menu-category.with-background .menu-item {
+    border: none; /* Sin borde */
+    box-shadow: none; /* Sin sombra */
+    background: var(--white); /* Mantenemos el fondo blanco */
+}
+
 .menu-items {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
 }
 
 .menu-item {
     display: flex;
     background: var(--white);
-    border-radius: 16px; /* Aumentado de 8px a 16px para redondeo como Joe & the Juice */
+    border-radius: 8px;
     overflow: hidden;
-    border: 1px solid #D3D3D3;
+    border: 1px solid #D3D3D3; /* Borde gris elegante */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .menu-item:hover {
-    transform: translateY(-2px);
+    transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -183,7 +190,7 @@ body {
 .item-title {
     font-family: 'IBM Plex Mono', monospace;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 16px; /* Ajustamos el tamaño */
     margin-bottom: 5px;
     color: var(--dark-text);
 }
@@ -205,141 +212,208 @@ body {
     padding: 2px 0;
 }
 
+.brand-header {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.brand-title {
+    font-size: 36px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--mauve-color);
+    text-transform: uppercase;
+}
+
+.brand-subtitle {
+    font-size: 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    color: #555;
+}
+
+.availability {
+    text-align: center;
+    font-size: 14px;
+    font-style: italic;
+    font-family: 'IBM Plex Mono', monospace;
+    color: #555;
+    margin-bottom: 15px;
+    background-color: var(--gray-light);
+    padding: 8px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
 .item-image {
     width: 80px;
     height: 80px;
-    border-radius: 16px; /* Aumentado de 8px a 16px para coincidir con la pastilla */
+    border-radius: 8px;
     object-fit: contain;
     object-position: center;
-    margin-left: 10px;
+    margin-left: 10px; /* Reducimos los márgenes */
     margin-right: 10px;
+}
+
+@media (max-width: 576px) {
+    body {
+        padding-top: 35px;
+    }
+    
+    .container {
+        padding: 15px;
+    }
+    
+    .menu-links {
+        padding: 0 10px;
+    }
+    
+    .navbar a.nav-link {
+        margin: 0 5px;
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+    
+    .nav-link img {
+        width: 79px; /* Aumentado un 20% desde 66px (redondeado a 79px) */
+        height: 79px; /* Aumentado un 20% desde 66px */
+        border-radius: 0px; /* Eliminado el círculo */
+        border: none; /* Eliminado el borde morado */
+        object-fit: contain; /* Cambiado a contain para evitar cortes */
+        object-position: center;
+    }
+    
+    .section-title {
+        font-size: 18px;
+        margin: 25px 0 15px;
+        scroll-margin-top: 120px;
+    }
+    
+    .brand-title {
+        font-size: 30px;
+    }
+    
+    .menu-item {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        overflow: visible;
+        padding: 10px;
+    }
+    
+    .item-details {
+        padding: 12px;
+        flex: 1;
+    }
+    
+    .item-title {
+        font-size: 16px;
+    }
+    
+    .item-description {
+        font-size: 13px;
+        -webkit-line-clamp: 3;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    .item-price {
+        font-size: 14px;
+    }
+    
+    .item-image {
+        width: 90px;
+        height: 90px;
+        border-radius: 0px;
+        object-fit: contain;
+        object-position: center;
+        background-color: var(--white);
+    }
+}
+
+.item-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    object-fit: contain;
+    object-position: center;
+    margin-left: 20px;  /* Ajusta este valor según sea necesario */
+    margin-right: 20px; /* Ajusta este valor según sea necesario */
+}
+
+/* Estilos para el primer menú en escritorio */
+@media (min-width: 1024px) {
+    .menu-links {
+        overflow-x: auto;
+        scrollbar-width: thin;  /* Para navegadores Firefox */
+        scrollbar-color: #ccc transparent;  /* Color del scrollbar y del fondo */
+
+        /* Para navegadores basados en WebKit (Chrome, Safari) */
+        &::-webkit-scrollbar {
+            height: 8px;  /* Altura del scrollbar */
+        }
+        &::-webkit-scrollbar-track {
+            background: transparent;  /* Fondo del track */
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: #ccc;  /* Color del scrollbar */
+            border-radius: 10px;  /* Bordes redondeados */
+        }
+    }
+}
+
+¡Claro! Vamos a darle un poco más de viveza al gris azulado (#E6ECEF) para que no se quede atrás respecto a los tonos más vibrantes que ajustamos para el verde (#C2E8C2) y el rosa (#F5C8D1). Queremos que siga siendo un color neutro, pero con un toque más de vida para que combine mejor con los otros colores y mantenga la coherencia en el diseño de Ático Flores.
+
+Ajuste del gris azulado
+El gris azulado actual (#E6ECEF) es muy claro y tiene un tono frío. Para hacerlo más vivo, podemos añadir un poco más de saturación al azul y reducir un poco la claridad para que tenga más presencia. Propongo cambiarlo a #D1DCE5, que sigue siendo un gris azulado pero con un tono más definido y un poco más oscuro, lo que le da más "vida". Con 50% de transparencia, será rgba(209, 220, 229, 0.5).
+
+Implementación
+Paso 1: Actualizar el color en styles.css
+Modificamos la variable --soft-blue-gray en la sección :root y actualizamos la clase de fondo correspondiente. Aquí está el fragmento actualizado de styles.css:
+
+css
+
+Contraer
+
+Ajuste
+
+Copiar
+:root {
+    --mauve-color: #8A4FFF;
+    --mauve-light: #B894FF;
+    --dark-text: #222222;
+    --light-bg: #FAFAFA;
+    --white: #FFFFFF;
+    --gray-light: #EEEEEE;
+    --soft-pink: #F5C8D1; /* Rosa más vivo */
+    --soft-green: #C2E8C2; /* Verde más vivo */
+    --soft-blue-gray: #D1DCE5; /* Gris azulado más vivo (antes #E6ECEF) */
 }
 
 /* Estilos para categorías con fondo */
 .menu-category.with-background {
     padding: 20px;
     border-radius: 8px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 .menu-category.with-background.bg-accent {
-    background-color: var(--mauve-color); /* Sin transparencia */
+    background-color: rgba(138, 79, 255, 0.5); /* --mauve-color con 50% de transparencia */
 }
 
 .menu-category.with-background.bg-accent-light {
-    background-color: var(--mauve-light); /* Sin transparencia */
+    background-color: rgba(184, 148, 255, 0.5); /* --mauve-light con 50% de transparencia */
 }
 
 .menu-category.with-background.bg-soft-pink {
-    background-color: var(--soft-pink); /* Sin transparencia */
+    background-color: rgba(245, 200, 209, 0.3); /* --soft-pink con 50% de transparencia */
 }
 
 .menu-category.with-background.bg-soft-green {
-    background-color: var(--soft-green); /* Sin transparencia */
+    background-color: rgba(194, 232, 194, 0.3); /* --soft-green con 50% de transparencia */
 }
 
 .menu-category.with-background.bg-soft-blue-gray {
-    background-color: var(--soft-blue-gray); /* Sin transparencia */
-}
-
-.menu-category.with-background .menu-item {
-    border: none;
-    box-shadow: none;
-    background: var(--white);
-}
-
-/* Media queries */
-@media (max-width: 768px) {
-    .container {
-        padding: 0 10px;
-    }
-
-    .brand-title {
-        font-size: 28px;
-    }
-
-    .brand-subtitle {
-        font-size: 14px;
-    }
-
-    .nav-link img {
-        width: 40px;
-        height: 40px;
-    }
-
-    .nav-link {
-        margin-right: 15px;
-        font-size: 10px;
-    }
-
-    .section-title {
-        font-size: 18px;
-    }
-
-    .item-title {
-        font-size: 14px;
-    }
-
-    .item-description {
-        font-size: 12px;
-    }
-
-    .item-price {
-        font-size: 13px;
-    }
-
-    .item-image {
-        width: 70px;
-        height: 70px;
-    }
-}
-
-@media (max-width: 576px) {
-    .top-navbar {
-        font-size: 10px;
-        padding: 5px 10px;
-    }
-
-    .top-navbar .availability {
-        font-size: 8px;
-        padding: 2px 6px;
-    }
-
-    .navbar.fixed {
-        top: 30px;
-    }
-
-    .menu-links {
-        padding: 0 10px;
-    }
-
-    .nav-link img {
-        width: 35px;
-        height: 35px;
-    }
-
-    .nav-link {
-        margin-right: 10px;
-    }
-
-    .section-title {
-        font-size: 16px;
-    }
-
-    .item-title {
-        font-size: 13px;
-    }
-
-    .item-description {
-        font-size: 11px;
-    }
-
-    .item-price {
-        font-size: 12px;
-    }
-
-    .item-image {
-        width: 60px;
-        height: 60px;
-    }
+    background-color: rgba(209, 220, 229, 0.3); /* --soft-blue-gray con 50% de transparencia */
 }
