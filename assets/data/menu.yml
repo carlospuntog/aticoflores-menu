@@ -1,9 +1,11 @@
 - id: refrescos
   name: Zumos y Refrescos
-  extended_title: Zumos "cold pressed" y refrescos   # Añadido como ejemplo
+  extended_title: Zumos "cold pressed" y refrescos
   image: assets/images2/refrescos.png
   priority: false
   timeSlot: Comida
+  hasBackground: false  # Sin fondo
+  backgroundColor: accent  # No se usará porque hasBackground es false
   items:
     - name: Zumo de naranja
       description: Zumo de naranja natural recién exprimido
@@ -23,6 +25,8 @@
   image: assets/images2/cerveza.png
   priority: false
   timeSlot: Comida
+  hasBackground: false  # Sin fondo
+  backgroundColor: accent-light  # No se usará porque hasBackground es false
   items:
     - name: Cerveza
       description: Cerveza de barril o botella. Consulte variedades
@@ -43,6 +47,8 @@
   image: assets/images2/cafes.png
   priority: false
   timeSlot: Desayuno
+  hasBackground: true  # Con fondo
+  backgroundColor: accent  # Fondo con color acento (--mauve-color)
   items:
     - name: Café con leche
       description: Café con leche
@@ -79,10 +85,12 @@
 
 - id: tostadas
   name: Tostadas
-  extended_title: Tostadas con pan cristal - Incluye café o infusión # Añadido como ejemplo
+  extended_title: Tostadas con pan cristal - Incluye café o infusión
   image: assets/images2/tostadas.png
   priority: false
   timeSlot: Desayuno
+  hasBackground: false  # Sin fondo
+  backgroundColor: accent-light  # No se usará porque hasBackground es false
   items:
     - name: Clásica
       description: Tomate rallado y AOVE
@@ -103,6 +111,8 @@
   image: assets/images2/bowls.png
   priority: true
   timeSlot: Desayuno
+  hasBackground: true  # Con fondo
+  backgroundColor: accent-light  # Fondo con color acento claro (--mauve-light)
   items:
     - name: Yogur
       description: Yogur griego con granola y frutos rojos
@@ -123,6 +133,8 @@
   image: assets/images2/ensaladas.png
   priority: true
   timeSlot: Comida
+  hasBackground: true  # Con fondo
+  backgroundColor: accent  # Fondo con color acento (--mauve-color)
   items:
     - name: Ensalada Caprese
       description: Tomate fresco, mozzarella de búfala, pesto genovés y albahaca
@@ -143,6 +155,8 @@
   image: assets/images2/focaccia_salami_transparent.png
   priority: true
   timeSlot: Comida
+  hasBackground: false  # Sin fondo
+  backgroundColor: accent-light  # No se usará porque hasBackground es false
   items:
     - name: Ibérica
       description: Jamón ibérico, tomate, AOVE
@@ -167,6 +181,8 @@
   image: assets/images2/gofres.png
   priority: true
   timeSlot: Merienda
+  hasBackground: true  # Con fondo
+  backgroundColor: accent-light  # Fondo con color acento claro (--mauve-light)
   items:
     - name: Clásico
       description: Gofre recién hecho cubierto de salsa de chocolate y nata montada
@@ -183,10 +199,12 @@
 
 - id: snacks-dulces
   name: Snacks dulces
-  extended_title: Snacks dulces artesanales  # Añadido como ejemplo
+  extended_title: Snacks dulces artesanales
   image: assets/images2/cookie.png
   priority: false
   timeSlot: Merienda
+  hasBackground: false  # Sin fondo
+  backgroundColor: accent  # No se usará porque hasBackground es false
   items:
     - name: Cookies / Bizcochos
       description: Variedad de galletas y bizcochos caseros
