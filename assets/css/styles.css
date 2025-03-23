@@ -5,9 +5,9 @@
     --light-bg: #FAFAFA;
     --white: #FFFFFF;
     --gray-light: #EEEEEE;
-    --soft-pink: #F9E6E9; /* Rosa suave */
-    --soft-green: #D4F0D4; /* Verde suave */
-    --soft-blue-gray: #E6ECEF; /* Gris azulado suave */
+    --soft-pink: #F5C8D1; /* Rosa más vivo (antes #F9E6E9) */
+    --soft-green: #C2E8C2; /* Verde más vivo (antes #D4F0D4) */
+    --soft-blue-gray: #D1DCE5; /* Gris azulado más vivo (antes #E6ECEF) */
 }
 
 * {
@@ -363,6 +363,34 @@ body {
     }
 }
 
+¡Claro! Vamos a darle un poco más de viveza al gris azulado (#E6ECEF) para que no se quede atrás respecto a los tonos más vibrantes que ajustamos para el verde (#C2E8C2) y el rosa (#F5C8D1). Queremos que siga siendo un color neutro, pero con un toque más de vida para que combine mejor con los otros colores y mantenga la coherencia en el diseño de Ático Flores.
+
+Ajuste del gris azulado
+El gris azulado actual (#E6ECEF) es muy claro y tiene un tono frío. Para hacerlo más vivo, podemos añadir un poco más de saturación al azul y reducir un poco la claridad para que tenga más presencia. Propongo cambiarlo a #D1DCE5, que sigue siendo un gris azulado pero con un tono más definido y un poco más oscuro, lo que le da más "vida". Con 50% de transparencia, será rgba(209, 220, 229, 0.5).
+
+Implementación
+Paso 1: Actualizar el color en styles.css
+Modificamos la variable --soft-blue-gray en la sección :root y actualizamos la clase de fondo correspondiente. Aquí está el fragmento actualizado de styles.css:
+
+css
+
+Contraer
+
+Ajuste
+
+Copiar
+:root {
+    --mauve-color: #8A4FFF;
+    --mauve-light: #B894FF;
+    --dark-text: #222222;
+    --light-bg: #FAFAFA;
+    --white: #FFFFFF;
+    --gray-light: #EEEEEE;
+    --soft-pink: #F5C8D1; /* Rosa más vivo */
+    --soft-green: #C2E8C2; /* Verde más vivo */
+    --soft-blue-gray: #D1DCE5; /* Gris azulado más vivo (antes #E6ECEF) */
+}
+
 /* Estilos para categorías con fondo */
 .menu-category.with-background {
     padding: 20px;
@@ -379,13 +407,13 @@ body {
 }
 
 .menu-category.with-background.bg-soft-pink {
-    background-color: rgba(249, 230, 233, 0.5); /* --soft-pink con 50% de transparencia */
+    background-color: rgba(245, 200, 209, 0.5); /* --soft-pink con 50% de transparencia */
 }
 
 .menu-category.with-background.bg-soft-green {
-    background-color: rgba(212, 240, 212, 0.5); /* --soft-green con 50% de transparencia */
+    background-color: rgba(194, 232, 194, 0.5); /* --soft-green con 50% de transparencia */
 }
 
 .menu-category.with-background.bg-soft-blue-gray {
-    background-color: rgba(230, 236, 239, 0.5); /* --soft-blue-gray con 50% de transparencia */
+    background-color: rgba(209, 220, 229, 0.5); /* --soft-blue-gray con 50% de transparencia */
 }
