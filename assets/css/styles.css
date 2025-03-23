@@ -150,6 +150,12 @@ body {
     margin-bottom: 40px;
 }
 
+.menu-category.with-background .menu-item {
+    border: none; /* Sin borde */
+    box-shadow: none; /* Sin sombra */
+    background: var(--white); /* Mantenemos el fondo blanco */
+}
+
 .menu-items {
     display: grid;
     grid-template-columns: 1fr;
@@ -161,6 +167,7 @@ body {
     background: var(--white);
     border-radius: 8px;
     overflow: hidden;
+    border: 1px solid #D3D3D3; /* Borde gris elegante */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -172,7 +179,7 @@ body {
 
 .item-details {
     flex: 1;
-    padding: 15px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
 }
@@ -180,15 +187,16 @@ body {
 .item-title {
     font-family: 'IBM Plex Mono', monospace;
     font-weight: 600;
+    font-size: 16px; /* Ajustamos el tamaño */
     margin-bottom: 5px;
     color: var(--dark-text);
 }
 
 .item-description {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 14px;
-    color: #444;
-    margin-bottom: 10px;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 8px;
     flex-grow: 1;
 }
 
@@ -196,9 +204,9 @@ body {
     font-family: 'IBM Plex Mono', monospace;
     font-weight: 700;
     color: var(--mauve-color);
-    font-size: 16px;
+    font-size: 14px;
     align-self: flex-start;
-    padding: 4px 0;
+    padding: 2px 0;
 }
 
 .brand-header {
@@ -235,11 +243,13 @@ body {
 }
 
 .item-image {
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
     border-radius: 8px;
     object-fit: contain;
     object-position: center;
+    margin-left: 10px; /* Reducimos los márgenes */
+    margin-right: 10px;
 }
 
 @media (max-width: 576px) {
@@ -348,4 +358,19 @@ body {
             border-radius: 10px;  /* Bordes redondeados */
         }
     }
+}
+
+/* Estilos para categorías con fondo */
+.menu-category.with-background {
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+}
+
+.menu-category.with-background.bg-accent {
+    background-color: rgba(138, 79, 255, 0.5); /* --mauve-color con 50% de transparencia */
+}
+
+.menu-category.with-background.bg-accent-light {
+    background-color: rgba(184, 148, 255, 0.5); /* --mauve-light con 50% de transparencia */
 }
