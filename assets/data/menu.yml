@@ -47,7 +47,7 @@
   image: assets/images2/cafes.png
   priority: false
   timeSlot: Desayuno
-  hasBackground: true  # Con fondo
+  hasBackground: false  # Con fondo
   backgroundColor: accent  # Fondo con color acento (--mauve-color)
   items:
     - name: Café con leche
@@ -89,7 +89,7 @@
   image: assets/images2/tostadas.png
   priority: false
   timeSlot: Desayuno
-  hasBackground: false  # Sin fondo
+  hasBackground: true  # Sin fondo
   backgroundColor: accent-light  # No se usará porque hasBackground es false
   items:
     - name: Clásica
@@ -134,7 +134,7 @@
   priority: true
   timeSlot: Comida
   hasBackground: true  # Con fondo
-  backgroundColor: accent  # Fondo con color acento (--mauve-color)
+  backgroundColor: accent-light  # Fondo con color acento (--mauve-color)
   items:
     - name: Ensalada Caprese
       description: Tomate fresco, mozzarella de búfala, pesto genovés y albahaca
@@ -155,7 +155,7 @@
   image: assets/images2/focaccia_salami_transparent.png
   priority: true
   timeSlot: Comida
-  hasBackground: false  # Sin fondo
+  hasBackground: true  # Sin fondo
   backgroundColor: accent-light  # No se usará porque hasBackground es false
   items:
     - name: Ibérica
