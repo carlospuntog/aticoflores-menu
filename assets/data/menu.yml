@@ -4,8 +4,8 @@
   image: assets/images2/refrescos.png
   priority: false
   timeSlot: Comida
-  hasBackground: false  # Sin fondo
-  backgroundColor: accent  # No se usará porque hasBackground es false
+  hasBackground: true
+  backgroundColor: soft-blue-gray  # No se usará porque hasBackground es false
   items:
     - name: Zumo de naranja
       description: Zumo de naranja natural recién exprimido
@@ -90,7 +90,7 @@
   priority: false
   timeSlot: Desayuno
   hasBackground: true  # Sin fondo
-  backgroundColor: accent-light  # No se usará porque hasBackground es false
+  backgroundColor: soft-pink  # No se usará porque hasBackground es false
   items:
     - name: Clásica
       description: Tomate rallado y AOVE
@@ -112,7 +112,7 @@
   priority: true
   timeSlot: Desayuno
   hasBackground: true  # Con fondo
-  backgroundColor: soft-pink  # Fondo con color acento claro (--mauve-light)
+  backgroundColor: soft-green  # Fondo con color acento claro (--mauve-light)
   items:
     - name: Yogur
       description: Yogur griego con granola y frutos rojos
@@ -156,7 +156,7 @@
   priority: true
   timeSlot: Comida
   hasBackground: true  # Sin fondo
-  backgroundColor: soft-pink  # No se usará porque hasBackground es false
+  backgroundColor: accent-light  # No se usará porque hasBackground es false
   items:
     - name: Ibérica
       description: Jamón ibérico, tomate, AOVE
@@ -203,8 +203,8 @@
   image: assets/images2/cookie.png
   priority: false
   timeSlot: Merienda
-  hasBackground: false  # Sin fondo
-  backgroundColor: accent  # No se usará porque hasBackground es false
+  hasBackground: true  # Sin fondo
+  backgroundColor: soft-pink  # No se usará porque hasBackground es false
   items:
     - name: Cookies / Bizcochos
       description: Variedad de galletas y bizcochos caseros
