@@ -138,11 +138,10 @@ body {
     color: var(--dark-text);
 }
 
-/* Eliminar la línea de separación y ajustar el título en categorías con fondo */
+/* Eliminar la línea de separación en categorías con fondo */
 .menu-category.with-background .section-title {
     border-bottom: none;
-    padding-bottom: 0;
-    margin-top: 10px; /* Reducimos de 30px a 10px */
+    padding-bottom: 0; /* Reducimos el padding-bottom para acercar el título a los ítems */
 }
 
 .subsection-title {
@@ -161,7 +160,7 @@ body {
 }
 
 .menu-category.with-background {
-    padding: 5px 20px 20px 20px; /* Reducimos el padding-top de 20px a 5px */
+    padding: 20px;
     border-radius: 8px;
     margin-bottom: 40px;
 }
