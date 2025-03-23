@@ -60,7 +60,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 const categoryDiv = document.createElement('div');
                 categoryDiv.id = category.id;
-                categoryDiv.className = 'menu-category';
+                // Añadimos clases dinámicas según hasBackground y backgroundColor
+                let categoryClasses = 'menu-category';
+                if (category.hasBackground) {
+                    categoryClasses += ' with-background';
+                    if (category.backgroundColor === 'accent') {
+                        categoryClasses += ' bg-accent';
+                    } else if (category.backgroundColor === 'accent-light') {
+                        categoryClasses += ' bg-accent-light';
+                    }
+                }
+                categoryDiv.className = categoryClasses;
+
                 let itemsHtml = category.items.map(item => `
                     <div class="menu-item">
                         <div class="item-details">
