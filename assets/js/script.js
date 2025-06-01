@@ -48,52 +48,53 @@ document.addEventListener('DOMContentLoaded', function() {
             navLinksContainer.innerHTML = '';
             menuContent.innerHTML = '';
 
-            sortedData.forEach((category, index) => {
-                const navLink = document.createElement('a');
-                navLink.href = `#${category.id}`;
-                navLink.className = `nav-link${index === 0 ? ' active' : ''}`;
-                navLink.innerHTML = `
-                    <img src="${category.image}" alt="${category.name}">
-                    <span class="nav-text">${category.name}</span>
-                `;
-                navLinksContainer.appendChild(navLink);
+            sortedData
+                .filter(category => category.active === "YES")
+                .forEach((category, index) => {
+                    const navLink = document.createElement('a');
+                    navLink.href = `#${category.id}`;
+                    navLink.className = `nav-link${index === 0 ? ' active' : ''}`;
+                    navLink.innerHTML = `
+                        <img src="${category.image}" alt="${category.name}">
+                        <span class="nav-text">${category.name}</span>
+                    `;
+                    navLinksContainer.appendChild(navLink);
 
-                const categoryDiv = document.createElement('div');
-                categoryDiv.id = category.id;
-                // Añadimos clases dinámicas según hasBackground y backgroundColor
-                let categoryClasses = 'menu-category';
-                if (category.hasBackground) {
-                    categoryClasses += ' with-background';
-                    if (category.backgroundColor === 'accent') {
-                        categoryClasses += ' bg-accent';
-                    } else if (category.backgroundColor === 'accent-light') {
-                        categoryClasses += ' bg-accent-light';
-                    } else if (category.backgroundColor === 'soft-pink') {
-                        categoryClasses += ' bg-soft-pink';
-                    } else if (category.backgroundColor === 'soft-green') {
-                        categoryClasses += ' bg-soft-green';
-                    } else if (category.backgroundColor === 'soft-blue-gray') {
-                        categoryClasses += ' bg-soft-blue-gray';
+                    const categoryDiv = document.createElement('div');
+                    categoryDiv.id = category.id;
+                    let categoryClasses = 'menu-category';
+                    if (category.hasBackground) {
+                        categoryClasses += ' with-background';
+                        if (category.backgroundColor === 'accent') {
+                            categoryClasses += ' bg-accent';
+                        } else if (category.backgroundColor === 'accent-light') {
+                            categoryClasses += ' bg-accent-light';
+                        } else if (category.backgroundColor === 'soft-pink') {
+                            categoryClasses += ' bg-soft-pink';
+                        } else if (category.backgroundColor === 'soft-green') {
+                            categoryClasses += ' bg-soft-green';
+                        } else if (category.backgroundColor === 'soft-blue-gray') {
+                            categoryClasses += ' bg-soft-blue-gray';
+                        }
                     }
-                }
-                categoryDiv.className = categoryClasses;
+                    categoryDiv.className = categoryClasses;
 
-                let itemsHtml = category.items.map(item => `
-                    <div class="menu-item">
-                        <div class="item-details">
-                            <h3 class="item-title">${item.name}</h3>
-                            <p class="item-description">${item.description}</p>
-                            <span class="item-price">${item.price}</span>
+                    let itemsHtml = category.items.map(item => `
+                        <div class="menu-item">
+                            <div class="item-details">
+                                <h3 class="item-title">${item.name}</h3>
+                                <p class="item-description">${item.description}</p>
+                                <span class="item-price">${item.price}</span>
+                            </div>
+                            <img src="${item.image}" alt="${item.name}" class="item-image">
                         </div>
-                        <img src="${item.image}" alt="${item.name}" class="item-image">
-                    </div>
-                `).join('');
-                categoryDiv.innerHTML = `
-                    <h2 class="section-title">${category.extended_title || category.name}</h2>
-                    <div class="menu-items">${itemsHtml}</div>
-                `;
-                menuContent.appendChild(categoryDiv);
-            });
+                    `).join('');
+                    categoryDiv.innerHTML = `
+                        <h2 class="section-title">${category.extended_title || category.name}</h2>
+                        <div class="menu-items">${itemsHtml}</div>
+                    `;
+                    menuContent.appendChild(categoryDiv);
+                });
 
             setupEvents();
         })
@@ -181,8 +182,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (targetElement) {
                     const navbarHeight = navbar.offsetHeight;
                     const topNavbarHeight = document.querySelector('.top-navbar').offsetHeight;
-                    const baseOffset = firstCategory.offsetTop - topNavbarHeight - navbarHeight; // Espacio perfecto de la primera categoría
-                    const targetPosition = targetElement.offsetTop - topNavbarHeight - navbarHeight - (firstCategory.offsetTop - targetElement.offsetTop > 0 ? 0 : 20); // Ajuste relativo
+                    const baseOffset = firstCategory.offsetTop - topNavbarHeight - navbarHeight;
+                    const targetPosition = targetElement.offsetTop - topNavbarHeight - navbarHeight - (firstCategory.offsetTop - targetElement.offsetTop > 0 ? 0 : 20);
 
                     if (!isNavbarFixed) {
                         navbar.classList.add('fixed');
