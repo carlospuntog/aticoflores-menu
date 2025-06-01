@@ -5,43 +5,51 @@
   priority: false
   timeSlot: Comida
   hasBackground: true
-  backgroundColor: soft-blue-gray  # No se usará porque hasBackground es false
+  backgroundColor: soft-blue-gray
   active: YES
+  color: soft-blue-gray  # Color para el título del modal
   items:
     - name: Zumo de naranja
       description: Zumo de naranja natural recién exprimido
       price: 3,95€/4,95€
       image: assets/images2/zumo_naranja.png
+      allergens: XXX
     - name: Agua mineral
       description: Agua natural o con gas
       price: 1,50€/2,50€
       image: assets/images2/agua_mineral.png
+      allergens: XXX
     - name: Refrescos
       description: Selección de refrescos disponibles
       price: 3,00€
       image: assets/images2/sodas.png
+      allergens: XXX
 
 - id: bebidas-alcoholicas
   name: Bebidas
   image: assets/images2/cerveza.png
   priority: false
   timeSlot: Comida
-  hasBackground: false  # Sin fondo
-  backgroundColor: accent-light  # No se usará porque hasBackground es false
+  hasBackground: false
+  backgroundColor: accent-light
   active: YES
+  color: accent-light  # Color para el título del modal
   items:
     - name: Cerveza
       description: Cerveza de barril o botella. Consulte variedades
       price: 3,25€
       image: assets/images2/cerveza.png
+      allergens: XXX
     - name: Vino
       description: Selección de vinos disponibles
       price: 4,00€ - 6,00€
       image: assets/images2/vino.png
+      allergens: XXX
     - name: Vermú
       description: Vermú tradicional servido con hielo y naranja
       price: 4,00€
       image: assets/images2/vermu.png
+      allergens: XXX
       
 - id: cafes
   name: Cafés
@@ -49,42 +57,51 @@
   image: assets/images2/cafes.png
   priority: false
   timeSlot: Desayuno
-  hasBackground: true  # Con fondo
-  backgroundColor: soft-blue-gray  # Fondo con color acento (--mauve-color)
+  hasBackground: true
+  backgroundColor: soft-blue-gray
   active: YES
+  color: soft-blue-gray  # Color para el título del modal
   items:
     - name: Café con leche
       description: Café con leche
       price: 2,20€
       image: assets/images2/cafe_con_leche.png
+      allergens: XXX
     - name: Espresso
       description: Café espresso
       price: 2,00€
       image: assets/images2/espresso.png
+      allergens: XXX
     - name: Americano
       description: Café americano largo
       price: 2,00€
       image: assets/images2/americano.png
+      allergens: XXX
     - name: Cortado
       description: Espresso con un toque de leche
       price: 2,10€
       image: assets/images2/cortado.png
+      allergens: XXX
     - name: Cappuccino
       description: Café con espuma de leche
       price: 2,75€
       image: assets/images2/cappuccino.png
+      allergens: XXX
     - name: Flat White
       description: Espresso con leche texturizada
       price: 2,80€
       image: assets/images2/flat_white.png
+      allergens: XXX
     - name: Latte Macchiato
       description: Leche vaporizada con un shot de espresso
       price: 2,75€
       image: assets/images2/flat_white.png
+      allergens: XXX
     - name: Chocolate
       description: Chocolate caliente
       price: 3,50€/4,50€
       image: assets/images2/chocolate.png
+      allergens: XXX
 
 - id: tostadas
   name: Tostadas
@@ -92,22 +109,26 @@
   image: assets/images2/tostadas.png
   priority: false
   timeSlot: Desayuno
-  hasBackground: true  # Sin fondo
-  backgroundColor: soft-pink  # No se usará porque hasBackground es false
+  hasBackground: true
+  backgroundColor: soft-pink
   active: YES
+  color: soft-pink  # Color para el título del modal
   items:
     - name: Clásica
       description: Tomate rallado y AOVE
       price: 4,00€
       image: assets/images2/tostada_clasica.png
+      allergens: XXX
     - name: Ibérica
       description: Tomate, AOVE y jamón ibérico
       price: 4,50€
       image: assets/images2/tostada_iberica.png
+      allergens: XXX
     - name: Aguacate
       description: Aguacate, tomate, albahaca y AOVE
       price: 6,50€
       image: assets/images2/tostada_aguacate.png
+      allergens: XXX
 
 - id: bowls
   name: Bowls
@@ -115,22 +136,26 @@
   image: assets/images2/bowls.png
   priority: true
   timeSlot: Desayuno
-  hasBackground: true  # Con fondo
-  backgroundColor: soft-green  # Fondo con color acento claro (--mauve-light)
+  hasBackground: true
+  backgroundColor: soft-green
   active: YES
+  color: soft-green  # Color para el título del modal
   items:
     - name: Yogur
       description: Yogur griego con granola y frutos rojos
       price: 4,00€
       image: assets/images2/bowl_yogur.png
+      allergens: XXX
     - name: Super Fruit
       description: Granada, mango, arándanos, kiwi y fresas (mezcla de frutas de temporada)
       price: 5,00€
       image: assets/images2/bowl_superfruit.png
+      allergens: XXX
     - name: Açai
       description: Açaí con plátano, frutos rojos y yogur
       price: 6,95€
       image: assets/images2/bowl_acai.jpg
+      allergens: XXX
 
 - id: ensaladas
   name: Ensaladas
@@ -138,22 +163,26 @@
   image: assets/images2/ensaladas.png
   priority: true
   timeSlot: Comida
-  hasBackground: true  # Con fondo
-  backgroundColor: soft-green  # Fondo con color acento (--mauve-color)
+  hasBackground: true
+  backgroundColor: soft-green
   active: NO
+  color: soft-green  # Color para el título del modal
   items:
     - name: Ensalada Caprese
       description: Tomate fresco, mozzarella de búfala, pesto genovés y albahaca
       price: 5,95€
       image: assets/images2/ensalada_caprese.jpg
+      allergens: XXX
     - name: Ensalada Ático Mezze
       description: Cuscús, hummus, tomate, pepino, cebolla roja, mezcla de ensaladas y espinacas, queso feta, aceitunas y garbanzos especiados
       price: 7,95€
       image: assets/images2/ensalada_mezze.jpg
+      allergens: XXX
     - name: Ensalada Ático Flores
       description: Mezclum de lechugas baby, flores comestibles, frambuesas, arándanos, moras y aguacate, con vinagreta de miel, mostaza y limón
       price: 7,95€
       image: assets/images2/ensalada_atico.png
+      allergens: XXX
 
 - id: focaccia
   name: Focaccias
@@ -161,26 +190,31 @@
   image: assets/images2/focaccia_salami_transparent.png
   priority: true
   timeSlot: Comida
-  hasBackground: true  # Sin fondo
-  backgroundColor: accent-light  # No se usará porque hasBackground es false
+  hasBackground: true
+  backgroundColor: accent-light
   active: YES
+  color: accent-light  # Color para el título del modal
   items:
     - name: Ibérica
       description: Jamón ibérico, tomate, AOVE
       price: 5,95€
       image: assets/images2/focaccia_iberico.jpg
+      allergens: XXX
     - name: Gorgonzola y mortadela
       description: Gorgonzola dulce, mortadela boloñesa, tomates secos, pesto de pistachos
       price: 5,95€
       image: assets/images2/focaccia_gorgonzola.jpg
+      allergens: XXX
     - name: Salami y parmesano
       description: Salami Finocchiona, crema de alcachofas, crema de parmesano, rúcula
       price: 5,95€
       image: assets/images2/focaccia_salami.jpg
+      allergens: XXX
     - name: Tomate y mozzarella
       description: Tomate, mozzarella de búfala, pesto, albahaca fresca
       price: 5,95€
       image: assets/images2/focaccia_tomate.jpg
+      allergens: XXX
 
 - id: gofres
   name: Gofres
@@ -188,22 +222,26 @@
   image: assets/images2/gofres.png
   priority: true
   timeSlot: Merienda
-  hasBackground: true  # Con fondo
-  backgroundColor: accent-light  # Fondo con color acento claro (--mauve-light)
+  hasBackground: true
+  backgroundColor: accent-light
   active: NO
+  color: accent-light  # Color para el título del modal
   items:
     - name: Clásico
       description: Gofre recién hecho cubierto de salsa de chocolate y nata montada
       price: 4,00€
       image: assets/images2/gofre_clasico.png
+      allergens: XXX
     - name: Fruta fresca
       description: Gofre con fruta fresca variada con miel y nata
       price: 5,00€
       image: assets/images2/gofre_fruta.png
+      allergens: XXX
     - name: Aguacate, salmón y mascarpone
       description: Con salmón ahumado, crema de queso mascarpone y aguacate
       price: 6,50€
       image: assets/images2/gofre_aguacate.png
+      allergens: XXX
 
 - id: snacks-dulces
   name: Snacks dulces
@@ -211,27 +249,33 @@
   image: assets/images2/cookie.png
   priority: false
   timeSlot: Merienda
-  hasBackground: true  # Sin fondo
-  backgroundColor: soft-pink  # No se usará porque hasBackground es false
+  hasBackground: true
+  backgroundColor: soft-pink
   active: YES
+  color: soft-pink  # Color para el título del modal
   items:
     - name: Cookies / Bizcochos
       description: Variedad de galletas y bizcochos caseros
       price: 3,50€
       image: assets/images2/cookie.png
+      allergens: XXX
     - name: Minipostres
       description: Surtido de pequeñas porciones de postres del día
       price: 6,95€
       image: assets/images2/postre.png
+      allergens: XXX
     - name: Croissant
       description: Croissant de mantequilla
       price: 1,75€
       image: assets/images2/croissant.png
+      allergens: XXX
     - name: Croissant vegano
       description: Croissant sin ingredientes de origen animal
       price: 2,45€
       image: assets/images2/croissant_vegano.png
+      allergens: XXX
     - name: Tarta del día
       description: Porción de tarta, consulta opciones disponibles
       price: 5,95€
       image: assets/images2/tartas.png
+      allergens: XXX
