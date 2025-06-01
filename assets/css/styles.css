@@ -363,22 +363,6 @@ body {
     }
 }
 
-¡Claro! Vamos a darle un poco más de viveza al gris azulado (#E6ECEF) para que no se quede atrás respecto a los tonos más vibrantes que ajustamos para el verde (#C2E8C2) y el rosa (#F5C8D1). Queremos que siga siendo un color neutro, pero con un toque más de vida para que combine mejor con los otros colores y mantenga la coherencia en el diseño de Ático Flores.
-
-Ajuste del gris azulado
-El gris azulado actual (#E6ECEF) es muy claro y tiene un tono frío. Para hacerlo más vivo, podemos añadir un poco más de saturación al azul y reducir un poco la claridad para que tenga más presencia. Propongo cambiarlo a #D1DCE5, que sigue siendo un gris azulado pero con un tono más definido y un poco más oscuro, lo que le da más "vida". Con 50% de transparencia, será rgba(209, 220, 229, 0.5).
-
-Implementación
-Paso 1: Actualizar el color en styles.css
-Modificamos la variable --soft-blue-gray en la sección :root y actualizamos la clase de fondo correspondiente. Aquí está el fragmento actualizado de styles.css:
-
-css
-
-Contraer
-
-Ajuste
-
-Copiar
 :root {
     --mauve-color: #8A4FFF;
     --mauve-light: #B894FF;
@@ -416,4 +400,152 @@ Copiar
 
 .menu-category.with-background.bg-soft-blue-gray {
     background-color: var(--soft-blue-gray); /* --soft-blue-gray con 50% de transparencia */
+}
+/* … (tu CSS existente hasta llegar a la sección del modal) … */
+
+/* … (tu CSS existente hasta llegar a la sección del modal) … */
+
+/* ============  ESTILOS DEL MODAL PRODUCTO  ============ */
+.modal {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    z-index: 2000; /* Por encima de la top-navbar (1001) */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+}
+.modal:not(.hidden) {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Fondo semitransparente oscurecido */
+.modal__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0 0 0 / 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 1999;
+}
+
+/* Tarjeta principal del modal */
+.modal__card {
+    position: relative;
+    /* Turbo: tamaño máximo en desktop, pero no ocupa todo el viewport */
+    width: clamp(320px, 80vw, 500px);
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 12px 28px rgba(0 0 0 / 0.25);
+    scrollbar-width: thin;
+    scrollbar-color: var(--mauve-color) transparent;
+    z-index: 2000;
+}
+.modal__card::-webkit-scrollbar {
+    width: 6px;
+}
+.modal__card::-webkit-scrollbar-thumb {
+    background: var(--mauve-color);
+    border-radius: 3px;
+}
+
+/* Botón de cierre (×) */
+.modal__close {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    background: #000;
+    color: #fff;
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    z-index: 2001;  /* Por encima de .modal__card */
+}
+
+/* Figura / Imagen del producto */
+.modal__figure {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    background: #f5f5f5; /* fondo mientras carga la imagen */
+}
+.modal__img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 1rem 1rem 0 0;
+}
+
+/* Contenido textual dentro del modal */
+.modal__content {
+    padding: 1rem 1.25rem 2rem;
+    margin-top: 1rem;  /* espacio entre la imagen y el texto */
+}
+
+/* Cada campo (Nombre, Ingredientes, Alérgenos) */
+.modal__field {
+    margin-bottom: 1rem;
+    font-size: 14px;
+    color: var(--dark-text);
+}
+
+/* Solo el nombre (en negrita y alineado a la izquierda) */
+.modal__field.modal__name strong {
+    font-size: 1rem;
+    display: block;      /* se asegura de que ocupe toda la línea */
+    font-weight: 700;
+    text-align: left;
+}
+
+/* Solo los ingredientes (sin etiqueta) */
+.modal__field.modal__ingredients span {
+    font-size: 0.95rem;
+    color: #444;
+    text-align: left;
+    display: block;
+    /* Si quieres agregar un poco de interlineado: */
+    line-height: 1.4;
+}
+
+/* Etiqueta “Alergenos:” + contenido */
+.modal__field strong {
+    font-weight: 600;
+    margin-right: 0.25rem;
+}
+/* ============  ESTILOS RESPONSIVOS (MÓVIL)  ============ */
+@media (max-width: 640px) {
+    .modal__card {
+        /* Ahora en móvil ocupa el 90 % del ancho y solo el 50 % de la altura */
+        width: 90vw;       /* deja 5 vw de margen a cada lado */
+        height: 50dvh;     /* la mitad de la altura de la pantalla */
+        max-height: none;
+        border-radius: 0.75rem;
+    }
+    .modal__img {
+        border-radius: 0.75rem 0.75rem 0 0;
+        max-height: 200px; /* la imagen ocupa una parte, el resto es espacio para el texto */
+    }
+    .modal__close {
+        /* El botón se mantiene cerca del borde superior del modal */
+        top: calc(env(safe-area-inset-top, 0px) + 0.75rem);
+        right: 0.75rem;
+    }
+    .modal__content {
+        margin-top: 0.75rem;
+        padding: 0.75rem 1rem 1.5rem;
+        /* Si quieres que el contenido dentro del modal también tenga scroll cuando sobrepase
+           la mitad de la pantalla, basta con que lo deje así, pues la tarjeta entera ya tiene overflow-y: auto */
+    }
 }

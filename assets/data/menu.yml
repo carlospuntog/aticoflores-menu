@@ -195,22 +195,22 @@
   active: YES
   color: accent-light  # Color para el título del modal
   items:
-    - name: Ibérica
+    - name: Focaccia Ibérica
       description: Jamón ibérico, tomate, AOVE
       price: 5,95€
       image: assets/images2/focaccia_iberico.jpg
       allergens: XXX
-    - name: Gorgonzola y mortadela
+    - name: Focaccia de Gorgonzola y Mortadela
       description: Gorgonzola dulce, mortadela boloñesa, tomates secos, pesto de pistachos
       price: 5,95€
       image: assets/images2/focaccia_gorgonzola.jpg
       allergens: XXX
-    - name: Salami y parmesano
+    - name: Focaccia de Salami y Parmesano
       description: Salami Finocchiona, crema de alcachofas, crema de parmesano, rúcula
       price: 5,95€
       image: assets/images2/focaccia_salami.jpg
       allergens: XXX
-    - name: Tomate y mozzarella
+    - name: Focaccia de Tomate y Mozzarella
       description: Tomate, mozzarella de búfala, pesto, albahaca fresca
       price: 5,95€
       image: assets/images2/focaccia_tomate.jpg

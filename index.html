@@ -22,6 +22,41 @@
         </div>
         <div id="menu-content"></div>
     </div>
+
+
+<!-- ───────────── MODAL DE PRODUCTO ───────────── -->
+<div id="product-modal" class="modal hidden">
+  <div class="modal__overlay" data-close></div>
+
+  <article class="modal__card" role="dialog" aria-modal="true">
+    <!-- Botón de cierre -->
+    <button class="modal__close" aria-label="Cerrar" data-close>×</button>
+
+    <!-- Imagen del producto -->
+    <figure class="modal__figure">
+      <img id="modal-img" class="modal__img" alt="" loading="lazy" />
+    </figure>
+
+    <!-- Contenido textual dentro del modal -->
+    <div class="modal__content">
+      <!-- Solo el nombre en negrita (sin etiqueta) -->
+      <p class="modal__field modal__name">
+        <strong id="modal-name"></strong>
+      </p>
+      <!-- Solo los ingredientes (sin etiqueta) -->
+      <p class="modal__field modal__ingredients">
+        <span id="modal-ingredients"></span>
+      </p>
+      <!-- Alérgenos (con su etiqueta) -->
+      <p class="modal__field">
+        <strong>Alergenos:</strong>
+        <span id="modal-allergens"></span>
+      </p>
+    </div>
+  </article>
+</div>
+<!-- ───────────── FIN DEL MODAL ───────────── -->
+
     <script src="assets/js/script.js?nocache={{ 'now' | date: '%s' }}"></script>
 </body>
 </html>

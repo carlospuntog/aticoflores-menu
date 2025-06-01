@@ -1,9 +1,18 @@
 document.addEventListener('DOMContentLoaded', function() {
     const navLinksContainer = document.getElementById('menu-links');
-    const menuContent = document.getElementById('menu-content');
-    let isNavbarFixed = false;
+    const menuContent      = document.getElementById('menu-content');
+
+    // Referencias del modal
+    const modal            = document.getElementById('product-modal');
+    const modalImg         = document.getElementById('modal-img');
+    const modalName        = document.getElementById('modal-name');
+    const modalIngredients = document.getElementById('modal-ingredients');
+    const modalAll         = document.getElementById('modal-allergens');
+
+    let isNavbarFixed      = false;
     let isScrollingFromClick = false;
 
+    // 1) Cargar el YAML y renderizar categorías/items
     fetch(`assets/data/menu.yml?nocache=${Date.now()}`)
         .then(response => response.text())
         .then(yamlText => {
@@ -12,11 +21,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const currentHour = now.getHours();
 
             const timeSlotsOrder = [
-                { slot: 'Desayuno', start: 6, end: 11 },
-                { slot: 'Comida', start: 12, end: 16 },
+                { slot: 'Desayuno', start: 6,  end: 11 },
+                { slot: 'Comida',   start: 12, end: 16 },
                 { slot: 'Merienda', start: 17, end: 20 }
             ];
 
+            // Determinar la franja horaria actual
             let currentSlot = null;
             for (const slot of timeSlotsOrder) {
                 if (currentHour >= slot.start && currentHour <= slot.end) {
@@ -24,11 +34,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     break;
                 }
             }
-            if (!currentSlot) currentSlot = null;
 
+            // Ordenar categorías según timeSlot, prioridad y aleatorio
             const sortedData = data.sort((a, b) => {
-                const aSlotIndex = a.timeSlot ? timeSlotsOrder.findIndex(s => s.slot === a.timeSlot) : -1;
-                const bSlotIndex = b.timeSlot ? timeSlotsOrder.findIndex(s => s.slot === b.timeSlot) : -1;
+                const aSlotIndex = a.timeSlot
+                  ? timeSlotsOrder.findIndex(s => s.slot === a.timeSlot)
+                  : -1;
+                const bSlotIndex = b.timeSlot
+                  ? timeSlotsOrder.findIndex(s => s.slot === a.timeSlot)
+                  : -1;
                 const aIsCurrent = a.timeSlot === currentSlot;
                 const bIsCurrent = b.timeSlot === currentSlot;
 
@@ -39,18 +53,20 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (bSlotIndex === -1) return -1;
                     return aSlotIndex - bSlotIndex;
                 }
-
                 if (a.priority && !b.priority) return -1;
                 if (!a.priority && b.priority) return 1;
                 return Math.random() - 0.5;
             });
 
+            // Limpiar contenedores
             navLinksContainer.innerHTML = '';
             menuContent.innerHTML = '';
 
+            // Renderizar cada categoría activa
             sortedData
                 .filter(category => category.active === "YES")
                 .forEach((category, index) => {
+                    // 1a) Crear enlace de categoría en la barra (nav-link)
                     const navLink = document.createElement('a');
                     navLink.href = `#${category.id}`;
                     navLink.className = `nav-link${index === 0 ? ' active' : ''}`;
@@ -60,26 +76,31 @@ document.addEventListener('DOMContentLoaded', function() {
                     `;
                     navLinksContainer.appendChild(navLink);
 
+                    // 1b) Crear contenedor de sección de esta categoría
                     const categoryDiv = document.createElement('div');
                     categoryDiv.id = category.id;
+
+                    // Si la categoría tiene fondo/color, aplica la clase correspondiente
                     let categoryClasses = 'menu-category';
                     if (category.hasBackground) {
                         categoryClasses += ' with-background';
-                        if (category.backgroundColor === 'accent') {
+                        const bgKey = (category.backgroundColor || '').trim();
+                        if (bgKey === 'accent') {
                             categoryClasses += ' bg-accent';
-                        } else if (category.backgroundColor === 'accent-light') {
+                        } else if (bgKey === 'accent-light') {
                             categoryClasses += ' bg-accent-light';
-                        } else if (category.backgroundColor === 'soft-pink') {
+                        } else if (bgKey === 'soft-pink') {
                             categoryClasses += ' bg-soft-pink';
-                        } else if (category.backgroundColor === 'soft-green') {
+                        } else if (bgKey === 'soft-green') {
                             categoryClasses += ' bg-soft-green';
-                        } else if (category.backgroundColor === 'soft-blue-gray') {
+                        } else if (bgKey === 'soft-blue-gray') {
                             categoryClasses += ' bg-soft-blue-gray';
                         }
                     }
                     categoryDiv.className = categoryClasses;
 
-                    let itemsHtml = category.items.map(item => `
+                    // 1c) Generar HTML de los items
+                    const itemsHtml = category.items.map(item => `
                         <div class="menu-item">
                             <div class="item-details">
                                 <h3 class="item-title">${item.name}</h3>
@@ -89,21 +110,73 @@ document.addEventListener('DOMContentLoaded', function() {
                             <img src="${item.image}" alt="${item.name}" class="item-image">
                         </div>
                     `).join('');
+
                     categoryDiv.innerHTML = `
                         <h2 class="section-title">${category.extended_title || category.name}</h2>
                         <div class="menu-items">${itemsHtml}</div>
                     `;
                     menuContent.appendChild(categoryDiv);
+
+                    // 1d) Cada .menu-item abre el modal al hacer clic
+                    const menuItems = categoryDiv.querySelectorAll('.menu-item');
+                    category.items.forEach((item, idx) => {
+                        const menuItemElem = menuItems[idx];
+                        menuItemElem.addEventListener('click', () => openModal(item, category));
+                    });
                 });
 
             setupEvents();
         })
         .catch(error => console.error('Error al cargar menu.yml:', error));
 
+    // ───────── Función para abrir el modal ─────────
+function openModal(item, category) {
+    // 2a) Imagen del producto
+    modalImg.src = item.image;
+    modalImg.alt = item.name;
+  
+    // 2b) Nombre (solo el contenido, en negrita)
+    modalName.textContent = item.name || '—';
+  
+    // 2c) DESCRIPCIÓN: tomamos item.description en lugar de category.extended_title
+    modalIngredients.textContent =
+      (item.description && item.description.trim())
+        ? item.description.trim()
+        : '—';
+  
+    // 2d) Alérgenos (se mantiene etiqueta + contenido)
+    modalAll.textContent =
+      (item.allergens && item.allergens.trim())
+        ? item.allergens.trim()
+        : '—';
+  
+    // 2e) Mostrar modal y bloquear scroll de fondo
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+    // ───────── Función para cerrar el modal ─────────
+    function closeModal() {
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // 3) Listeners para cerrar el modal (clic en overlay o tecla Esc)
+    modal.addEventListener('click', e => {
+      if (e.target.dataset.close !== undefined) {
+        closeModal();
+      }
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+
+    // ───────── Lógica de scroll y navbar (mantener tu código existente) ─────────
     function setupEvents() {
-        const navLinks = document.querySelectorAll('.nav-link');
-        const navbar = document.querySelector('.navbar');
-        const menuLinks = document.querySelector('.menu-links');
+        const navLinks      = document.querySelectorAll('.nav-link');
+        const navbar        = document.querySelector('.navbar');
+        const menuLinks     = document.querySelector('.menu-links');
         const firstCategory = document.querySelector('.menu-category');
         let lastScrollPosition = 0;
         let ticking = false;
@@ -121,28 +194,26 @@ document.addEventListener('DOMContentLoaded', function() {
                     break;
                 }
             }
-
             if (!currentSection && sections.length > 0) {
                 currentSection = sections[0];
             }
 
             navLinks.forEach(link => link.classList.remove('active'));
             if (currentSection) {
-                const sectionId = currentSection.getAttribute('id');
+                const sectionId  = currentSection.getAttribute('id');
                 const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
                 if (activeLink) activeLink.classList.add('active');
 
                 if (isNavbarFixed && activeLink) {
-                    const linkRect = activeLink.getBoundingClientRect();
+                    const linkRect      = activeLink.getBoundingClientRect();
                     const containerRect = menuLinks.getBoundingClientRect();
-                    const scrollLeft = activeLink.offsetLeft - (containerRect.width / 2) + (linkRect.width / 2);
+                    const scrollLeft    = activeLink.offsetLeft - (containerRect.width / 2) + (linkRect.width / 2);
                     menuLinks.scrollTo({
                         left: scrollLeft,
                         behavior: 'smooth'
                     });
                 }
             }
-
             ticking = false;
         }
 
@@ -151,19 +222,17 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!ticking && !isScrollingFromClick) {
                 window.requestAnimationFrame(() => {
                     setActiveLink();
-                    const bannerHeight = document.querySelector('.brand-header').offsetHeight;
+                    const bannerHeight    = document.querySelector('.brand-header').offsetHeight;
                     const topNavbarHeight = document.querySelector('.top-navbar').offsetHeight;
-                    const navbarHeight = navbar.offsetHeight;
+                    const navbarHeight    = navbar.offsetHeight;
 
                     if (lastScrollPosition > bannerHeight && !isNavbarFixed) {
                         navbar.classList.add('fixed');
                         isNavbarFixed = true;
                     }
-
                     if (isNavbarFixed && lastScrollPosition < firstCategory.offsetTop - topNavbarHeight - navbarHeight) {
                         window.scrollTo(0, firstCategory.offsetTop - topNavbarHeight - navbarHeight);
                     }
-
                     ticking = false;
                 });
                 ticking = true;
@@ -176,20 +245,19 @@ document.addEventListener('DOMContentLoaded', function() {
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
-                const targetId = this.getAttribute('href');
+                const targetId      = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
 
                 if (targetElement) {
-                    const navbarHeight = navbar.offsetHeight;
+                    const navbarHeight    = navbar.offsetHeight;
                     const topNavbarHeight = document.querySelector('.top-navbar').offsetHeight;
-                    const baseOffset = firstCategory.offsetTop - topNavbarHeight - navbarHeight;
-                    const targetPosition = targetElement.offsetTop - topNavbarHeight - navbarHeight - (firstCategory.offsetTop - targetElement.offsetTop > 0 ? 0 : 20);
+                    const baseOffset      = firstCategory.offsetTop - topNavbarHeight - navbarHeight;
+                    const targetPosition  = targetElement.offsetTop - topNavbarHeight - navbarHeight - (firstCategory.offsetTop - targetElement.offsetTop > 0 ? 0 : 20);
 
                     if (!isNavbarFixed) {
                         navbar.classList.add('fixed');
                         isNavbarFixed = true;
                     }
-
                     isScrollingFromClick = true;
                     window.scrollTo(0, Math.max(targetPosition, baseOffset));
                     navLinks.forEach(navLink => navLink.classList.remove('active'));
@@ -204,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         menuLinks.addEventListener('wheel', function(e) {
             e.preventDefault();
-            const scrollAmount = e.deltaY * 3;
+            const scrollAmount  = e.deltaY * 3;
             const currentScroll = menuLinks.scrollLeft;
             menuLinks.scrollTo({
                 left: currentScroll + scrollAmount,
