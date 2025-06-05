@@ -284,9 +284,6 @@
   name: Cocktails
   extended_title: Nuestros cocktails
   image: assets/images2/atico_tropical.png
-  priority: true
-  extended_title: Cocktails Florales
-  image: assets/images2/atico_tropical.png
   priority: false
   timeSlot: Merienda
   hasBackground: false
@@ -297,7 +294,7 @@
       description: Ginebra, albahaca, jugo de limón, jarabe de azúcar
       price: 8€
       image: assets/images2/jardin_citrico.png
-      allergens: 
+      allergens: ""
     - name: Ático Tropical
       description: Ron infusionado con cardamomo, jarabe de maracuyá, zumo de limón, menta, Schweppes Citrus
       price: 8€
