@@ -279,3 +279,37 @@
       price: 5,95€
       image: assets/images2/tartas.png
       allergens: XXX
+
+- id: cocktails
+  name: Cocktails
+  extended_title: Nuestros cocktails
+  image: assets/images2/atico_tropical.png
+  priority: true
+  timeSlot: Merienda
+  hasBackground: false
+  backgroundColor: soft-pink
+  active: YES
+  items:
+    - name: Jardín Cítrico
+      description: Ginebra, albahaca, jugo de limón, jarabe de azúcar
+      price: 8€
+      image: assets/images2/jardin_citrico.png
+      allergens: 
+    - name: Ático Tropical
+      description: Ron infusionado con cardamomo, jarabe de maracuyá, zumo de limón, menta, Schweppes Citrus
+      price: 8€
+      image: assets/images2/atico_tropical.png
+      allergens: ""
+
+    - name: Flor de Frambuesa
+      description: Ginebra London Dry, jarabe de frambuesa, zumo de limón, clara de huevo
+      price: 8,00€
+      image: assets/images2/flor_de_frambuesa.png
+      allergens: ""
+
+    - name: Soda Italiana
+      description: Agua con gas, zumo de limón, jarabe a elegir (manzana verde, fresa o maracuyá)
+      price: 6,00€
+      image: assets/images2/soda_italiana.png
+      allergens: ""
+
