@@ -4,7 +4,7 @@
   image: assets/images2/refrescos.png
   priority: false
   timeSlot: Comida
-  hasBackground: true
+  hasBackground: false
   backgroundColor: soft-blue-gray
   active: YES
   color: soft-blue-gray  # Color para el título del modal
@@ -57,7 +57,7 @@
   image: assets/images2/cafes.png
   priority: false
   timeSlot: Desayuno
-  hasBackground: true
+  hasBackground: false
   backgroundColor: soft-blue-gray
   active: YES
   color: soft-blue-gray  # Color para el título del modal
@@ -109,7 +109,7 @@
   image: assets/images2/tostadas.png
   priority: false
   timeSlot: Desayuno
-  hasBackground: true
+  hasBackground: false
   backgroundColor: soft-pink
   active: YES
   color: soft-pink  # Color para el título del modal
@@ -136,7 +136,7 @@
   image: assets/images2/bowls.png
   priority: true
   timeSlot: Desayuno
-  hasBackground: true
+  hasBackground: false
   backgroundColor: soft-green
   active: YES
   color: soft-green  # Color para el título del modal
@@ -161,9 +161,9 @@
   name: Ensaladas
   extended_title: Ensaladas frescas y completas
   image: assets/images2/ensaladas.png
-  priority: true
+  priority: false
   timeSlot: Comida
-  hasBackground: true
+  hasBackground: false
   backgroundColor: soft-green
   active: NO
   color: soft-green  # Color para el título del modal
@@ -190,7 +190,7 @@
   image: assets/images2/focaccia_salami_transparent.png
   priority: true
   timeSlot: Comida
-  hasBackground: true
+  hasBackground: false
   backgroundColor: accent-light
   active: YES
   color: accent-light  # Color para el título del modal
@@ -222,7 +222,7 @@
   image: assets/images2/gofres.png
   priority: true
   timeSlot: Merienda
-  hasBackground: true
+  hasBackground: false
   backgroundColor: accent-light
   active: NO
   color: accent-light  # Color para el título del modal
@@ -249,7 +249,7 @@
   image: assets/images2/cookie.png
   priority: false
   timeSlot: Merienda
-  hasBackground: true
+  hasBackground: false
   backgroundColor: soft-pink
   active: YES
   color: soft-pink  # Color para el título del modal
@@ -285,6 +285,9 @@
   extended_title: Nuestros cocktails
   image: assets/images2/atico_tropical.png
   priority: true
+  extended_title: Cocktails Florales
+  image: assets/images2/atico_tropical.png
+  priority: false
   timeSlot: Merienda
   hasBackground: false
   backgroundColor: soft-pink
@@ -312,4 +315,3 @@
       price: 6,00€
       image: assets/images2/soda_italiana.png
       allergens: ""
-
