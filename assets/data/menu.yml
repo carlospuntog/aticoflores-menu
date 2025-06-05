@@ -282,7 +282,7 @@
 
 - id: cocktails
   name: Cocktails
-  extended_title: Nuestros cocktails
+  extended_title: Cocktails florales
   image: assets/images2/atico_tropical.png
   priority: false
   timeSlot: Merienda
