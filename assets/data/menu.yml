@@ -116,17 +116,17 @@
   items:
     - name: Clásica
       description: Tomate rallado y AOVE
-      price: 4,00€
+      price: 4,95€
       image: assets/images2/tostada_clasica.png
       allergens: XXX
     - name: Ibérica
       description: Tomate, AOVE y jamón ibérico
-      price: 4,50€
+      price: 6,95€
       image: assets/images2/tostada_iberica.png
       allergens: XXX
     - name: Aguacate
       description: Aguacate, tomate, albahaca y AOVE
-      price: 6,50€
+      price: 6,95€
       image: assets/images2/tostada_aguacate.png
       allergens: XXX
 
@@ -197,22 +197,22 @@
   items:
     - name: Focaccia Ibérica
       description: Jamón ibérico, tomate, AOVE
-      price: 5,95€
+      price: 6,45€
       image: assets/images2/focaccia_iberico.jpg
       allergens: XXX
     - name: Focaccia de Gorgonzola y Mortadela
       description: Gorgonzola dulce, mortadela boloñesa, tomates secos, pesto de pistachos
-      price: 5,95€
+      price: 6,45€
       image: assets/images2/focaccia_gorgonzola.jpg
       allergens: XXX
     - name: Focaccia de Salami y Parmesano
       description: Salami Finocchiona, crema de alcachofas, crema de parmesano, rúcula
-      price: 5,95€
+      price: 6,45€
       image: assets/images2/focaccia_salami.jpg
       allergens: XXX
     - name: Focaccia de Tomate y Mozzarella
       description: Tomate, mozzarella de búfala, pesto, albahaca fresca
-      price: 5,95€
+      price: 6,45€
       image: assets/images2/focaccia_tomate.jpg
       allergens: XXX
 
