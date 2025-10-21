@@ -4,18 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carta - Ático Flores - Primavera 2025</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Menú digital de Ático Flores - Cafetería y Pastelería de especialidad. Descubre nuestro café, desayunos, pastelería artesanal y bebidas.">
+    <meta name="keywords" content="café de especialidad, pastelería, desayunos, cafetería, menú, restaurante, Ático Flores">
+    <meta name="author" content="Ático Flores">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Carta - Ático Flores - Cafetería y Pastelería">
+    <meta property="og:description" content="Descubre nuestro menú de café de especialidad, desayunos y pastelería artesanal">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: /api/; connect-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com;">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
     
     <style>
+        /* CSS Variables for theming */
         :root {
+            /* Brand Colors */
             --mauve-color: #8A4FFF;
             --mauve-light: #B894FF;
             --dark-text: #222222;
             --light-bg: #FAFAFA;
             --white: #FFFFFF;
             --gray-light: #EEEEEE;
+            --black: #000000;
+
+            /* Text Colors */
+            --text-secondary: #444444;
+            --text-tertiary: #555555;
+
+            /* Shadows */
+            --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 6px 12px rgba(0, 0, 0, 0.1);
+            --shadow-navbar: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
         
         * {
@@ -31,23 +60,43 @@
             line-height: 1.6;
             padding-top: 35px;
         }
-        
+
+        /* Skip Link for Accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--mauve-color);
+            color: var(--white);
+            padding: 8px 16px;
+            text-decoration: none;
+            z-index: 10000;
+            border-radius: 0 0 4px 0;
+            font-weight: 600;
+        }
+
+        .skip-link:focus {
+            top: 0;
+            outline: 3px solid var(--mauve-light);
+            outline-offset: 2px;
+        }
+
         /* Header/Navigation */
         .top-navbar {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            background-color: #000000;
+            background-color: var(--black);
             color: var(--white);
             z-index: 1001;
-            padding: 9.2px 0;
+            padding: 10px 0;
             text-align: center;
             font-family: 'IBM Plex Mono', monospace;
             font-weight: 600;
             font-size: 16px;
             letter-spacing: 1px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow-navbar);
         }
         
         .navbar {
@@ -59,13 +108,13 @@
             padding: 10px 0;
             transition: all 0.3s ease;
         }
-        
+
         .navbar.fixed {
             position: fixed;
             top: 35px;
             left: 0;
             background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-sm);
         }
         
         .menu-links {
@@ -102,7 +151,17 @@
         .navbar a.nav-link:hover .nav-text {
             background-color: var(--mauve-light);
         }
-        
+
+        .navbar a.nav-link:focus {
+            outline: 3px solid var(--mauve-color);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        .navbar a.nav-link:focus:not(:focus-visible) {
+            outline: none;
+        }
+
         .navbar a.nav-link.active .nav-text {
             background-color: var(--mauve-color) !important;
             color: var(--white);
@@ -112,8 +171,8 @@
         
         /* Imagen de categoría */
         .nav-link img {
-            width: 92.4px;
-            height: 92.4px;
+            width: 92px;
+            height: 92px;
             border-radius: 50%;
             border: 2px solid var(--mauve-color);
             object-fit: cover;
@@ -177,13 +236,13 @@
             background: var(--white);
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            box-shadow: var(--shadow-md);
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        
+
         .menu-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow-lg);
         }
         
         .item-details {
@@ -203,7 +262,7 @@
         .item-description {
             font-family: 'IBM Plex Mono', monospace;
             font-size: 14px;
-            color: #444;
+            color: var(--text-secondary);
             margin-bottom: 10px;
             flex-grow: 1;
         }
@@ -248,7 +307,7 @@
         .brand-subtitle {
             font-size: 16px;
             font-family: 'IBM Plex Mono', monospace;
-            color: #555;
+            color: var(--text-tertiary);
         }
         
         /* Seasonal Badge (Comentado) */
@@ -270,7 +329,7 @@
             font-size: 14px;
             font-style: italic;
             font-family: 'IBM Plex Mono', monospace;
-            color: #555;
+            color: var(--text-tertiary);
             margin-bottom: 15px;
             background-color: var(--gray-light);
             padding: 8px;
@@ -327,10 +386,13 @@
             
             .item-description {
                 font-size: 13px;
-                -webkit-line-clamp: 3;
+                /* Line clamping for mobile */
                 display: -webkit-box;
+                -webkit-line-clamp: 3;
                 -webkit-box-orient: vertical;
                 overflow: hidden;
+                /* Fallback for non-webkit browsers */
+                max-height: 4.5em;
             }
             
             .item-price {
@@ -345,171 +407,227 @@
     </style>
     
     <script>
+        /**
+         * Main menu navigation and interaction script
+         * Handles smooth scrolling, active link detection, and navbar behavior
+         */
         document.addEventListener('DOMContentLoaded', function() {
+            // Cache DOM elements for better performance
             const navLinks = document.querySelectorAll('.nav-link');
             const navbar = document.querySelector('.navbar');
             const menuLinks = document.querySelector('.menu-links');
+            const brandHeader = document.querySelector('.brand-header');
+            const sections = document.querySelectorAll('.menu-category');
+
+            // State variables
             let lastScrollPosition = 0;
             let ticking = false;
             let isNavbarFixed = false;
-            
+            let bannerHeight = brandHeader.offsetHeight;
+
+            /**
+             * Recalculate banner height on window resize
+             */
+            const handleResize = () => {
+                bannerHeight = brandHeader.offsetHeight;
+            };
+
+            window.addEventListener('resize', handleResize);
+
+            /**
+             * Updates the active navigation link based on current scroll position
+             */
             function setActiveLink() {
                 const scrollPosition = window.scrollY + 80;
-                const sections = document.querySelectorAll('.menu-category');
                 let currentSection = null;
-                
+
+                // Iterate in reverse to find the current section
                 for (let i = sections.length - 1; i >= 0; i--) {
                     const section = sections[i];
                     const sectionTop = section.offsetTop - 80;
-                    
+
                     if (scrollPosition >= sectionTop) {
                         currentSection = section;
                         break;
                     }
                 }
-                
+
+                // Default to first section if no section found
                 if (!currentSection && sections.length > 0) {
                     currentSection = sections[0];
                 }
-                
+
+                // Remove active state from all links
                 navLinks.forEach(link => {
                     link.classList.remove('active');
+                    link.removeAttribute('aria-current');
                 });
-                
+
+                // Add active state to current section's link
                 if (currentSection) {
                     const sectionId = currentSection.getAttribute('id');
                     const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
                     if (activeLink) {
                         activeLink.classList.add('active');
+                        activeLink.setAttribute('aria-current', 'page');
                     }
                 }
-                
+
                 ticking = false;
             }
-            
+
+            /**
+             * Handles scroll events with requestAnimationFrame for better performance
+             * Also manages navbar fixed/unfixed state
+             */
             function handleScroll() {
                 lastScrollPosition = window.scrollY;
                 if (!ticking) {
                     window.requestAnimationFrame(function() {
                         setActiveLink();
-                        const bannerHeight = document.querySelector('.brand-header').offsetHeight;
+
+                        // Fix or unfix navbar based on scroll position
                         if (lastScrollPosition > bannerHeight && !isNavbarFixed) {
                             navbar.classList.add('fixed');
                             isNavbarFixed = true;
+                        } else if (lastScrollPosition <= bannerHeight && isNavbarFixed) {
+                            navbar.classList.remove('fixed');
+                            isNavbarFixed = false;
                         }
+
                         ticking = false;
                     });
                     ticking = true;
                 }
             }
-            
-            window.addEventListener('scroll', handleScroll);
+
+            // Initialize scroll listener
+            window.addEventListener('scroll', handleScroll, { passive: true });
             setActiveLink();
-            
+
+            /**
+             * Smooth scroll to section when navigation link is clicked
+             */
             navLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const targetId = this.getAttribute('href');
                     const targetElement = document.querySelector(targetId);
-                    
+
                     if (targetElement) {
                         const startPosition = window.scrollY;
                         const navbarHeight = navbar.offsetHeight;
-                        let targetPosition;
-
-                        if (!isNavbarFixed) {
-                            targetPosition = targetElement.offsetTop - navbarHeight - 40;
-                        } else {
-                            targetPosition = targetElement.offsetTop - navbarHeight - 40;
-                        }
-
+                        // Calculate target position (same for both fixed and non-fixed states)
+                        const targetPosition = targetElement.offsetTop - navbarHeight - 40;
                         const distance = targetPosition - startPosition;
                         const duration = 800;
                         let start = null;
-                        
+
+                        /**
+                         * Animation step function with easing
+                         */
                         function step(timestamp) {
                             if (!start) start = timestamp;
                             const progress = timestamp - start;
                             const percentage = Math.min(progress / duration, 1);
+
+                            // Easing function for smooth animation
                             const easeInOutQuad = t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+
                             window.scrollTo(0, startPosition + distance * easeInOutQuad(percentage));
-                            
+
                             if (progress < duration) {
                                 window.requestAnimationFrame(step);
                             }
                         }
-                        
+
                         window.requestAnimationFrame(step);
+
+                        // Update active link immediately
                         navLinks.forEach(navLink => {
                             navLink.classList.remove('active');
+                            navLink.removeAttribute('aria-current');
                         });
                         this.classList.add('active');
+                        this.setAttribute('aria-current', 'page');
+
+                        // Fix navbar when clicking a link
                         navbar.classList.add('fixed');
                         isNavbarFixed = true;
                     }
                 });
             });
 
+            /**
+             * Horizontal scroll support for navigation menu on desktop
+             * Allows mouse wheel to scroll horizontally
+             */
             menuLinks.addEventListener('wheel', function(e) {
                 if (window.innerWidth > 576) {
                     e.preventDefault();
                     const scrollAmount = e.deltaY * 1.5;
                     menuLinks.scrollLeft += scrollAmount;
                 }
-            });
+            }, { passive: false });
         });
     </script>
 </head>
 <body>
-    <!-- Nueva barra superior fija -->
-    <div class="top-navbar">
-        ÁTICO - MENÚ
-    </div>
+    <!-- Skip link for accessibility -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
-    <!-- Contenido principal -->
+    <!-- Fixed top navbar -->
+    <header class="top-navbar" role="banner">
+        ÁTICO - MENÚ
+    </header>
+
+    <!-- Main content container -->
     <div class="container">
         <div class="brand-header">
             <h1 class="brand-title">Ático Flores</h1>
             <p class="brand-subtitle">Cafetería & Pastelería</p>
             <!-- <div class="season-badge">Menú de Primavera 2025</div> -->
         </div>
-        
-        <!-- Barra de navegación -->
-        <div class="navbar">
-            <div class="menu-links">
-                <a href="#cafe" class="nav-link active">
-                    <img src="/api/placeholder/92/92" alt="Café">
+
+        <!-- Category Navigation Bar -->
+        <nav class="navbar" aria-label="Navegación de categorías del menú">
+            <div class="menu-links" role="list">
+                <a href="#cafe" class="nav-link active" aria-current="page" role="listitem" aria-label="Ir a sección de Café y bebidas calientes">
+                    <img src="/api/placeholder/92/92" alt="" role="presentation">
                     <span class="nav-text">Café y bebidas</span>
                 </a>
-                <a href="#bebidas-frias" class="nav-link">
-                    <img src="/api/placeholder/92/92" alt="Bebidas frías">
+                <a href="#bebidas-frias" class="nav-link" role="listitem" aria-label="Ir a sección de Bebidas frías">
+                    <img src="/api/placeholder/92/92" alt="" role="presentation">
                     <span class="nav-text">Bebidas frías</span>
                 </a>
-                <a href="#bebidas-alcoholicas" class="nav-link">
-                    <img src="/api/placeholder/92/92" alt="Bebidas alcohólicas">
+                <a href="#bebidas-alcoholicas" class="nav-link" role="listitem" aria-label="Ir a sección de Bebidas alcohólicas">
+                    <img src="/api/placeholder/92/92" alt="" role="presentation">
                     <span class="nav-text">Bebidas alcohólicas</span>
                 </a>
-                <a href="#desayunos" class="nav-link">
-                    <img src="/api/placeholder/92/92" alt="Desayunos">
+                <a href="#desayunos" class="nav-link" role="listitem" aria-label="Ir a sección de Desayunos">
+                    <img src="/api/placeholder/92/92" alt="" role="presentation">
                     <span class="nav-text">Desayunos</span>
                 </a>
-                <a href="#comida-salada" class="nav-link">
-                    <img src="/api/placeholder/92/92" alt="Comida salada">
+                <a href="#comida-salada" class="nav-link" role="listitem" aria-label="Ir a sección de Comida salada">
+                    <img src="/api/placeholder/92/92" alt="" role="presentation">
                     <span class="nav-text">Comida salada</span>
                 </a>
-                <a href="#pasteleria" class="nav-link">
-                    <img src="/api/placeholder/92/92" alt="Pastelería">
+                <a href="#pasteleria" class="nav-link" role="listitem" aria-label="Ir a sección de Pastelería">
+                    <img src="/api/placeholder/92/92" alt="" role="presentation">
                     <span class="nav-text">Pastelería</span>
                 </a>
-                <a href="#combos" class="nav-link">
-                    <img src="/api/placeholder/92/92" alt="Combos">
+                <a href="#combos" class="nav-link" role="listitem" aria-label="Ir a sección de Combos">
+                    <img src="/api/placeholder/92/92" alt="" role="presentation">
                     <span class="nav-text">Combos</span>
                 </a>
             </div>
-        </div>
-        
+        </nav>
+
+        <!-- Main Menu Content -->
+        <main id="main-content">
+
         <!-- Sección Café -->
-        <div id="cafe" class="menu-category">
+        <section id="cafe" class="menu-category">
             <h2 class="section-title">Café de especialidad & bebidas calientes</h2>
             <div class="menu-items">
                 <div class="menu-item">
@@ -518,13 +636,13 @@
                         <p class="item-description">Nuestro espresso de especialidad, elaborado con granos seleccionados.</p>
                         <span class="item-price">2,00€</span>
                     </div>
-                    <img src="/api/placeholder/120/120" alt="Espresso" class="item-image">
+                    <img src="/api/placeholder/120/120" alt="Taza de espresso con crema dorada" class="item-image">
                 </div>
             </div>
-        </div>
-        
+        </section>
+
         <!-- Sección Bebidas Frías -->
-        <div id="bebidas-frias" class="menu-category">
+        <section id="bebidas-frias" class="menu-category">
             <h2 class="section-title">Bebidas frías</h2>
             <div class="menu-items">
                 <div class="menu-item">
@@ -533,13 +651,13 @@
                         <p class="item-description">Variedad de refrescos.</p>
                         <span class="item-price">3,00€</span>
                     </div>
-                    <img src="/api/placeholder/120/120" alt="Refrescos" class="item-image">
+                    <img src="/api/placeholder/120/120" alt="Variedad de refrescos en vasos con hielo" class="item-image">
                 </div>
             </div>
-        </div>
-        
+        </section>
+
         <!-- Sección Bebidas Alcohólicas -->
-        <div id="bebidas-alcoholicas" class="menu-category">
+        <section id="bebidas-alcoholicas" class="menu-category">
             <h2 class="section-title">Bebidas alcohólicas</h2>
             <div class="menu-items">
                 <div class="menu-item">
@@ -548,13 +666,13 @@
                         <p class="item-description">Cerveza de barril o botella. Consulte variedades disponibles.</p>
                         <span class="item-price">3,25€</span>
                     </div>
-                    <img src="/api/placeholder/120/120" alt="Cerveza" class="item-image">
+                    <img src="/api/placeholder/120/120" alt="Vaso de cerveza con espuma" class="item-image">
                 </div>
             </div>
-        </div>
-        
+        </section>
+
         <!-- Sección Desayunos -->
-        <div id="desayunos" class="menu-category">
+        <section id="desayunos" class="menu-category">
             <h2 class="section-title">Desayunos</h2>
             <p class="availability">Disponible de 8:00 a 11:00</p>
             <h3 class="subsection-title">Tostadas</h3>
@@ -565,13 +683,29 @@
                         <p class="item-description">Pan tostado con tomate rallado y aceite de oliva virgen extra.</p>
                         <span class="item-price">4,00€</span>
                     </div>
-                    <img src="/api/placeholder/120/120" alt="Tostada Clásica" class="item-image">
+                    <img src="/api/placeholder/120/120" alt="Tostada de pan con tomate rallado y aceite de oliva" class="item-image">
                 </div>
             </div>
-        </div>
-        
+        </section>
+
+        <!-- Sección Comida Salada -->
+        <section id="comida-salada" class="menu-category">
+            <h2 class="section-title">Comida salada</h2>
+            <div class="menu-items">
+                <!-- Items de comida salada se agregarán aquí -->
+            </div>
+        </section>
+
+        <!-- Sección Pastelería -->
+        <section id="pasteleria" class="menu-category">
+            <h2 class="section-title">Pastelería</h2>
+            <div class="menu-items">
+                <!-- Items de pastelería se agregarán aquí -->
+            </div>
+        </section>
+
         <!-- Sección Combos -->
-        <div id="combos" class="menu-category">
+        <section id="combos" class="menu-category">
             <h2 class="section-title">Combos</h2>
             <div class="menu-items">
                 <div class="menu-item">
@@ -580,10 +714,12 @@
                         <p class="item-description">Café o té + tostada clásica.</p>
                         <span class="item-price">5,00€</span>
                     </div>
-                    <img src="/api/placeholder/120/120" alt="Desayuno Clásico" class="item-image">
+                    <img src="/api/placeholder/120/120" alt="Desayuno clásico con café y tostada" class="item-image">
                 </div>
             </div>
-        </div>
+        </section>
+
+        </main>
     </div>
 </body>
 </html>
