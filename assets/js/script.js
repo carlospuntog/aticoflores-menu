@@ -133,72 +133,48 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ───────── Función para abrir el modal ─────────
     function openModal(item, category) {
-        // Verificar que el modal existe
-        if (!modal) {
-            console.error('Modal no encontrado');
-            return;
-        }
+        try {
+            if (!modal) return;
 
-        // Imagen del producto
-        if (modalImg) {
-            modalImg.src = item.image;
-            modalImg.alt = item.name;
-        }
-
-        // Nombre del producto
-        if (modalName) {
-            modalName.textContent = item.name || '—';
-        }
-
-        // Precio
-        if (modalPrice) {
-            modalPrice.textContent = item.price || '';
-        }
-
-        // Descripción/Ingredientes
-        if (modalDescription) {
-            modalDescription.textContent =
-                (item.description && item.description.trim())
-                    ? item.description.trim()
-                    : '';
-        }
-
-        // Alérgenos - ocultar si no hay datos válidos
-        const hasAllergens = item.allergens &&
-                             item.allergens.trim() &&
-                             item.allergens.trim() !== 'XXX' &&
-                             item.allergens.trim() !== '';
-
-        if (modalAllergensContainer) {
-            if (hasAllergens && modalAllergens) {
-                modalAllergens.textContent = item.allergens.trim();
-                modalAllergensContainer.style.display = 'flex';
-            } else {
-                modalAllergensContainer.style.display = 'none';
+            // Contenido del modal
+            if (modalImg) {
+                modalImg.src = item.image || '';
+                modalImg.alt = item.name || '';
             }
-        }
+            if (modalName) modalName.textContent = item.name || '';
+            if (modalPrice) modalPrice.textContent = item.price || '';
+            if (modalDescription) modalDescription.textContent = item.description || '';
 
-        // Mostrar modal
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+            // Alérgenos
+            const hasAllergens = item.allergens && item.allergens.trim() && item.allergens.trim() !== 'XXX';
+            if (modalAllergensContainer) {
+                modalAllergensContainer.style.display = hasAllergens ? 'flex' : 'none';
+                if (hasAllergens && modalAllergens) modalAllergens.textContent = item.allergens;
+            }
+
+            // Mostrar modal
+            modal.style.cssText = 'display: flex !important;';
+            document.body.style.overflow = 'hidden';
+        } catch (err) {
+            console.error('Error abriendo modal:', err);
+            document.body.style.overflow = '';
+        }
     }
 
     // ───────── Función para cerrar el modal ─────────
     function closeModal() {
-        modal.style.display = 'none';
+        if (modal) modal.style.cssText = 'display: none;';
         document.body.style.overflow = '';
     }
 
-    // 3) Listeners para cerrar el modal (clic en overlay o tecla Esc)
-    modal.addEventListener('click', e => {
-      if (e.target.dataset.close !== undefined) {
-        closeModal();
-      }
-    });
+    // Listeners para cerrar el modal
+    if (modal) {
+        modal.addEventListener('click', e => {
+            if (e.target.dataset.close !== undefined) closeModal();
+        });
+    }
     document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && modal.style.display === 'flex') {
-            closeModal();
-        }
+        if (e.key === 'Escape') closeModal();
     });
 
     // ───────── Lógica de scroll y navbar (mantener tu código existente) ─────────
