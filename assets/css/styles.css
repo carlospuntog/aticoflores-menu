@@ -28,7 +28,7 @@ body {
     background-color: var(--light-bg);
     color: var(--dark-text);
     line-height: 1.6;
-    padding-top: 35px;
+    padding-top: 0;
 }
 
 .top-navbar {
@@ -226,8 +226,10 @@ body {
 }
 
 .brand-header {
+    width: 100%;
     text-align: center;
-    padding: 50px 20px;
+    padding: 60px 20px;
+    margin-top: 35px; /* Altura del top-navbar */
     position: relative;
     overflow: hidden;
     /* Banner de flores de fondo */
@@ -235,8 +237,6 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border-radius: 0 0 20px 20px;
-    margin-bottom: 10px;
 }
 
 /* Overlay sutil para mejorar legibilidad del texto */
@@ -244,7 +244,7 @@ body {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.3);
     z-index: 0;
 }
 
@@ -332,12 +332,12 @@ body {
     }
     
     .brand-header {
-        padding: 35px 15px;
-        border-radius: 0 0 15px 15px;
+        padding: 45px 15px;
+        margin-top: 35px;
     }
 
     .brand-title {
-        font-size: 30px;
+        font-size: 28px;
     }
 
     .menu-item {
