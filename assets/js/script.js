@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Renderizar cada categoría activa
             sortedData
-                .filter(category => category.active === "YES")
+                .filter(category => category.active === true || category.active === "YES")
                 .forEach((category, index) => {
                     // 1a) Crear enlace de categoría en la barra (nav-link)
                     const navLink = document.createElement('a');
