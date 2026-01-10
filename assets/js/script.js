@@ -179,13 +179,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Mostrar modal
-        modal.classList.add('is-open');
+        modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
     }
 
     // ───────── Función para cerrar el modal ─────────
     function closeModal() {
-        modal.classList.remove('is-open');
+        modal.style.display = 'none';
         document.body.style.overflow = '';
     }
 
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
             closeModal();
         }
     });
