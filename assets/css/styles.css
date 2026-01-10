@@ -232,11 +232,11 @@ body {
     margin-top: 35px; /* Altura del top-navbar */
     position: relative;
     overflow: hidden;
-    /* Banner de flores de fondo */
-    background-image: url('../images2/banner-flores.svg');
-    background-size: cover;
+    /* Banner de flores - patrón repetible optimizado (76KB) */
+    background-image: url('../images2/banner-flores-tile.jpg');
+    background-size: 250px;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: repeat;
 }
 
 /* Overlay sutil para mejorar legibilidad del texto */
