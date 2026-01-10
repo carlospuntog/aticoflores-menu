@@ -416,147 +416,229 @@ body {
     inset: 0;
     display: grid;
     place-items: center;
-    z-index: 2000; /* Por encima de la top-navbar (1001) */
+    z-index: 2000;
     visibility: hidden;
     opacity: 0;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
+
 .modal:not(.hidden) {
     visibility: visible;
     opacity: 1;
 }
 
-/* Fondo semitransparente oscurecido */
+/* Fondo semitransparente con blur */
 .modal__overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0 0 0 / 0.5);
-    backdrop-filter: blur(2px);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     z-index: 1999;
 }
 
 /* Tarjeta principal del modal */
 .modal__card {
     position: relative;
-    width: clamp(320px, 80vw, 500px);
+    width: clamp(320px, 85vw, 420px);
     max-height: 85vh;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
     background: var(--white);
-    border-radius: 1rem;
-    box-shadow: 0 12px 28px rgba(0 0 0 / 0.25);
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     scrollbar-width: thin;
     scrollbar-color: var(--accent-primary) transparent;
     z-index: 2000;
-}
-.modal__card::-webkit-scrollbar {
-    width: 6px;
-}
-.modal__card::-webkit-scrollbar-thumb {
-    background: var(--accent-primary);
-    border-radius: 3px;
+    transform: scale(0.95) translateY(10px);
+    transition: transform 0.3s ease;
 }
 
-/* Botón de cierre (×) */
+.modal:not(.hidden) .modal__card {
+    transform: scale(1) translateY(0);
+}
+
+.modal__card::-webkit-scrollbar {
+    width: 4px;
+}
+
+.modal__card::-webkit-scrollbar-thumb {
+    background: var(--accent-secondary);
+    border-radius: 4px;
+}
+
+/* Botón de cierre */
 .modal__close {
     position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
-    width: 32px;
-    height: 32px;
+    top: 12px;
+    right: 12px;
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     border: none;
-    background: var(--accent-primary);
-    color: var(--white);
-    font-size: 1.25rem;
+    background: var(--white);
+    color: var(--dark-text);
+    font-size: 1.5rem;
+    font-weight: 300;
     line-height: 1;
     cursor: pointer;
     display: grid;
     place-items: center;
     z-index: 2001;
-    transition: background 0.2s ease;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
 
 .modal__close:hover {
-    background: var(--accent-secondary);
+    background: var(--accent-primary);
+    color: var(--white);
+    transform: rotate(90deg);
 }
 
-/* Figura / Imagen del producto */
+/* Imagen del producto */
 .modal__figure {
     margin: 0;
     display: flex;
     justify-content: center;
-    background: #f5f5f5; /* fondo mientras carga la imagen */
+    background: linear-gradient(135deg, var(--gray-light) 0%, #f0f0f0 100%);
+    min-height: 200px;
 }
+
 .modal__img {
     width: 100%;
-    max-height: 300px;
+    max-height: 280px;
     object-fit: cover;
     object-position: center;
-    border-radius: 1rem 1rem 0 0;
+    border-radius: 16px 16px 0 0;
 }
 
-/* Contenido textual dentro del modal */
+/* Contenido del modal */
 .modal__content {
-    padding: 1rem 1.25rem 2rem;
-    margin-top: 1rem;  /* espacio entre la imagen y el texto */
+    padding: 20px 24px 28px;
 }
 
-/* Cada campo (Nombre, Ingredientes, Alérgenos) */
-.modal__field {
-    margin-bottom: 1rem;
-    font-size: 14px;
-    font-family: var(--font-body);
-    color: var(--dark-text);
+/* Header: Nombre + Precio */
+.modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--gray-light);
 }
 
-/* Solo el nombre (en negrita y alineado a la izquierda) */
-.modal__field.modal__name strong {
-    font-size: 1.2rem;
+.modal__title {
     font-family: var(--font-heading);
-    display: block;
+    font-size: 1.5rem;
     font-weight: 600;
-    text-align: left;
-    color: var(--accent-primary);
+    color: var(--dark-text);
+    margin: 0;
+    line-height: 1.3;
+    flex: 1;
 }
 
-/* Solo los ingredientes (sin etiqueta) */
-.modal__field.modal__ingredients span {
-    font-size: 0.95rem;
+.modal__price {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    background: var(--accent-primary);
+    padding: 6px 14px;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Descripción */
+.modal__description {
+    font-family: var(--font-body);
+    font-size: 15px;
     color: var(--medium-text);
-    text-align: left;
-    display: block;
-    line-height: 1.5;
+    line-height: 1.7;
+    margin: 0 0 20px 0;
 }
 
-/* Etiqueta "Alergenos:" + contenido */
-.modal__field strong {
-    font-weight: 600;
-    margin-right: 0.25rem;
+/* Alérgenos */
+.modal__allergens {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: rgba(168, 82, 107, 0.08);
+    border-radius: 10px;
+    border-left: 3px solid var(--accent-tertiary);
 }
-/* ============  ESTILOS RESPONSIVOS (MÓVIL)  ============ */
+
+.modal__allergens-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.modal__allergens-text {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--medium-text);
+    line-height: 1.4;
+}
+
+/* ============  MODAL RESPONSIVE (MÓVIL)  ============ */
 @media (max-width: 640px) {
     .modal__card {
-        /* Ahora en móvil ocupa el 90 % del ancho y solo el 50 % de la altura */
-        width: 90vw;       /* deja 5 vw de margen a cada lado */
-        height: 50dvh;     /* la mitad de la altura de la pantalla */
-        max-height: none;
-        border-radius: 0.75rem;
+        width: 92vw;
+        max-height: 80vh;
+        border-radius: 14px;
     }
+
     .modal__img {
-        border-radius: 0.75rem 0.75rem 0 0;
-        max-height: 200px; /* la imagen ocupa una parte, el resto es espacio para el texto */
+        max-height: 220px;
+        border-radius: 14px 14px 0 0;
     }
+
+    .modal__figure {
+        min-height: 160px;
+    }
+
     .modal__close {
-        /* El botón se mantiene cerca del borde superior del modal */
-        top: calc(env(safe-area-inset-top, 0px) + 0.75rem);
-        right: 0.75rem;
+        top: 10px;
+        right: 10px;
+        width: 32px;
+        height: 32px;
+        font-size: 1.3rem;
     }
+
     .modal__content {
-        margin-top: 0.75rem;
-        padding: 0.75rem 1rem 1.5rem;
-        /* Si quieres que el contenido dentro del modal también tenga scroll cuando sobrepase
-           la mitad de la pantalla, basta con que lo deje así, pues la tarjeta entera ya tiene overflow-y: auto */
+        padding: 16px 20px 24px;
+    }
+
+    .modal__header {
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 14px;
+        padding-bottom: 14px;
+    }
+
+    .modal__title {
+        font-size: 1.3rem;
+    }
+
+    .modal__price {
+        align-self: flex-start;
+        font-size: 1rem;
+        padding: 5px 12px;
+    }
+
+    .modal__description {
+        font-size: 14px;
+        margin-bottom: 16px;
+    }
+
+    .modal__allergens {
+        padding: 10px 14px;
+    }
+
+    .modal__allergens-text {
+        font-size: 12px;
     }
 }

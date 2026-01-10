@@ -6,8 +6,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const modal            = document.getElementById('product-modal');
     const modalImg         = document.getElementById('modal-img');
     const modalName        = document.getElementById('modal-name');
-    const modalIngredients = document.getElementById('modal-ingredients');
-    const modalAll         = document.getElementById('modal-allergens');
+    const modalPrice       = document.getElementById('modal-price');
+    const modalDescription = document.getElementById('modal-description');
+    const modalAllergens   = document.getElementById('modal-allergens');
+    const modalAllergensContainer = document.getElementById('modal-allergens-container');
 
     let isNavbarFixed      = false;
     let isScrollingFromClick = false;
@@ -131,26 +133,36 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ───────── Función para abrir el modal ─────────
 function openModal(item, category) {
-    // 2a) Imagen del producto
+    // Imagen del producto
     modalImg.src = item.image;
     modalImg.alt = item.name;
-  
-    // 2b) Nombre (solo el contenido, en negrita)
+
+    // Nombre del producto
     modalName.textContent = item.name || '—';
-  
-    // 2c) DESCRIPCIÓN: tomamos item.description en lugar de category.extended_title
-    modalIngredients.textContent =
+
+    // Precio
+    modalPrice.textContent = item.price || '';
+
+    // Descripción/Ingredientes
+    modalDescription.textContent =
       (item.description && item.description.trim())
         ? item.description.trim()
-        : '—';
-  
-    // 2d) Alérgenos (se mantiene etiqueta + contenido)
-    modalAll.textContent =
-      (item.allergens && item.allergens.trim())
-        ? item.allergens.trim()
-        : '—';
-  
-    // 2e) Mostrar modal y bloquear scroll de fondo
+        : '';
+
+    // Alérgenos - ocultar si no hay datos válidos
+    const hasAllergens = item.allergens &&
+                         item.allergens.trim() &&
+                         item.allergens.trim() !== 'XXX' &&
+                         item.allergens.trim() !== '';
+
+    if (hasAllergens) {
+      modalAllergens.textContent = item.allergens.trim();
+      modalAllergensContainer.style.display = 'flex';
+    } else {
+      modalAllergensContainer.style.display = 'none';
+    }
+
+    // Mostrar modal con animación
     modal.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
   }

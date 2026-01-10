@@ -40,19 +40,20 @@
 
     <!-- Contenido textual dentro del modal -->
     <div class="modal__content">
-      <!-- Solo el nombre en negrita (sin etiqueta) -->
-      <p class="modal__field modal__name">
-        <strong id="modal-name"></strong>
-      </p>
-      <!-- Solo los ingredientes (sin etiqueta) -->
-      <p class="modal__field modal__ingredients">
-        <span id="modal-ingredients"></span>
-      </p>
-      <!-- Alérgenos (con su etiqueta) -->
-      <p class="modal__field">
-        <strong>Alergenos:</strong>
-        <span id="modal-allergens"></span>
-      </p>
+      <!-- Header: Nombre + Precio -->
+      <div class="modal__header">
+        <h2 id="modal-name" class="modal__title"></h2>
+        <span id="modal-price" class="modal__price"></span>
+      </div>
+
+      <!-- Descripción/Ingredientes -->
+      <p id="modal-description" class="modal__description"></p>
+
+      <!-- Alérgenos -->
+      <div id="modal-allergens-container" class="modal__allergens">
+        <span class="modal__allergens-icon">⚠️</span>
+        <span id="modal-allergens" class="modal__allergens-text"></span>
+      </div>
     </div>
   </article>
 </div>
