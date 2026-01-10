@@ -132,40 +132,56 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => console.error('Error al cargar menu.yml:', error));
 
     // ───────── Función para abrir el modal ─────────
-function openModal(item, category) {
-    // Imagen del producto
-    modalImg.src = item.image;
-    modalImg.alt = item.name;
+    function openModal(item, category) {
+        // Verificar que el modal existe
+        if (!modal) {
+            console.error('Modal no encontrado');
+            return;
+        }
 
-    // Nombre del producto
-    modalName.textContent = item.name || '—';
+        // Imagen del producto
+        if (modalImg) {
+            modalImg.src = item.image;
+            modalImg.alt = item.name;
+        }
 
-    // Precio
-    modalPrice.textContent = item.price || '';
+        // Nombre del producto
+        if (modalName) {
+            modalName.textContent = item.name || '—';
+        }
 
-    // Descripción/Ingredientes
-    modalDescription.textContent =
-      (item.description && item.description.trim())
-        ? item.description.trim()
-        : '';
+        // Precio
+        if (modalPrice) {
+            modalPrice.textContent = item.price || '';
+        }
 
-    // Alérgenos - ocultar si no hay datos válidos
-    const hasAllergens = item.allergens &&
-                         item.allergens.trim() &&
-                         item.allergens.trim() !== 'XXX' &&
-                         item.allergens.trim() !== '';
+        // Descripción/Ingredientes
+        if (modalDescription) {
+            modalDescription.textContent =
+                (item.description && item.description.trim())
+                    ? item.description.trim()
+                    : '';
+        }
 
-    if (hasAllergens) {
-      modalAllergens.textContent = item.allergens.trim();
-      modalAllergensContainer.style.display = 'flex';
-    } else {
-      modalAllergensContainer.style.display = 'none';
+        // Alérgenos - ocultar si no hay datos válidos
+        const hasAllergens = item.allergens &&
+                             item.allergens.trim() &&
+                             item.allergens.trim() !== 'XXX' &&
+                             item.allergens.trim() !== '';
+
+        if (modalAllergensContainer) {
+            if (hasAllergens && modalAllergens) {
+                modalAllergens.textContent = item.allergens.trim();
+                modalAllergensContainer.style.display = 'flex';
+            } else {
+                modalAllergensContainer.style.display = 'none';
+            }
+        }
+
+        // Mostrar modal con animación
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
     }
-
-    // Mostrar modal con animación
-    modal.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-  }
     // ───────── Función para cerrar el modal ─────────
     function closeModal() {
       modal.classList.add('hidden');
