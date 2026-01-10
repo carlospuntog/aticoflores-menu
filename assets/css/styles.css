@@ -1,14 +1,21 @@
 :root {
-    --mauve-color: #8A4FFF;
-    --mauve-light: #B894FF;
-    --dark-text: #222222;
-    --light-bg: #FAFAFA;
+    /* Paleta alineada con aticoflores.com */
+    --accent-primary: #185347;    /* Verde oscuro (marca) */
+    --accent-secondary: #327d6e;  /* Verde teal */
+    --accent-tertiary: #a8526b;   /* Rosa/magenta (detalle) */
+    --dark-text: #021d17;         /* Texto principal */
+    --medium-text: #333333;       /* Texto secundario */
+    --light-bg: #f9f7f7;          /* Fondo cálido */
     --white: #FFFFFF;
-    --gray-light: #EEEEEE;
-    --soft-pink: #F5C8D1; /* Rosa más vivo (antes #F9E6E9) */
-    --soft-green: #C2E8C2; /* Verde más vivo (antes #D4F0D4) */
-    --soft-blue-gray: #D1DCE5; /* Gris azulado más vivo (antes #E6ECEF) */
-    }
+    --gray-light: #e6e8e1;        /* Fondo sutil verdoso */
+    --soft-pink: #ebe1e5;         /* Rosa muy claro */
+    --soft-green: #e6e8e1;        /* Verde grisáceo claro */
+    --soft-blue-gray: #e6e8e1;    /* Gris verdoso */
+
+    /* Tipografías */
+    --font-heading: 'EB Garamond', serif;
+    --font-body: 'Lato', sans-serif;
+}
 
 * {
     margin: 0;
@@ -17,8 +24,8 @@
 }
 
 body {
-    font-family: 'IBM Plex Mono', monospace;
-    background-color: var(--white);
+    font-family: var(--font-body);
+    background-color: var(--light-bg);
     color: var(--dark-text);
     line-height: 1.6;
     padding-top: 35px;
@@ -29,16 +36,16 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: #000000;
+    background-color: var(--accent-primary);
     color: var(--white);
     z-index: 1001;
-    padding: 9.2px 0;
+    padding: 10px 0;
     text-align: center;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-body);
     font-weight: 600;
-    font-size: 16px;
-    letter-spacing: 1px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    font-size: 14px;
+    letter-spacing: 2px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 .navbar {
@@ -75,11 +82,11 @@ body {
 }
 
 .navbar a.nav-link {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-body);
     color: var(--dark-text);
     text-decoration: none;
     margin: 0 10px;
-    font-size: 16px;
+    font-size: 14px;
     padding: 8px 12px;
     position: relative;
     border-radius: 4px;
@@ -91,11 +98,12 @@ body {
 }
 
 .navbar a.nav-link:hover .nav-text {
-    background-color: var(--mauve-light);
+    background-color: var(--accent-secondary);
+    color: var(--white);
 }
 
 .navbar a.nav-link.active .nav-text {
-    background-color: var(--mauve-color) !important;
+    background-color: var(--accent-primary) !important;
     color: var(--white);
     font-weight: 600;
     border-radius: 4px;
@@ -117,7 +125,8 @@ body {
 .nav-text {
     padding: 4px 8px;
     transition: all 0.3s ease;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-body);
+    border-radius: 4px;
 }
 
 .container {
@@ -127,24 +136,24 @@ body {
 }
 
 .section-title {
-    font-size: 20px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 400; /* Quitamos negrita */
+    font-size: 24px;
+    font-family: var(--font-heading);
+    font-weight: 600;
     text-align: left;
     margin: 30px 0 20px;
     padding-bottom: 10px;
-    border-bottom: 1px solid var(--mauve-color);
-    scroll-margin-top: 120px; /* Más espacio para el título */
+    border-bottom: 2px solid var(--accent-primary);
+    scroll-margin-top: 120px;
     color: var(--dark-text);
 }
 
 .subsection-title {
-    font-size: 18px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 700;
+    font-size: 20px;
+    font-family: var(--font-heading);
+    font-weight: 500;
     margin: 25px 0 15px;
     padding-bottom: 10px;
-    border-bottom: 1px solid var(--mauve-light);
+    border-bottom: 1px solid var(--accent-secondary);
     scroll-margin-top: 120px;
     color: var(--dark-text);
 }
@@ -170,14 +179,15 @@ body {
     background: var(--white);
     border-radius: 8px;
     overflow: hidden;
-    border: 1px solid #D3D3D3; /* Borde gris elegante */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid var(--gray-light);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
 }
 
 .menu-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(24, 83, 71, 0.1);
+    border-color: var(--accent-secondary);
 }
 
 .item-details {
@@ -188,61 +198,66 @@ body {
 }
 
 .item-title {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-heading);
     font-weight: 600;
-    font-size: 16px; /* Ajustamos el tamaño */
+    font-size: 18px;
     margin-bottom: 5px;
     color: var(--dark-text);
 }
 
 .item-description {
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    color: #666;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--medium-text);
     margin-bottom: 8px;
     flex-grow: 1;
+    line-height: 1.5;
 }
 
 .item-price {
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: var(--font-body);
     font-weight: 700;
-    color: var(--mauve-color);
-    font-size: 14px;
+    color: var(--accent-primary);
+    font-size: 15px;
     align-self: flex-start;
     padding: 2px 0;
 }
 
 .brand-header {
     text-align: center;
-    padding: 20px 0;
+    padding: 25px 0;
 }
 
 .brand-title {
-    font-size: 36px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: var(--mauve-color);
-    text-transform: uppercase;
+    font-size: 42px;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: var(--accent-primary);
+    text-transform: none;
+    letter-spacing: -0.5px;
 }
 
 .brand-subtitle {
-    font-size: 16px;
-    font-family: 'IBM Plex Mono', monospace;
-    color: #555;
+    font-size: 14px;
+    font-family: var(--font-body);
+    font-weight: 400;
+    color: var(--medium-text);
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
 .availability {
     text-align: center;
-    font-size: 14px;
-    font-style: italic;
-    font-family: 'IBM Plex Mono', monospace;
-    color: #555;
+    font-size: 13px;
+    font-style: normal;
+    font-family: var(--font-body);
+    color: var(--medium-text);
     margin-bottom: 15px;
     background-color: var(--gray-light);
-    padding: 8px;
-    border-radius: 8px;
-    font-weight: 500;
+    padding: 10px;
+    border-radius: 6px;
+    font-weight: 400;
 }
 
 .item-image {
@@ -363,17 +378,7 @@ body {
     }
 }
 
-:root {
-    --mauve-color: #8A4FFF;
-    --mauve-light: #B894FF;
-    --dark-text: #222222;
-    --light-bg: #FAFAFA;
-    --white: #FFFFFF;
-    --gray-light: #EEEEEE;
-    --soft-pink: #F5C8D1; /* Rosa más vivo */
-    --soft-green: #C2E8C2; /* Verde más vivo */
-    --soft-blue-gray: #D1DCE5; /* Gris azulado más vivo (antes #E6ECEF) */
-}
+/* Variables duplicadas eliminadas - usar las de arriba */
 
 /* Estilos para categorías con fondo */
 .menu-category.with-background {
@@ -383,23 +388,23 @@ body {
 }
 
 .menu-category.with-background.bg-accent {
-    background-color: rgba(138, 79, 255, 0.5); /* --mauve-color con 50% de transparencia */
+    background-color: rgba(24, 83, 71, 0.15); /* Verde marca con transparencia */
 }
 
 .menu-category.with-background.bg-accent-light {
-    background-color: rgba(184, 148, 255, 0.5); /* --mauve-light con 50% de transparencia */
+    background-color: rgba(50, 125, 110, 0.12); /* Verde teal con transparencia */
 }
 
 .menu-category.with-background.bg-soft-pink {
-    background-color: var(--soft-pink); /* --soft-pink con 50% de transparencia */
+    background-color: var(--soft-pink);
 }
 
 .menu-category.with-background.bg-soft-green {
-    background-color: var(--soft-green); /* --soft-green con 50% de transparencia */
+    background-color: var(--soft-green);
 }
 
 .menu-category.with-background.bg-soft-blue-gray {
-    background-color: var(--soft-blue-gray); /* --soft-blue-gray con 50% de transparencia */
+    background-color: var(--soft-blue-gray);
 }
 /* … (tu CSS existente hasta llegar a la sección del modal) … */
 
@@ -433,24 +438,23 @@ body {
 /* Tarjeta principal del modal */
 .modal__card {
     position: relative;
-    /* Turbo: tamaño máximo en desktop, pero no ocupa todo el viewport */
     width: clamp(320px, 80vw, 500px);
     max-height: 85vh;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    background: #fff;
+    background: var(--white);
     border-radius: 1rem;
     box-shadow: 0 12px 28px rgba(0 0 0 / 0.25);
     scrollbar-width: thin;
-    scrollbar-color: var(--mauve-color) transparent;
+    scrollbar-color: var(--accent-primary) transparent;
     z-index: 2000;
 }
 .modal__card::-webkit-scrollbar {
     width: 6px;
 }
 .modal__card::-webkit-scrollbar-thumb {
-    background: var(--mauve-color);
+    background: var(--accent-primary);
     border-radius: 3px;
 }
 
@@ -463,14 +467,19 @@ body {
     height: 32px;
     border-radius: 50%;
     border: none;
-    background: #000;
-    color: #fff;
+    background: var(--accent-primary);
+    color: var(--white);
     font-size: 1.25rem;
     line-height: 1;
     cursor: pointer;
     display: grid;
     place-items: center;
-    z-index: 2001;  /* Por encima de .modal__card */
+    z-index: 2001;
+    transition: background 0.2s ease;
+}
+
+.modal__close:hover {
+    background: var(--accent-secondary);
 }
 
 /* Figura / Imagen del producto */
@@ -498,28 +507,30 @@ body {
 .modal__field {
     margin-bottom: 1rem;
     font-size: 14px;
+    font-family: var(--font-body);
     color: var(--dark-text);
 }
 
 /* Solo el nombre (en negrita y alineado a la izquierda) */
 .modal__field.modal__name strong {
-    font-size: 1rem;
-    display: block;      /* se asegura de que ocupe toda la línea */
-    font-weight: 700;
+    font-size: 1.2rem;
+    font-family: var(--font-heading);
+    display: block;
+    font-weight: 600;
     text-align: left;
+    color: var(--accent-primary);
 }
 
 /* Solo los ingredientes (sin etiqueta) */
 .modal__field.modal__ingredients span {
     font-size: 0.95rem;
-    color: #444;
+    color: var(--medium-text);
     text-align: left;
     display: block;
-    /* Si quieres agregar un poco de interlineado: */
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
-/* Etiqueta “Alergenos:” + contenido */
+/* Etiqueta "Alergenos:" + contenido */
 .modal__field strong {
     font-weight: 600;
     margin-right: 0.25rem;
