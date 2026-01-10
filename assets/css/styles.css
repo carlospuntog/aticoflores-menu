@@ -182,6 +182,8 @@ body {
     border: 1px solid var(--gray-light);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
     transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(24, 83, 71, 0.1);
 }
 
 .menu-item:hover {
@@ -443,34 +445,37 @@ body {
 /* ============  ESTILOS DEL MODAL PRODUCTO  ============ */
 .modal {
     position: fixed;
-    inset: 0;
-    display: grid;
-    place-items: center;
-    z-index: 2000;
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
 }
 
-.modal:not(.hidden) {
-    visibility: visible;
-    opacity: 1;
+/* Cuando el modal está abierto */
+.modal.is-open {
+    display: flex;
 }
 
-/* Fondo semitransparente con blur */
+/* Fondo semitransparente */
 .modal__overlay {
-    position: absolute;
-    inset: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    z-index: 1999;
+    z-index: 9998;
 }
 
 /* Tarjeta principal del modal */
 .modal__card {
     position: relative;
-    width: clamp(320px, 85vw, 420px);
+    width: 90%;
+    max-width: 420px;
     max-height: 85vh;
     display: flex;
     flex-direction: column;
@@ -478,15 +483,8 @@ body {
     background: var(--white);
     border-radius: 16px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    scrollbar-width: thin;
-    scrollbar-color: var(--accent-primary) transparent;
-    z-index: 2000;
-    transform: scale(0.95) translateY(10px);
-    transition: transform 0.3s ease;
-}
-
-.modal:not(.hidden) .modal__card {
-    transform: scale(1) translateY(0);
+    z-index: 10000;
+    -webkit-overflow-scrolling: touch;
 }
 
 .modal__card::-webkit-scrollbar {

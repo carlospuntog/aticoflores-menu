@@ -178,14 +178,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Mostrar modal con animación
-        modal.classList.remove('hidden');
+        // Mostrar modal
+        modal.classList.add('is-open');
         document.body.style.overflow = 'hidden';
     }
+
     // ───────── Función para cerrar el modal ─────────
     function closeModal() {
-      modal.classList.add('hidden');
-      document.body.style.overflow = '';
+        modal.classList.remove('is-open');
+        document.body.style.overflow = '';
     }
 
     // 3) Listeners para cerrar el modal (clic en overlay o tecla Esc)
@@ -195,9 +196,9 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-        closeModal();
-      }
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+            closeModal();
+        }
     });
 
     // ───────── Lógica de scroll y navbar (mantener tu código existente) ─────────
