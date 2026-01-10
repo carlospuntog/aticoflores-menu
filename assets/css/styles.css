@@ -264,19 +264,19 @@ body {
     margin-top: 44px; /* Altura del top-navbar */
     position: relative;
     overflow: hidden;
-    /* Banner de flores - patrón repetible optimizado (76KB) */
-    background-image: url('../images2/banner-flores-tile.jpg');
-    background-size: 250px;
+    /* Hero banner optimizado (112KB) */
+    background-image: url('../images2/hero_menu_optimized.jpg');
+    background-size: cover;
     background-position: center;
-    background-repeat: repeat;
+    background-repeat: no-repeat;
 }
 
-/* Overlay sutil para mejorar legibilidad del texto */
+/* Overlay oscuro para mejorar legibilidad del texto blanco */
 .brand-header::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(255, 255, 255, 0.35);
+    background: rgba(0, 0, 0, 0.4);
     z-index: 0;
 }
 
@@ -291,19 +291,20 @@ body {
     font-family: var(--font-heading);
     font-weight: 800;
     margin-bottom: 8px;
-    color: var(--accent-primary);
+    color: var(--white);
     text-transform: none;
     letter-spacing: -0.5px;
-    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .brand-subtitle {
     font-size: 14px;
     font-family: var(--font-body);
     font-weight: 500;
-    color: var(--medium-text);
+    color: var(--white);
     letter-spacing: 1px;
     text-transform: uppercase;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .availability {
