@@ -385,22 +385,17 @@ body {
 }
 
 .item-image {
-    width: 90px;
-    height: 90px;
-    border-radius: 14px;
-    object-fit: cover;
+    width: 85px;
+    height: 85px;
+    border-radius: 10px;
+    object-fit: contain;
     object-position: center;
-    margin: -10px 15px -10px 10px;
-    box-shadow: 0 8px 25px rgba(24, 83, 71, 0.2);
-    transition: all var(--transition-smooth);
-    position: relative;
-    z-index: 2;
-    background: var(--white);
+    margin: 10px;
+    transition: transform var(--transition-smooth);
 }
 
 .menu-item:hover .item-image {
-    transform: scale(1.1) translateY(-4px);
-    box-shadow: 0 15px 35px rgba(24, 83, 71, 0.25);
+    transform: scale(1.08);
 }
 
 @media (max-width: 576px) {
@@ -512,14 +507,13 @@ body {
     }
 
     .item-image {
-        width: 85px;
-        height: 85px;
-        border-radius: 12px;
-        object-fit: cover;
+        width: 80px;
+        height: 80px;
+        border-radius: 10px;
+        object-fit: contain;
         object-position: center;
         background-color: var(--white);
-        margin: -8px 12px -8px 8px;
-        box-shadow: 0 6px 20px rgba(24, 83, 71, 0.18);
+        margin: 8px;
     }
 }
 
