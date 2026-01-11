@@ -385,17 +385,22 @@ body {
 }
 
 .item-image {
-    width: 85px;
-    height: 85px;
-    border-radius: 10px;
-    object-fit: contain;
+    width: 90px;
+    height: 90px;
+    border-radius: 14px;
+    object-fit: cover;
     object-position: center;
-    margin: 10px;
-    transition: transform var(--transition-smooth);
+    margin: -10px 15px -10px 10px;
+    box-shadow: 0 8px 25px rgba(24, 83, 71, 0.2);
+    transition: all var(--transition-smooth);
+    position: relative;
+    z-index: 2;
+    background: var(--white);
 }
 
 .menu-item:hover .item-image {
-    transform: scale(1.08);
+    transform: scale(1.1) translateY(-4px);
+    box-shadow: 0 15px 35px rgba(24, 83, 71, 0.25);
 }
 
 @media (max-width: 576px) {
@@ -507,23 +512,15 @@ body {
     }
 
     .item-image {
-        width: 80px;
-        height: 80px;
-        border-radius: 0px;
-        object-fit: contain;
+        width: 85px;
+        height: 85px;
+        border-radius: 12px;
+        object-fit: cover;
         object-position: center;
         background-color: var(--white);
+        margin: -8px 12px -8px 8px;
+        box-shadow: 0 6px 20px rgba(24, 83, 71, 0.18);
     }
-}
-
-.item-image {
-    width: 120px;
-    height: 120px;
-    border-radius: 8px;
-    object-fit: contain;
-    object-position: center;
-    margin-left: 20px;  /* Ajusta este valor según sea necesario */
-    margin-right: 20px; /* Ajusta este valor según sea necesario */
 }
 
 /* Estilos para el primer menú en escritorio */
