@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(function (datos) {
             pintar(datos.filter(activa), contenedor, navegacion);
             if (cargando) cargando.remove();
+            medirNavegacion(document.querySelector('.carta-nav'));
             vigilarScroll(navegacion);
         })
         .catch(function (error) {
@@ -201,6 +202,30 @@ function plato(item) {
     }
 
     return li;
+}
+
+/* Publica el alto real de la tira de secciones en --alto-nav.
+ *
+ * De ahi lo lee scroll-padding-top, para que al pinchar un pill la seccion
+ * quede DEBAJO de la tira y no detras. No vale un numero fijo: la tira mide
+ * una fila en movil y hasta tres en escritorio, donde los pills se
+ * reparten, y cambia al girar el telefono.
+ *
+ * Con ResizeObserver y no escuchando resize: el alto tambien cambia cuando
+ * cambia la fuente o cuando el navegador decide repartir los pills de otra
+ * forma, y eso no dispara un resize de la ventana. */
+function medirNavegacion(nav) {
+    if (!nav) return;
+    var aplicar = function () {
+        document.documentElement.style.setProperty('--alto-nav', Math.round(nav.getBoundingClientRect().height) + 'px');
+    };
+    aplicar();
+    if ('ResizeObserver' in window) {
+        new ResizeObserver(aplicar).observe(nav);
+    } else {
+        window.addEventListener('resize', aplicar);
+        window.addEventListener('orientationchange', aplicar);
+    }
 }
 
 /* Marca en la tira la seccion que se esta leyendo.
