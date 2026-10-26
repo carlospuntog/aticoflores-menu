@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function () {
             if (cargando) cargando.remove();
             medirNavegacion(document.querySelector('.carta-nav'));
             vigilarScroll(navegacion);
-            irAlAncla();
             limpiarAncla(navegacion);
         })
         .catch(function (error) {
@@ -206,39 +205,18 @@ function plato(item) {
     return li;
 }
 
-/* Lleva a la seccion del enlace, si el enlace traia una.
+/* La carta NO salta a la seccion del enlace al abrirse.
  *
- * Hace falta porque la carta se pinta DESPUES de cargar la pagina: cuando
- * el navegador mira el ancla, esa seccion todavia no existe, asi que la
- * descarta y se queda arriba. Un enlace como
- * menu.aticoflores.com/#sec-dulces no llevaba a los dulces.
+ * Lo hizo durante unas horas el 26-10-2026 y fue un error mio: lo anadi sin
+ * que nadie lo pidiera, y el efecto era que al abrir la carta con un
+ * #seccion en la direccion la pagina arrancaba a media carta, con el
+ * rotulo de Atico Flores fuera de pantalla. En una carta de QR eso parece
+ * un fallo: lo primero que tiene que ver quien escanea es donde esta.
  *
- * Sin animacion: aqui no hay nada que seguir con la vista, se llega y ya.
- * Y se respeta scroll-padding-top, asi que cae con el mismo aire que al
- * pinchar un pill. */
-function irAlAncla() {
-    var id = (window.location.hash || '').slice(1);
-    if (!id) return;
-    var destino = document.getElementById(id);
-    if (!destino) return;
-
-    var ir = function () { destino.scrollIntoView({ behavior: 'auto', block: 'start' }); };
-    ir();
-
-    /* Y otra vez cuando acabe de cargar.
-     *
-     * La primera no basta y costo encontrar por que: la carta se pinta
-     * antes del evento load, y al dispararse load el navegador restaura la
-     * posicion de scroll que tenia guardada para esta pagina, que es
-     * arriba del todo. Deshace el salto y parece que el enlace no funciona.
-     *
-     * No se toca history.scrollRestoration: esa restauracion es buena
-     * cuando vuelves atras desde una ficha, y apagarla por esto romperia
-     * ese caso. Se repite el salto y ya. */
-    if (document.readyState !== 'complete') {
-        window.addEventListener('load', function () { requestAnimationFrame(ir); }, { once: true });
-    }
-}
+ * Asi que la carta abre siempre por arriba. El #seccion sigue haciendo
+ * falta para que pinchar un pill funcione sin javascript y para que el
+ * salto respete scroll-padding-top, pero no se reproduce al cargar y
+ * ademas se limpia de la direccion (ver abajo). */
 
 /* Quita el #seccion de la direccion despues de pinchar un pill.
  *
