@@ -1,76 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carta - Ático Flores - Invierno 2025</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/styles.css?nocache={{ 'now' | date: '%s' }}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carta · Ático Flores</title>
+<meta name="description" content="Carta de Ático Flores, cafetería y floristería en Caleruega 50, Madrid. Cafés de especialidad, focaccias, desayunos, dulces y cócteles.">
+<meta name="theme-color" content="#fdfdfc">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://menu.aticoflores.com/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Carta · Ático Flores">
+<meta property="og:description" content="Cafés de especialidad, focaccias, desayunos, dulces y cócteles. Caleruega 50, Madrid.">
+<meta property="og:url" content="https://menu.aticoflores.com/">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@400;700&family=Inter:wght@400;500;600&display=swap">
+
+<!-- El sistema de diseño de aticoflores.com, copiado tal cual por
+     scripts/traer-tokens.sh. No editar aqui. -->
+<link rel="stylesheet" href="assets/css/atico-tokens-v8.css">
+<link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body>
-  
-    <div class="top-navbar">
-        <span class="location-pill">
-            <svg class="location-icon" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-            </svg>
-            Caleruega 50
-        </span>
-        <span class="navbar-divider"></span>
-        <span class="navbar-title">Menú Invierno</span>
-    </div>
+<body class="v8">
 
-    <!-- Banner header fuera del container para ancho completo -->
-    <div class="brand-header">
-        <h1 class="brand-title">Ático Flores y +</h1>
-        <p class="brand-subtitle">Coffee & Eatery</p>
-    </div>
+<a class="carta-saltar" href="#carta">Ir a la carta</a>
 
-    <div class="container">
-        <div class="navbar">
-            <div class="menu-links" id="menu-links"></div>
-        </div>
-        <div id="menu-content"></div>
-    </div>
+<header class="carta-cab">
+    <p class="carta-cab__marca">Ático Flores</p>
+    <p class="carta-cab__dir">Caleruega 50 · Madrid</p>
+</header>
 
+<nav class="carta-nav" aria-label="Secciones de la carta">
+    <ul class="carta-nav__fila" id="carta-nav"></ul>
+</nav>
 
-<!-- ───────────── MODAL DE PRODUCTO ───────────── -->
-<div id="product-modal" class="modal" style="display:none">
-  <div class="modal__overlay" data-close></div>
+<main id="carta" class="carta">
+    <p class="carta__cargando" id="carta-cargando">Cargando la carta…</p>
+    <noscript>
+        <p class="carta__cargando">Esta carta necesita JavaScript. Pídenosla en barra y te la damos en papel,
+        o míranos en <a href="https://aticoflores.com/">aticoflores.com</a>.</p>
+    </noscript>
+</main>
 
-  <article class="modal__card" role="dialog" aria-modal="true">
-    <!-- Botón de cierre -->
-    <button class="modal__close" aria-label="Cerrar" data-close>×</button>
+<footer class="carta-pie">
+    <p class="carta-pie__alerg">Si tienes alguna alergia o intolerancia, pregúntanos antes de pedir.</p>
+    <p class="carta-pie__links">
+        <a href="https://aticoflores.com/">aticoflores.com</a>
+        <a href="https://maps.app.goo.gl/djQ7WB2LcuQv7hSu7">Cómo llegar</a>
+    </p>
+</footer>
 
-    <!-- Imagen del producto -->
-    <figure class="modal__figure">
-      <img id="modal-img" class="modal__img" alt="" loading="lazy" />
-    </figure>
-
-    <!-- Contenido textual dentro del modal -->
-    <div class="modal__content">
-      <!-- Header: Nombre + Precio -->
-      <div class="modal__header">
-        <h2 id="modal-name" class="modal__title"></h2>
-        <span id="modal-price" class="modal__price"></span>
-      </div>
-
-      <!-- Descripción/Ingredientes -->
-      <p id="modal-description" class="modal__description"></p>
-
-      <!-- Alérgenos -->
-      <div id="modal-allergens-container" class="modal__allergens">
-        <span class="modal__allergens-icon">⚠️</span>
-        <span id="modal-allergens" class="modal__allergens-text"></span>
-      </div>
-    </div>
-  </article>
-</div>
-<!-- ───────────── FIN DEL MODAL ───────────── -->
-
-    <script src="assets/js/script.js?nocache={{ 'now' | date: '%s' }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+<script src="assets/js/script.js"></script>
 </body>
 </html>

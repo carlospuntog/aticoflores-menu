@@ -1,314 +1,323 @@
-- id: refrescos
-  name: Zumos y Refrescos
-  extended_title: Zumos "cold pressed" y refrescos
-  image: assets/images2/refrescos.png
-  priority: false
-  timeSlot: Comida
-  hasBackground: false
-  backgroundColor: soft-blue-gray
-  active: YES
-  color: soft-blue-gray  # Color para el título del modal
-  items:
-    - name: Zumo de naranja
-      description: Zumo de naranja natural recién exprimido
-      price: 3,95€/4,95€
-      image: assets/images2/zumo_naranja.png
-      allergens: XXX
-    - name: Agua mineral
-      description: Agua natural o con gas
-      price: 1,50€/2,50€
-      image: assets/images2/agua_mineral.png
-      allergens: XXX
-    - name: Refrescos
-      description: Selección de refrescos disponibles
-      price: 3,00€
-      image: assets/images2/sodas.png
-      allergens: XXX
+# Carta de Ático Flores
+#
+# Fuente: la carta de Canva (cartataicoflores.my.canva.site), transcrita el
+# 26-10-2026. Sustituye a la version anterior, que no se tocaba desde el
+# 24-09-2025 y servia precios viejos: focaccia a 6,45 cuando se cobraban 7,
+# cappuccino a 2,75 cuando eran 2,90, flat white a 2,80 cuando eran 3,20.
+#
+# Formato de precio: "0,00 €", con coma decimal, dos decimales y espacio
+# antes del simbolo, que es la forma correcta en castellano. Se escribe aqui
+# y no se calcula en el javascript, para que lo que se ve sea exactamente lo
+# que hay en este fichero.
+#
+# El campo "image" se queda vacio a proposito: la carta es de texto. Las 67
+# fotos siguen en assets/images2/ porque el editor de UltraFlower las usa
+# para sus propias vistas previas; aqui no se piden.
+#
+# Las categorias salen en el orden en que estan escritas. No se reordenan
+# por franja horaria: el orden lo decide quien hace la carta.
 
-- id: bebidas-alcoholicas
-  name: Bebidas
-  image: assets/images2/cerveza.png
-  priority: false
-  timeSlot: Comida
-  hasBackground: false
-  backgroundColor: accent-light
-  active: YES
-  color: accent-light  # Color para el título del modal
-  items:
-    - name: Cerveza
-      description: Cerveza de barril o botella. Consulte variedades
-      price: 3,25€
-      image: assets/images2/cerveza.png
-      allergens: XXX
-    - name: Vino
-      description: Selección de vinos disponibles
-      price: 4,00€ - 6,00€
-      image: assets/images2/vino.png
-      allergens: XXX
-    - name: Vermú
-      description: Vermú tradicional servido con hielo y naranja
-      price: 4,00€
-      image: assets/images2/vermu.png
-      allergens: XXX
-      
 - id: cafes
   name: Cafés
-  extended_title: Cafés de especialidad arabica 100%
-  image: assets/images2/cafes.png
-  priority: false
-  timeSlot: Desayuno
-  hasBackground: false
-  backgroundColor: soft-blue-gray
+  extended_title: Café de especialidad, arábica 100%
+  image: ''
   active: YES
-  color: soft-blue-gray  # Color para el título del modal
+  time_slot: Desayuno
+  priority: true
   items:
-    - name: Café con leche
-      description: Café con leche
-      price: 2,20€
-      image: assets/images2/cafe_con_leche.png
-      allergens: XXX
     - name: Espresso
-      description: Café espresso
-      price: 2,00€
-      image: assets/images2/espresso.png
-      allergens: XXX
+      price: 2,00 €
     - name: Americano
-      description: Café americano largo
-      price: 2,00€
-      image: assets/images2/americano.png
-      allergens: XXX
-    - name: Cortado
-      description: Espresso con un toque de leche
-      price: 2,10€
-      image: assets/images2/cortado.png
-      allergens: XXX
+      price: 2,00 €
+    - name: Café latte
+      price: 2,30 €
     - name: Cappuccino
-      description: Café con espuma de leche
-      price: 2,75€
-      image: assets/images2/cappuccino.png
-      allergens: XXX
-    - name: Flat White
-      description: Espresso con leche texturizada
-      price: 2,80€
-      image: assets/images2/flat_white.png
-      allergens: XXX
-    - name: Latte Macchiato
-      description: Leche vaporizada con un shot de espresso
-      price: 2,75€
-      image: assets/images2/flat_white.png
-      allergens: XXX
-    - name: Chocolate
-      description: Chocolate caliente
-      price: 3,50€/4,50€
-      image: assets/images2/chocolate.png
-      allergens: XXX
+      price: 2,90 €
+    - name: Flat white
+      price: 3,20 €
+    - name: Café bombón
+      price: 2,50 €
+    - name: Iced latte
+      price: 4,00 €
+    - name: Iced mocca
+      price: 4,20 €
+    - name: Frappé
+      price: 4,40 €
+    - name: Cold brew
+      price: 3,00 €
+    - name: ColaCao
+      price: 2,30 €
 
-- id: tostadas
-  name: Tostadas
-  extended_title: Tostadas con pan cristal - Incluye café o infusión
-  image: assets/images2/tostadas.png
-  priority: false
-  timeSlot: Desayuno
-  hasBackground: false
-  backgroundColor: soft-pink
+- id: cafes-especiales
+  name: Cafés especiales
+  image: ''
   active: YES
-  color: soft-pink  # Color para el título del modal
+  time_slot: Desayuno
   items:
-    - name: Clásica
-      description: Tomate rallado y AOVE
-      price: 4,95€
-      image: assets/images2/tostada_clasica.png
-      allergens: XXX
-    - name: Ibérica
-      description: Tomate, AOVE y jamón ibérico
-      price: 6,95€
-      image: assets/images2/tostada_iberica.png
-      allergens: XXX
-    - name: Aguacate
-      description: Aguacate, tomate, albahaca y AOVE
-      price: 6,95€
-      image: assets/images2/tostada_aguacate.png
-      allergens: XXX
+    - name: Pistacchio latte
+      price: 5,00 €
+    - name: Avellana latte
+      price: 4,00 €
+    - name: Vainilla latte
+      price: 4,00 €
+    - name: Passion latte
+      price: 4,00 €
+    - name: Caramel latte
+      price: 4,00 €
+    - name: Canela latte
+      price: 4,00 €
 
-- id: bowls
-  name: Bowls
-  extended_title: Bowls sanos
-  image: assets/images2/bowls.png
+- id: infusiones
+  name: Infusiones y tés
+  image: ''
+  active: YES
+  time_slot: Desayuno
+  items:
+    - name: Té verde moruno
+      price: 2,30 €
+    - name: Té verde japonés de cerezas
+      price: 2,30 €
+    - name: Té negro pakistaní
+      price: 2,30 €
+    - name: English breakfast
+      price: 2,30 €
+    - name: Té rojo
+      price: 2,30 €
+    - name: Rooibos relax
+      price: 2,30 €
+    - name: Rooibos galleta y naranja
+      price: 2,30 €
+    - name: Manzanilla
+      price: 2,30 €
+    - name: Poleo menta
+      price: 2,30 €
+    - name: Jengibre y limón
+      price: 2,30 €
+    - name: Chai latte
+      price: 4,20 €
+    - name: Matcha latte
+      price: 4,20 €
+
+- id: smoothies
+  name: Smoothies
+  image: ''
+  active: YES
+  time_slot: Comida
+  items:
+    - name: Melocotón, mango y fresa
+      price: 5,50 €
+    - name: Frutos rojos
+      price: 5,50 €
+    - name: Naranja, plátano y cúrcuma
+      price: 5,50 €
+    - name: Piña, mango y maracuyá
+      price: 5,50 €
+
+- id: desayunos
+  name: Nuestros combos de desayuno
+  extended_title: Café o infusión incluidos
+  image: ''
+  active: YES
+  time_slot: Desayuno
   priority: true
-  timeSlot: Desayuno
-  hasBackground: false
-  backgroundColor: soft-green
-  active: YES
-  color: soft-green  # Color para el título del modal
+  note: >-
+    Puedes añadir un zumo de naranja por 3,50 €. La oferta se aplica con café
+    espresso, americano, café con leche, ColaCao o infusiones de bolsa.
   items:
-    - name: Yogur
-      description: Yogur griego con granola y frutos rojos
-      price: 4,00€
-      image: assets/images2/bowl_yogur.png
-      allergens: XXX
-    - name: Super Fruit
-      description: Granada, mango, arándanos, kiwi y fresas (mezcla de frutas de temporada)
-      price: 5,00€
-      image: assets/images2/bowl_superfruit.png
-      allergens: XXX
-    - name: Açai
-      description: Açaí con plátano, frutos rojos y yogur
-      price: 6,95€
-      image: assets/images2/bowl_acai.jpg
-      allergens: XXX
+    - name: Desayuno básico
+      description: >-
+        Café o infusión, a elegir entre croissant o tostada de mermelada y
+        mantequilla.
+      price: 4,10 €
+    - name: Desayuno clásico
+      description: >-
+        Café o infusión, a elegir entre tostada de aceite y tomate, croissant
+        mixto o croissant a la plancha.
+      price: 5,50 €
+    - name: Desayuno completo
+      description: >-
+        Café o infusión, a elegir entre tostada de tomate y jamón, de tomate y
+        aguacate o de queso y aguacate.
+      price: 7,50 €
+    - name: Desayuno Ático
+      description: >-
+        Café o infusión, a elegir entre tostada de tomate, aguacate y jamón;
+        de tomate, aguacate y salmón; de aguacate, tomate y anchoas; de queso
+        de cabra, tomate y mortadela de pistacho; o tortitas con fruta y
+        mermelada.
+      price: 9,50 €
 
-- id: ensaladas
-  name: Ensaladas
-  extended_title: Ensaladas frescas y completas
-  image: assets/images2/ensaladas.png
-  priority: false
-  timeSlot: Comida
-  hasBackground: false
-  backgroundColor: soft-green
-  active: NO
-  color: soft-green  # Color para el título del modal
-  items:
-    - name: Ensalada Caprese
-      description: Tomate fresco, mozzarella de búfala, pesto genovés y albahaca
-      price: 5,95€
-      image: assets/images2/ensalada_caprese.jpg
-      allergens: XXX
-    - name: Ensalada Ático Mezze
-      description: Cuscús, hummus, tomate, pepino, cebolla roja, mezcla de ensaladas y espinacas, queso feta, aceitunas y garbanzos especiados
-      price: 7,95€
-      image: assets/images2/ensalada_mezze.jpg
-      allergens: XXX
-    - name: Ensalada Ático Flores
-      description: Mezclum de lechugas baby, flores comestibles, frambuesas, arándanos, moras y aguacate, con vinagreta de miel, mostaza y limón
-      price: 7,95€
-      image: assets/images2/ensalada_atico.png
-      allergens: XXX
-
-- id: focaccia
+- id: focaccias
   name: Focaccias
-  extended_title: Focaccias hechas al momento con ingredientes premium
-  image: assets/images2/focaccia_salami_transparent.png
-  priority: true
-  timeSlot: Comida
-  hasBackground: false
-  backgroundColor: accent-light
+  image: ''
   active: YES
-  color: accent-light  # Color para el título del modal
-  items:
-    - name: Focaccia Ibérica
-      description: Jamón ibérico, tomate, AOVE
-      price: 6,45€
-      image: assets/images2/focaccia_iberico.jpg
-      allergens: XXX
-    - name: Focaccia de Gorgonzola y Mortadela
-      description: Gorgonzola dulce, mortadela boloñesa, tomates secos, pesto de pistachos
-      price: 6,45€
-      image: assets/images2/focaccia_gorgonzola.jpg
-      allergens: XXX
-    - name: Focaccia de Salami y Parmesano
-      description: Salami Finocchiona, crema de alcachofas, crema de parmesano, rúcula
-      price: 6,45€
-      image: assets/images2/focaccia_salami.jpg
-      allergens: XXX
-    - name: Focaccia de Tomate y Mozzarella
-      description: Tomate, mozzarella de búfala, pesto, albahaca fresca
-      price: 6,45€
-      image: assets/images2/focaccia_tomate.jpg
-      allergens: XXX
-
-- id: gofres
-  name: Gofres
-  extended_title: Gofres hechos al momento con receta propia  
-  image: assets/images2/gofres.png
+  time_slot: Comida
   priority: true
-  timeSlot: Merienda
-  hasBackground: false
-  backgroundColor: accent-light
-  active: NO
-  color: accent-light  # Color para el título del modal
   items:
-    - name: Clásico
-      description: Gofre recién hecho cubierto de salsa de chocolate y nata montada
-      price: 4,00€
-      image: assets/images2/gofre_clasico.png
-      allergens: XXX
-    - name: Fruta fresca
-      description: Gofre con fruta fresca variada con miel y nata
-      price: 5,00€
-      image: assets/images2/gofre_fruta.png
-      allergens: XXX
-    - name: Aguacate, salmón y mascarpone
-      description: Con salmón ahumado, crema de queso mascarpone y aguacate
-      price: 6,50€
-      image: assets/images2/gofre_aguacate.png
-      allergens: XXX
+    - name: Salami y parmesano
+      description: Salami, rúcula y queso parmesano.
+      price: 7,00 €
+    - name: Mortadela y gorgonzola
+      description: Mortadela, tomate semiseco, crema de pistacho y queso gorgonzola.
+      price: 7,00 €
+    - name: Pastrami y pepinillos
+      description: Pastrami, pepinillo, rúcula, mostaza y queso crema a la pimienta.
+      price: 7,00 €
+    - name: Porchetta y nduja
+      description: Porchetta, queso, crema de aceituna negra y nduja picante.
+      price: 7,00 €
+      tags: picante
+    - name: Mozzarella y pesto
+      description: Mozzarella, albahaca, tomate y pesto.
+      price: 7,00 €
+    - name: Vegana
+      description: Aguacate, tomate, rúcula, hummus y crema de aceituna negra.
+      price: 7,00 €
 
-- id: snacks-dulces
-  name: Snacks dulces
-  extended_title: Snacks dulces artesanales
-  image: assets/images2/cookie.png
-  priority: false
-  timeSlot: Merienda
-  hasBackground: false
-  backgroundColor: soft-pink
+- id: yogures
+  name: Yogures
+  image: ''
   active: YES
-  color: soft-pink  # Color para el título del modal
+  time_slot: Comida
   items:
-    - name: Cookies / Bizcochos
-      description: Variedad de galletas y bizcochos caseros
-      price: 3,50€
-      image: assets/images2/cookie.png
-      allergens: XXX
-    - name: Minipostres
-      description: Surtido de pequeñas porciones de postres del día
-      price: 6,95€
-      image: assets/images2/postre.png
-      allergens: XXX
+    - name: Yogur con granola
+      description: Yogur griego, granola y sirope de agave.
+      price: 4,00 €
+    - name: Yogur kiwi y plátano
+      description: Yogur griego, granola, kiwi y plátano.
+      price: 5,00 €
+    - name: Yogur con espirulina
+      description: >-
+        Yogur griego, espirulina, mermelada de frutos rojos, fresa, arándanos
+        y avena.
+      price: 5,50 €
+
+- id: refrescos
+  name: Zumos y refrescos
+  image: ''
+  active: YES
+  time_slot: Comida
+  items:
+    - name: Zumo de naranja
+      price: 4,00 €
+    - name: Granizado de limón
+      price: 4,00 €
+    - name: Coca-Cola
+      price: 3,50 €
+    - name: Coca-Cola Zero
+      price: 3,50 €
+    - name: Coca-Cola Zero Zero
+      price: 3,50 €
+    - name: Fanta Limón
+      price: 3,50 €
+    - name: Aquarius limón o naranja
+      price: 3,50 €
+    - name: Fuze Tea
+      price: 3,50 €
+    - name: Tónica
+      price: 3,50 €
+    - name: Agua con gas
+      price: 2,50 €
+    - name: Agua mineral
+      price: 1,50 €
+
+- id: vinos-cerveza
+  name: Vinos y cerveza
+  image: ''
+  active: YES
+  time_slot: Merienda
+  items:
+    - name: Mosaico, Ribera del Duero
+      description: Tinto
+      price: 3,50 €
+    - name: Ramón Bilbao, Rioja
+      description: Tinto
+      price: 3,50 €
+    - name: Ramón Bilbao
+      description: Blanco
+      price: 3,50 €
+    - name: Godello
+      description: Blanco
+      price: 4,50 €
+    - name: Mar de Frades
+      description: Blanco
+      price: 5,50 €
+    - name: Mahou 5 Estrellas
+      description: Cerveza
+      price: 3,00 €
+    - name: Ambar Triple Zero tostada
+      description: Cerveza sin alcohol
+      price: 3,00 €
+
+- id: otras-alcoholicas
+  name: Otras bebidas alcohólicas
+  image: ''
+  active: YES
+  time_slot: Merienda
+  items:
+    - name: Vermut
+      price: 4,00 €
+
+- id: cocteles
+  name: Cócteles
+  image: ''
+  active: YES
+  time_slot: Merienda
+  items:
+    - name: Ático tropical
+      description: Ron blanco, maracuyá, limón, tónica y menta.
+      price: 8,00 €
+    - name: Jardín cítrico
+      description: Ginebra, limón, agua con gas, almíbar y albahaca.
+      price: 8,00 €
+    - name: Gin-tonic floral
+      price: 8,00 €
+    - name: Soda italiana
+      description: Agua con gas, limón y sirope de fruta.
+      price: 6,00 €
+
+- id: dulces
+  name: Dulces
+  extended_title: Consultar expositores
+  image: ''
+  active: YES
+  time_slot: Merienda
+  items:
+    - name: Porción de tarta
+      price: 6,00 €
+    - name: Cookies
+      price: 3,80 €
+    - name: Porción de bizcocho
+      price: 3,50 €
+    - name: Alfajores
+      description: Varios sabores.
+      price: 4,00 €
+    - name: Palmeritas
+      price: 1,70 € / 2,00 €
     - name: Croissant
-      description: Croissant de mantequilla
-      price: 1,75€
-      image: assets/images2/croissant.png
-      allergens: XXX
-    - name: Croissant vegano
-      description: Croissant sin ingredientes de origen animal
-      price: 2,45€
-      image: assets/images2/croissant_vegano.png
-      allergens: XXX
-    - name: Tarta del día
-      description: Porción de tarta, consulta opciones disponibles
-      price: 5,95€
-      image: assets/images2/tartas.png
-      allergens: XXX
+      price: 1,80 €
+    - name: Mini croissant
+      price: 0,80 €
+    - name: Napolitana de chocolate
+      price: 2,30 €
+    - name: Cinnamon roll
+      price: 2,30 €
+    - name: Crujientes de pistacho o limón
+      price: 2,00 €
+    - name: Pancake
+      price: 1,50 €
 
-- id: cocktails
-  name: Cocktails
-  extended_title: Cocktails florales
-  image: assets/images2/atico_tropical.png
-  priority: false
-  timeSlot: Merienda
-  hasBackground: false
-  backgroundColor: soft-pink
+- id: sin-gluten
+  name: Sin gluten
+  image: ''
   active: YES
+  time_slot: Merienda
   items:
-    - name: Jardín Cítrico
-      description: Ginebra, albahaca, jugo de limón, jarabe de azúcar
-      price: 8€
-      image: assets/images2/jardin_citrico.png
-      allergens: ""
-    - name: Ático Tropical
-      description: Ron infusionado con cardamomo, jarabe de maracuyá, zumo de limón, menta, Schweppes Citrus
-      price: 8€
-      image: assets/images2/atico_tropical.png
-      allergens: ""
-
-    - name: Flor de Frambuesa
-      description: Ginebra London Dry, jarabe de frambuesa, zumo de limón, clara de huevo
-      price: 8,00€
-      image: assets/images2/flor_de_frambuesa.png
-      allergens: ""
-
-    - name: Soda Italiana
-      description: Agua con gas, zumo de limón, jarabe a elegir (manzana verde, fresa o maracuyá)
-      price: 6,00€
-      image: assets/images2/soda_italiana.png
-      allergens: ""
+    - name: Cookie de chocolate
+      price: 3,50 €
+    - name: Palmera de chocolate
+      price: 4,50 €
+    - name: Palmera de albaricoque
+      price: 4,50 €
+    - name: Tarta de queso
+      price: 6,00 €

@@ -1,0 +1,709 @@
+/**
+ * Ático Flores · Tokens del sistema de diseño v8
+ *
+ * Fuente: canvas aticofloresv2.pen, frames "UX UI System Design v7.4 · Radix
+ * Refined", "Nueva identidad · Universo botánico v7" y "Reglas de adaptación
+ * por ancho". Extraído el 18 de octubre de 2026.
+ *
+ * Paleta: Kanagawa (recomendada en el frame "Navegador de paletas oscuras").
+ *
+ * Este fichero NO se carga en producción todavía. Lo consumen solo las rutas
+ * de preview del rediseño. Ver docs/design-system/v8.md.
+ *
+ * Convive con atico-global.css, que mantiene los tokens --atico-* del v1 que
+ * usa el sitio actual. No se toca ninguno de aquellos.
+ */
+
+:root {
+
+  /* ---------------------------------------------------------------
+   * TIPOGRAFÍA
+   *
+   * Dos familias. Averia Serif Libre sustituye a Playfair Display como
+   * voz emocional; Inter se mantiene como voz humana y asume además la
+   * voz de dato (precio, fecha, origen) con tabular-nums y tracking.
+   *
+   * Geist Mono, que la identidad v7 proponía como tercera voz, queda
+   * fuera: el propio v7.4 ya la retiró de la escala, y una familia más
+   * es carga de descarga real en un sitio con LCP comprometido.
+   * --------------------------------------------------------------- */
+
+  --v8-font-display: "Averia Serif Libre", Georgia, "Times New Roman", serif;
+  --v8-font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Averia solo existe en 300, 400 y 700. El canvas usa 500, que no
+   * existe y el navegador sintetiza. Se fija 400 como peso de display:
+   * en tamaños grandes el peso medio añade ruido, no presencia. */
+  --v8-weight-display: 400;
+  --v8-weight-display-airy: 300;   /* frases largas y respiradas */
+  --v8-weight-display-strong: 700; /* disponible, sin uso por defecto */
+
+  --v8-weight-body: 400;
+  --v8-weight-medium: 500;
+  --v8-weight-label: 600;
+
+  /* Escala. Los titulares van muy apretados (1,02) a propósito. */
+  --v8-size-display: 72px;   --v8-lh-display: 1.02;
+  --v8-size-h1: 56px;        --v8-lh-h1: 1.02;
+  --v8-size-h2: 48px;        --v8-lh-h2: 1.02;
+  --v8-size-h3: 32px;        --v8-lh-h3: 1.10;
+  --v8-size-body-l: 18px;    --v8-lh-body-l: 1.50;
+  --v8-size-body-m: 16px;    --v8-lh-body-m: 1.50;
+  --v8-size-body-s: 13px;    --v8-lh-body-s: 1.45;
+  --v8-size-caption: 12px;   --v8-lh-caption: 1.33;
+
+  /* Interlineado cerrado para cifras y titulares pequeños */
+  --v8-lh-tight: 1.10;
+
+  /* Medida de lectura. El v7.4 fija 65-72 caracteres por línea. */
+  --v8-measure: 65ch;
+
+  /* Ancho de la entradilla de una seccion (la linea bajo el titular).
+   *
+   * No es --v8-measure. Esos 65 caracteres son para texto corrido, parrafos
+   * que se leen seguidos. Una entradilla es una sola frase y se lee de una
+   * pasada, asi que partirla en dos solo deja un trozo colgando.
+   *
+   * 760px da sitio a las dos que hay hoy (704px la del carrete, 671px la de
+   * categorias, medidas a 16px el 19-10-2026) y sigue muy por debajo de la
+   * columna de 1328, asi que una entradilla larga de verdad seguira partiendo
+   * en vez de cruzar la pagina entera. */
+  --v8-measure-deck: 760px;
+
+  /* Voz de dato: Inter en mayúsculas, cifras tabulares y tracking.
+   * Ej: TALLER 08:12 — PEONÍA / MADRID / 42 € */
+  --v8-tracking-data: 0.08em;
+  --v8-tracking-wordmark: 0.08em;
+  --v8-tracking-label: 0.06em;
+  --v8-tracking-display: -0.005em;
+
+  /* ---------------------------------------------------------------
+   * COLOR · paleta Kanagawa sobre neutros Radix sand
+   * --------------------------------------------------------------- */
+
+  /* Superficie y texto */
+  --v8-paper: #fdfdfc;
+  --v8-surface: #f9f9f8;
+  --v8-surface-inverse: #21201c;
+  --v8-ink: #21201c;
+  --v8-text-secondary: #63635e;
+
+  /* Texto del heroe que cae ENCIMA de la foto.
+   *
+   * No es --v8-text-secondary y no debe serlo. Ese gris esta pensado para ir
+   * sobre papel; sobre una foto depende de la foto. Con la imagen de flores
+   * sobre blanco daba 5,74:1 y cumplia. Al cambiarla por el escaparate, cuya
+   * pared es beige, el mismo gris se quedo en 2,90:1, muy por debajo del 4,5
+   * que exige un texto de 18px. Medido sobre la foto real el 24-10-2026.
+   *
+   * La tinta da 7,82:1 sobre esa misma pared, y sobre blanco 12:1. Es el
+   * unico valor que aguanta cambiar la foto sin volver a romperse, que es lo
+   * que acaba de pasar. La jerarquia la marcan el tamaño y el grosor, no el
+   * color. */
+  --s-hero-ink-sobre-foto: var(--v8-ink);
+  /* Tercer nivel de texto, solo para ::placeholder. Existia el rol pero no el
+   * token, y el checkout lo resolvia con #b0b0b0 / #bbb / #c0a888, los tres
+   * por debajo de 3:1 sobre papel. Este pasa 3:1 sobre los tres fondos del
+   * sistema: papel 3,54:1 · surface 3,42:1 · accent-soft 3,10:1. */
+  --v8-text-placeholder: #888782;
+  --v8-leaf: #60655f;
+  --v8-text-on-dark: #fdfdfc;
+  --v8-cream-soft-on-dark: #d9d4c5;
+  --v8-line: #dad9d6;
+  /* Arena calida ESTRUCTURAL. Mismo valor que la arena de temporada, pero
+   * esta no cambia con la campana: la usa la franja superior, que sale en
+   * todas las paginas y cuyos contrastes estan medidos (tinta encima,
+   * 13,55:1). Tono 38 grados, el mismo eje que --v8-sun: es el extremo claro
+   * de esa familia, por eso pega con las estrellas y el ambar. */
+  --v8-surface-warm: #f3e9d8;
+  --v8-line-on-dark: #4a553f;
+  --v8-fog: #f2fbf9;
+
+  /* Acento Kanagawa */
+  --v8-accent-strong: #c34043;
+  --v8-accent-secondary: #76946a;
+  --v8-accent-soft: #f6ece9;
+  --v8-accent-border: #d8b2a8;
+  --v8-on-accent: #fdfdfc;
+  --v8-petal: #d27e99;
+  --v8-sun: #e6c384;
+
+  /* Acción. La principal ya no es el verde Ático: es tinta.
+   * El verde queda reservado para lo estacional. */
+  --v8-action-primary: #21201c;
+  --v8-action-hover: #16161d;
+  --v8-action-seasonal: #76946a;
+  --v8-focus: #7e9cd8;
+
+  /* Estado */
+  --v8-success: #76946a;
+  --v8-warning: #e6c384;
+  --v8-error: #e82424;
+  --v8-info: #7e9cd8;
+
+  /* Temporada. Entre estaciones, definida en el canvas.
+   *
+   * Ni la terracota ni el oliva llegan a WCAG AA sobre texto pequeño
+   * (3,85 y 4,48 con blanco; peor con crema), asi que no sirven como
+   * fondo de una banda con texto. Para eso esta --v8-season-deep, el
+   * olive-deep del canvas, que da 8,62 y pasa con holgura. */
+  --v8-season-action: #c7653d;
+  --v8-season-atmosphere: #737a49;
+  --v8-season-bg: #f3e9d8;
+  --v8-season-deep: #474e2b;
+
+  /* ---------------------------------------------------------------
+   * PALETAS DEL CONFIGURADOR
+   *
+   * Las muestras que acompanian a cada opcion de tono. Son decision de
+   * diseno, no contenido suelto, asi que viven aqui y el config las
+   * referencia. Donde coincide con un token existente se reutiliza en
+   * vez de repetir el valor.
+   * --------------------------------------------------------------- */
+
+  --v8-palette-dusty-1: #e8c7c8;
+  --v8-palette-dusty-2: #f0dcd2;
+  --v8-palette-dusty-3: var(--v8-accent-border);
+
+  --v8-palette-warm-1: var(--v8-accent-strong);
+  --v8-palette-warm-2: var(--v8-sun);
+  --v8-palette-warm-3: #d98e3a;
+
+  --v8-palette-wild-1: var(--v8-sun);
+  --v8-palette-wild-2: #9aa87a;
+  --v8-palette-wild-3: var(--v8-season-bg);
+
+  --v8-palette-white-1: var(--v8-paper);
+  --v8-palette-white-2: #e9ecdf;
+  --v8-palette-white-3: var(--v8-accent-secondary);
+
+  /* ---------------------------------------------------------------
+   * ESPACIO · base de 4
+   * --------------------------------------------------------------- */
+
+  --v8-space-1: 4px;
+  --v8-space-2: 8px;
+  --v8-space-3: 12px;
+  --v8-space-4: 16px;
+  --v8-space-6: 24px;
+  --v8-space-8: 32px;
+  --v8-space-12: 48px;
+  --v8-space-16: 64px;
+
+  /* ---------------------------------------------------------------
+   * FORMA
+   *
+   * El canvas se contradice: el frame de layout del v7.4 dice "radio 4
+   * para controles", pero TODOS los componentes dibujados (Button/
+   * Primary, Secondary, Seasonal, Ghost e Input) usan 12 vía
+   * v7-control-radius. Manda el componente: es lo revisado y lo que se
+   * va a enseñar. La contradicción se resuelve en Pencil, no aquí.
+   *
+   * Estructura e imágenes sí van a 0, y el pill queda para estado y
+   * selección. Eso no se contradice en ningún sitio.
+   * --------------------------------------------------------------- */
+
+  --v8-radius-structure: 0;
+  --v8-radius-control: 12px;
+  --v8-radius-pill: 999px;
+
+  /* El distintivo también se contradice: radio 1 en la card de tienda y
+   * 8 en la de catálogo. Se unifica en 4, a medio camino, hasta que se
+   * cierre en el canvas. */
+  --v8-radius-badge: 4px;
+
+  --v8-border-width: 1px;
+  --v8-focus-width: 2px;
+  --v8-focus-offset: 2px;
+
+  /* Sombra. El v8 las reserva para overlays y elementos elevados: las
+   * secciones ordinarias se separan con espacio, color o borde. Se
+   * aligeran respecto al v1 en vez de eliminarse, para no romper
+   * jerarquías existentes al re-vestir la web actual. */
+  --v8-shadow-sm: 0 1px 2px rgba(33, 32, 28, .05);
+  --v8-shadow-md: 0 4px 16px rgba(33, 32, 28, .08);
+  --v8-shadow-lg: 0 12px 32px rgba(33, 32, 28, .10);
+
+  /* Velo de la foto ampliada. Es la tinta de la marca, no un negro puro:
+   * un #000 al lado de estos papeles calidos canta a plantilla. */
+  --v8-velo: rgba(33, 32, 28, 0.90);
+
+  /* ---------------------------------------------------------------
+   * CONTROLES
+   * --------------------------------------------------------------- */
+
+  --v8-control-height: 48px;
+  --v8-control-height-mobile: 50px;
+  --v8-control-padding-x: 24px;
+  --v8-control-text: 16px;
+  --v8-icon-size: 16px;
+  --v8-icon-gap: 8px;
+  --v8-touch-min: 44px;
+
+  /* Acción compacta dentro de una card: en Card/Shop Product v7 el
+   * añadir no es un botón ancho, es un cuadrado de 34 con borde fino y
+   * sin radio. Tiene su propio juego de tokens para que la regla
+   * general de botones no lo infle a 48. */
+  --v8-action-compact-size: 34px;
+  --v8-action-compact-radius: 0;
+
+  /* ---------------------------------------------------------------
+   * TARJETA DE PRODUCTO
+   * --------------------------------------------------------------- */
+
+  --v8-card-gap: 14px;
+  --v8-card-pad-x: 4px;
+  --v8-card-pad-bottom: 14px;
+  --v8-card-info-gap: 7px;
+
+  /* El precio se trata distinto según el peso que tenga en la pantalla.
+   * En la card de tienda es protagonista y va en Averia a 19/600; en la
+   * de catálogo es dato y va en Inter a 11/600. El canvas usa las dos,
+   * así que se nombran las dos en vez de forzar una. */
+  --v8-price-font-lead: var(--v8-font-display);
+  --v8-price-size-lead: 19px;
+  --v8-price-weight-lead: 600;
+  --v8-price-font-compact: var(--v8-font-body);
+  --v8-price-size-compact: 11px;
+  --v8-price-weight-compact: 600;
+
+  /* El detalle de la card está a 8 px en el canvas. El propio v7.4 fija
+   * 14 px como mínimo funcional y exige AA: se sube al mínimo y queda
+   * anotado como corrección a llevar a Pencil. */
+  --v8-card-detail-size: 11px;
+  --v8-card-detail-weight: 600;
+  --v8-card-detail-tracking: 0.08em;
+
+  /* ---------------------------------------------------------------
+   * LAYOUT
+   * --------------------------------------------------------------- */
+
+  --v8-max-width: 1328px;
+  --v8-gutter: 24px;
+  --v8-margin-desktop: 56px;
+
+  /* Margen lateral de una banda que pinta el fondo de lado a lado.
+   *
+   * No es lo mismo que --v8-margin-desktop. Ese es el margen de la columna de
+   * texto; este es lo que hay que apartar para que la columna quede centrada
+   * aunque la pantalla sea mucho mas ancha que la columna.
+   *
+   * Las bandas con fondo (confianza, carrete, configurador) NO pueden llevar
+   * max-width: se quedarian en 1.440 y en un monitor ancho asomaria el papel
+   * por los lados, que es justo lo que pasaba. Van a todo el ancho y es el
+   * relleno el que crece.
+   *
+   * Por debajo de 1.440 el calculo sale negativo y manda el margen normal. */
+  --s-margen-banda: max(
+    var(--v8-margin-desktop),
+    calc((100% - var(--v8-max-width)) / 2)
+  );
+  --v8-margin-laptop: 40px;
+  --v8-margin-tablet: 40px;
+  --v8-margin-mobile: 16px;
+
+  --v8-filters-sidebar: 250px;
+  --v8-product-card-min: 280px;
+
+  /* Alto de la fotografía de producto por ancho */
+  --v8-product-photo: 340px;
+
+  /* ---------------------------------------------------------------
+   * HOME V8 · proporciones de sección
+   *
+   * Medidas tomadas del frame "Home Ático Flores — Kanagawa v8" del
+   * canvas, que es de 1440 con márgenes de 56 (contenido 1328, el
+   * mismo --v8-max-width).
+   *
+   * Varias no caen en la escala de 4 del sistema (18, 26, 30, 34, 38,
+   * 510, 520, 600, 670). Se respetan porque la fidelidad a lo diseñado
+   * manda, y se nombran aquí para poder discutirlas en vez de tenerlas
+   * esparcidas por las reglas.
+   * --------------------------------------------------------------- */
+
+  /* Hero */
+  --s-hero-pad-top: 34px;
+  --s-hero-pad-bottom: 30px;
+  --s-hero-gap: 18px;
+  --s-hero-sub-width: 670px;
+  --s-hero-actions-gap: 24px;
+  /* La escena del hero se muestra entera, sin recorte, y se sube para que
+   * su cuarto superior (que es aire blanco) quede detras del titular.
+   * Con proporcion 2:1 la altura es la mitad del ancho (50vw), asi que un
+   * cuarto de la altura son 12,5vw. Se subio un 15% mas (7,5vw) y se bajo
+   * despues un 7% (3,5vw) para darle aire: queda en 16,5vw, o sea un 33%
+   * de la imagen integrado con el texto. */
+  --s-hero-overlap: 16.5vw;
+  /* En escritorio la escena se sube para que su cuarto superior, que es aire
+   * blanco, quede detras del titular.
+   *
+   * En movil se intento primero sin solape, porque con el encuadre original
+   * (2:1 entero) el texto invadia las flores. Ahora que la foto va ampliada y
+   * anclada abajo, su parte alta vuelve a ser cielo, asi que el solape se
+   * recupera y es justo lo que cierra el hueco blanco entre el texto y el
+   * ramo.
+   *
+   * 15vw, no un valor fijo: escala con la pantalla. Probado a 360, 390 y 430
+   * con la linea de datos completa delante. Por encima de ~20vw la segunda
+   * palabra de la derecha ("RECOGIDA") se monta sobre las flores. */
+  --s-hero-overlap-mobile: 18vw;
+  /* En movil el bloque de texto cierra mas pegado a la escena: sin la linea
+   * de valoracion y sin el rotulo del taller, el aire de 30px sobraba. */
+  --s-hero-pad-bottom-mobile: 14px;
+  /* El bloque de texto se comprime en movil para que la foto suba. Los dos
+   * son escalones del sistema: 12 es --v8-space-3 y 24 es --v8-space-6. */
+  --s-hero-gap-mobile: 12px;
+  --s-hero-pad-top-mobile: 24px;
+  /* La foto es 2:1 con casi medio cielo blanco. En movil se encuadra mas
+   * vertical para que el ramo tenga presencia.
+   *
+   * Comparados 2:1, 3:2 y 4:3 con la foto real antes de elegir. 4/3 gana un
+   * 50% de alto y es el que mejor queda: el pincushion de la izquierda y el
+   * crisantemo de la derecha se siguen leyendo, y el cielo blanco deja de
+   * mandar. 3:2 se quedaba corto. */
+  --s-hero-scene-ratio-mobile: 4 / 3;
+  /* La foto se amplia y se ancla abajo para echar el cielo fuera por arriba.
+   * Solo subir el alto no servia: agrandaba tambien el cielo, y las flores
+   * quedaban aun mas abajo. Comparados 160, 180 y 200%: 180 llena el
+   * encuadre sin comerse la gerbera, y a 180% una pantalla de 430px pide
+   * 774px de los 900 que tiene la foto, asi que no se amplia. */
+  /* El minimo para cubrir la caja 4:3 con una foto 2:1 es 150%. Estuvo en
+   * 180 porque la foto anterior era una banda de flores y recortar de mas no
+   * quitaba nada. Con el escaparate si: a 180 el gato se queda fuera del
+   * encuadre, y es el elemento que hace memorable la foto. Si algun dia
+   * vuelve una banda sin elementos sueltos, se puede subir otra vez. */
+  --s-hero-scene-zoom-mobile: 150%;
+  /* Punto focal horizontal del recorte de movil. 0 = borde izquierdo de la
+   * foto, 0,5 = centrada, 1 = borde derecho.
+   *
+   * Estaba centrada y centrada le cortaba la cara al gato. Con la caja 4:3 y
+   * la foto 2:1 ampliada al 150%, por pantalla solo pasan dos tercios del
+   * ancho; centrados son del 16,7% al 83,3% de la foto, y el gato empieza en
+   * el 7%. O sea que de el solo se veia el lomo.
+   *
+   * 0,11 abre la ventana en el 3,7% y la cierra en el 70,4%: entran el gato
+   * entero con su cara, las calabazas, la casita, las rosas y las setas. Lo
+   * que se pierde son los dos faroles de la derecha, que en vertical se veian
+   * cortados por la mitad de todas formas.
+   *
+   * Si algun dia cambia la foto, este es el unico numero que hay que mover:
+   * es la fraccion de la foto que queda a la izquierda del encuadre. */
+  --s-hero-foco-mobile: 0.11;
+  /* Fundido del borde alto de la escena.
+   *
+   * La escena se sube un 33% de su alto por detras del bloque de texto
+   * (--s-hero-overlap). Eso funcionaba con la foto anterior porque su parte
+   * alta era cielo blanco y la union no se veia. El escaparate tiene pared
+   * beige: el borde de la foto aparecia como una linea horizontal justo
+   * debajo del titular y el hero se quedaba sin aire.
+   *
+   * No se recorta la foto ni se baja: se disuelve su parte alta sobre el
+   * papel. Lo que antes era cielo ahora lo pone el fondo.
+   *
+   * Las paradas salen de medir el render a 1440, no a ojo. Sobre una escena
+   * de 720px de alto:
+   *   subtitulo      5-11%   -> papel limpio
+   *   botones       15-21%   -> pared al 30-60%, lee como blanco roto
+   *   linea de datos 24-26%  -> pared casi entera, ya con el texto acabando
+   *   bayas (dcha)     19%   -> se desvanecen en la esquina, son adorno
+   *   silla, gato, faroles 26-29% -> intactos
+   *
+   * Por eso cierra en el 29% y no mas abajo: un 45% daba mucho mas blanco
+   * pero se comia la cabeza del gato, que es lo que hace memorable la foto.
+   * Si se cambia la foto, mirar donde empieza el primer objeto por arriba y
+   * cerrar justo antes. */
+  --s-hero-fundido: linear-gradient(to bottom,
+      rgba(0, 0, 0, 0)    0,
+      rgba(0, 0, 0, .06)  8%,
+      rgba(0, 0, 0, .30) 16%,
+      rgba(0, 0, 0, .72) 23%,
+      rgba(0, 0, 0, 1)   29%);
+  --s-hero-star: 13px;
+
+  /* Banda superior: utilidad, va en el negro de Atico y ancla la cabecera.
+   *
+   * Es el negro calido del v8 (--v8-ink, #21201C), no el #0A0A0A del v1.
+   * Nace de la misma familia de neutros que el resto de la paleta, asi que
+   * no corta contra el papel ni contra el acento. */
+  /* La franja se cambia desde AQUI, con estos dos tokens y nada mas.
+   *
+   * Estuvo en tinta (--v8-surface-inverse). En movil, con la cabecera blanca
+   * encima y el hero blanco debajo, era un corte duro que dejaba la primera
+   * pantalla en blanco y negro. Pasa a la arena de temporada, que calienta
+   * el arranque sin gastar el acento: el granate ya esta en el "Tienda" del
+   * menu, el CTA del configurador, los numeros de paso y la banda del pie.
+   * Una franja granate a todo lo ancho lo convertiria en el color dominante
+   * y dejaria de leerse como acento.
+   *
+   * Cuelga de --v8-surface-warm y NO de --v8-season-bg, aunque hoy valgan lo
+   * mismo: el contrato dice que nada estructural puede depender de los
+   * tokens de temporada, y esta franja sale en todas las paginas. Si cuelga
+   * de temporada, al cambiar de campana se vuelve de otro color sin que
+   * nadie lo decida y los contrastes medidos dejan de valer.
+   *
+   * Para volver a negro: --v8-surface-inverse y --v8-text-on-dark. */
+  --s-topbar-bg:  var(--v8-surface-warm);
+  --s-topbar-ink: var(--v8-ink);
+
+  /* Franja de confianza tras la escena del hero: va en PAPEL, como en el
+   * canvas. Se probo en negro y pesaba demasiado, sobre todo en movil:
+   * dos bandas oscuras seguidas convierten la mitad superior en un ladrillo.
+   * La banda de arriba ya hace de ancla; esta solo tiene que informar.
+   *
+   * Lo que la separa del hero no es el color, es el filete. */
+  --s-trust-bg: var(--v8-paper);
+  --s-trust-border: var(--v8-line);
+
+  /* Movil: el canvas aprieta a 22/16, pasa a dos filas de dos y acorta los
+   * textos. Esas tres cosas juntas son las que quitan el peso. */
+  --s-trust-pad-y-mobile: 22px;
+  --s-trust-row-gap: 14px;
+  --s-trust-icon-mobile: 17px;
+
+  --s-trust-pad-y: 30px;
+  --s-trust-col-pad: 24px;
+  --s-trust-gap: 7px;
+  --s-trust-icon: 18px;
+
+  /* Configurador */
+  --s-cfg-pad-y: 64px;
+  --s-cfg-gap: 48px;
+  --s-cfg-stack-gap: 26px;
+  --s-cfg-preview-w: 520px;
+  --s-cfg-preview-h: 600px;
+  --s-cfg-preview-h-tablet: 420px;
+  --s-cfg-preview-h-mobile: 340px;
+  --s-cfg-summary-size: 20px;
+  --s-cfg-summary-min-h: 28px;
+  --s-cfg-price-size: 28px;
+
+  /* Carrete de fotos reales.
+   *
+   * No se fija el ancho de la foto, se fija CUANTAS se ven: el ancho sale de
+   * dividir el espacio disponible. El medio decimal es lo importante, no es
+   * un capricho: una foto cortada por la mitad es lo que le dice al dedo (o
+   * al raton) que ahi se desliza. Con fotos justas nadie desliza, y con una
+   * cortada solo por un canto parece un fallo de maquetacion en vez de una
+   * invitacion. */
+  --s-carrete-visibles: 5.5;
+  --s-carrete-pad-y-mobile: 32px;
+
+  /* Pills de selección. Es la altura del pill del carrete y de la home, y
+   * desde el 26-10-2026 tambien la del blog: alli habia dos (44 la barra de
+   * secciones, 40 los filtros de guias) y ninguna era esta. */
+  --s-pill-height: 38px;
+  --s-pending-min-h: 60vh;
+  --s-swatch-size: 11px;
+  --s-swatch-overlap: -4px;
+}
+
+/* -------------------------------------------------------------------
+ * RESPONSIVE
+ *
+ * La jerarquía permanece, el formato cambia. Cuatro anchos, según el
+ * frame "Reglas de adaptación por ancho".
+ *
+ * Regla de oro: las columnas se dividen por la mitad, nunca se reducen
+ * de una en una. Tres columnas se mantienen mientras la tarjeta no baje
+ * de 280 px.
+ * ------------------------------------------------------------------- */
+
+/* Portátil · 1024 a 1279 */
+@media (max-width: 1279px) {
+  :root {
+    --v8-size-display: 60px;
+    --v8-margin-desktop: var(--v8-margin-laptop);
+    --v8-product-photo: 320px;
+  }
+}
+
+/* Tablet · 768 a 1023 */
+@media (max-width: 1023px) {
+  :root {
+    --v8-size-display: 52px;
+    --v8-size-h1: 44px;
+    --v8-size-h2: 36px;
+    --v8-size-h3: 28px;
+    --v8-margin-desktop: var(--v8-margin-tablet);
+    --v8-product-photo: 300px;
+  }
+}
+
+/* Móvil · menos de 768 */
+@media (max-width: 767px) {
+  :root {
+    --v8-size-display: 42px;
+    --v8-size-h1: 36px;
+    --v8-size-h2: 30px;
+    --v8-size-h3: 24px;
+    --v8-size-body-l: 17px;
+    --v8-margin-desktop: var(--v8-margin-mobile);
+    --v8-product-photo: 190px;
+    --v8-control-height: var(--v8-control-height-mobile);
+  }
+}
+
+/* -------------------------------------------------------------------
+ * PRIMITIVAS
+ * ------------------------------------------------------------------- */
+
+.v8 {
+  font-family: var(--v8-font-body);
+  font-size: var(--v8-size-body-m);
+  line-height: var(--v8-lh-body-m);
+  color: var(--v8-ink);
+  background: var(--v8-paper);
+}
+
+.v8-display,
+.v8-h1,
+.v8-h2,
+.v8-h3 {
+  font-family: var(--v8-font-display);
+  font-weight: var(--v8-weight-display);
+  color: var(--v8-ink);
+  text-wrap: balance;
+  margin: 0;
+}
+
+.v8-display { font-size: var(--v8-size-display); line-height: var(--v8-lh-display); }
+.v8-h1      { font-size: var(--v8-size-h1);      line-height: var(--v8-lh-h1); }
+.v8-h2      { font-size: var(--v8-size-h2);      line-height: var(--v8-lh-h2); }
+.v8-h3      { font-size: var(--v8-size-h3);      line-height: var(--v8-lh-h3); }
+
+/* Segunda línea del hero y frases editoriales largas */
+.v8-airy { font-weight: var(--v8-weight-display-airy); }
+
+/* Wordmark: presencia por tracking, no por peso */
+.v8-wordmark {
+  font-family: var(--v8-font-display);
+  font-weight: var(--v8-weight-display);
+  letter-spacing: var(--v8-tracking-wordmark);
+  color: var(--v8-ink);
+}
+
+.v8-body-l  { font-size: var(--v8-size-body-l); line-height: var(--v8-lh-body-l); }
+.v8-caption { font-size: var(--v8-size-caption); line-height: var(--v8-lh-caption); color: var(--v8-text-secondary); }
+
+/* Voz de dato: sustituye a la mono */
+.v8-data {
+  font-family: var(--v8-font-body);
+  font-size: var(--v8-size-caption);
+  font-weight: var(--v8-weight-label);
+  letter-spacing: var(--v8-tracking-data);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+  color: var(--v8-leaf);
+}
+
+.v8-price {
+  font-family: var(--v8-font-body);
+  font-weight: var(--v8-weight-label);
+  font-variant-numeric: tabular-nums;
+  color: var(--v8-ink);
+}
+
+/* -------------------------------------------------------------------
+ * BOTONES
+ * ------------------------------------------------------------------- */
+
+.v8-btn {
+  font-family: var(--v8-font-body);
+  font-size: var(--v8-control-text);
+  font-weight: var(--v8-weight-medium);
+  min-height: var(--v8-control-height);
+  padding: 0 var(--v8-control-padding-x);
+  border-radius: var(--v8-radius-control);
+  border: var(--v8-border-width) solid transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--v8-icon-gap);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+
+.v8-btn svg { width: var(--v8-icon-size); height: var(--v8-icon-size); flex: none; }
+
+.v8-btn--primary   { background: var(--v8-action-primary); color: var(--v8-text-on-dark); }
+.v8-btn--primary:hover { background: var(--v8-action-hover); }
+
+.v8-btn--secondary { background: transparent; color: var(--v8-ink); border-color: var(--v8-ink); }
+.v8-btn--secondary:hover { background: var(--v8-surface); }
+
+.v8-btn--seasonal  { background: var(--v8-action-seasonal); color: var(--v8-paper); }
+
+.v8-btn--ghost     { background: transparent; color: var(--v8-ink); padding: 0 var(--v8-space-2); }
+
+.v8-btn[disabled],
+.v8-btn--disabled  { background: var(--v8-line); color: var(--v8-text-secondary); cursor: not-allowed; }
+
+.v8-btn:focus-visible {
+  outline: var(--v8-focus-width) solid var(--v8-focus);
+  outline-offset: 2px;
+}
+
+@media (max-width: 767px) {
+  .v8-btn--block { width: 100%; }
+}
+
+/* -------------------------------------------------------------------
+ * CAMPOS
+ * ------------------------------------------------------------------- */
+
+.v8-field { display: flex; flex-direction: column; gap: var(--v8-space-2); }
+
+.v8-field__label {
+  font-size: var(--v8-size-caption);
+  font-weight: var(--v8-weight-medium);
+  color: var(--v8-ink);
+}
+
+.v8-field__control {
+  min-height: var(--v8-control-height);
+  background: var(--v8-surface);
+  border: var(--v8-border-width) solid var(--v8-line);
+  border-radius: var(--v8-radius-control);
+  padding: 0 var(--v8-space-4);
+  font-family: var(--v8-font-body);
+  font-size: 15px;
+  color: var(--v8-ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.v8-field__control:focus-within {
+  outline: var(--v8-focus-width) solid var(--v8-focus);
+  outline-offset: 1px;
+}
+
+.v8-field__error {
+  font-size: var(--v8-size-caption);
+  color: var(--v8-error);
+}
+
+/* -------------------------------------------------------------------
+ * ACCESIBILIDAD
+ *
+ * WCAG 2.2 AA. Contraste de texto normal 4,5:1, foco visible de 2 px,
+ * objetivo táctil de 44 por 44, cuerpo mínimo de 16 px, el error nunca
+ * depende solo del color.
+ * ------------------------------------------------------------------- */
+
+.v8 :focus-visible {
+  outline: var(--v8-focus-width) solid var(--v8-focus);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .v8 *,
+  .v8 *::before,
+  .v8 *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
