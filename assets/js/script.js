@@ -219,7 +219,24 @@ function irAlAncla() {
     var id = (window.location.hash || '').slice(1);
     if (!id) return;
     var destino = document.getElementById(id);
-    if (destino) destino.scrollIntoView({ behavior: 'auto', block: 'start' });
+    if (!destino) return;
+
+    var ir = function () { destino.scrollIntoView({ behavior: 'auto', block: 'start' }); };
+    ir();
+
+    /* Y otra vez cuando acabe de cargar.
+     *
+     * La primera no basta y costo encontrar por que: la carta se pinta
+     * antes del evento load, y al dispararse load el navegador restaura la
+     * posicion de scroll que tenia guardada para esta pagina, que es
+     * arriba del todo. Deshace el salto y parece que el enlace no funciona.
+     *
+     * No se toca history.scrollRestoration: esa restauracion es buena
+     * cuando vuelves atras desde una ficha, y apagarla por esto romperia
+     * ese caso. Se repite el salto y ya. */
+    if (document.readyState !== 'complete') {
+        window.addEventListener('load', function () { requestAnimationFrame(ir); }, { once: true });
+    }
 }
 
 /* Publica el alto real de la tira de secciones en --alto-nav.
@@ -269,9 +286,19 @@ function vigilarScroll(navegacion) {
             });
             pill.setAttribute('aria-current', 'location');
             /* La tira se mueve sola para que el pill marcado se vea: con
-             * trece secciones, la de "Sin gluten" esta fuera de pantalla. */
+             * trece secciones, la de "Sin gluten" esta fuera de pantalla.
+             *
+             * Se mueve la tira a mano y NO con pill.scrollIntoView(). Ese
+             * metodo desplaza TODOS los contenedores con scroll que haya
+             * por encima, y el ultimo es el documento, asi que centrar el
+             * pill puede llevarse la pagina de paso. No he podido
+             * reproducirlo midiendo (el navegador sin ventana que uso para
+             * comprobar no hace scroll por codigo), asi que no afirmo que
+             * fuera la causa del tiron. Pero mover solo la tira hace
+             * exactamente lo que se quiere y no puede tocar la pagina. */
             if (navegacion.scrollWidth > navegacion.clientWidth) {
-                pill.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+                var centro = pill.offsetLeft - (navegacion.clientWidth - pill.offsetWidth) / 2;
+                navegacion.scrollTo({ left: Math.max(0, centro), behavior: 'smooth' });
             }
         });
     }, {
