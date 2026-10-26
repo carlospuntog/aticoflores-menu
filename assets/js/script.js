@@ -18,19 +18,17 @@
  * esperar a que el navegador se canse.
  */
 
-/* Vacio A PROPOSITO. El endpoint ya esta abierto y contesta, pero las
- * tablas de Supabase tienen todavia una carta vieja: 8 secciones y 34
- * platos, sin cafes especiales, ni smoothies, ni sin gluten.
+/* La carta la manda UltraFlower.
  *
- * Al apuntar aqui el 26-10-2026, la carta publica paso a servir esa. El
- * respaldo no salto porque no tenia por que: lo que llegaba era un YAML
- * perfectamente valido, solo que de otra carta. La comprobacion sabe
- * distinguir basura de carta, no una carta de otra, y eso no se arregla
- * desde aqui.
+ * Se apunto aqui el 26-10-2026, despues de comprobar que el endpoint
+ * devuelve las 13 secciones y los 84 platos, con la nota de los combos y
+ * la etiqueta del picante. La primera vez se apunto sin mirar, las tablas
+ * tenian una carta vieja de 8 secciones, y el cliente estuvo viendo esa.
  *
- * Se vuelve a poner la direccion DESPUES de pasar supabase/seed-carta.sql
- * y de comprobar que el endpoint devuelve 13 secciones y 84 platos. */
-var ORIGEN_REMOTO = '';
+ * El fichero del repositorio se queda de respaldo: si UltraFlower no
+ * contesta en ESPERA_REMOTO, o contesta algo que no es una carta, la
+ * pagina abre igual. */
+var ORIGEN_REMOTO = 'https://ultraflower.vercel.app/api/menu/public';
 var ORIGEN_LOCAL  = 'assets/data/menu.yml';
 var ESPERA_REMOTO = 2500;                     // ms antes de tirar del respaldo
 
