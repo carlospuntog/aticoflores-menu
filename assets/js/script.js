@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', function () {
             medirNavegacion(document.querySelector('.carta-nav'));
             vigilarScroll(navegacion);
             irAlAncla();
+            limpiarAncla(navegacion);
         })
         .catch(function (error) {
             console.error('No se ha podido cargar la carta:', error);
@@ -237,6 +238,31 @@ function irAlAncla() {
     if (document.readyState !== 'complete') {
         window.addEventListener('load', function () { requestAnimationFrame(ir); }, { once: true });
     }
+}
+
+/* Quita el #seccion de la direccion despues de pinchar un pill.
+ *
+ * Al pinchar, el navegador deja "#sec-dulces" en la barra de direcciones y
+ * ahi se queda. La proxima vez que se abra la carta desde esa pestaña, o
+ * al recargar, la pagina arranca en los dulces y la cabecera no se ve. En
+ * una carta de QR eso parece un fallo: entras y no estas al principio.
+ *
+ * Se deja que el navegador haga el salto, que para eso tiene su
+ * scroll-padding, y despues se limpia la direccion. Un enlace de fuera
+ * (alguien comparte menu.aticoflores.com/#sec-dulces) sigue llevando a los
+ * dulces la primera vez; lo que no hace es quedarse pegado para siempre.
+ *
+ * replaceState y no pushState: esto no es un paso atras en la navegacion,
+ * no tiene que ensuciar el boton de volver. */
+function limpiarAncla(navegacion) {
+    if (!navegacion || !window.history || !history.replaceState) return;
+    navegacion.addEventListener('click', function (e) {
+        var pill = e.target.closest && e.target.closest('.carta-nav__pill');
+        if (!pill) return;
+        setTimeout(function () {
+            history.replaceState(null, '', window.location.pathname + window.location.search);
+        }, 0);
+    });
 }
 
 /* Publica el alto real de la tira de secciones en --alto-nav.
