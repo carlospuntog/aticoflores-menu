@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (cargando) cargando.remove();
             medirNavegacion(document.querySelector('.carta-nav'));
             vigilarScroll(navegacion);
+            irAlAncla();
         })
         .catch(function (error) {
             console.error('No se ha podido cargar la carta:', error);
@@ -202,6 +203,23 @@ function plato(item) {
     }
 
     return li;
+}
+
+/* Lleva a la seccion del enlace, si el enlace traia una.
+ *
+ * Hace falta porque la carta se pinta DESPUES de cargar la pagina: cuando
+ * el navegador mira el ancla, esa seccion todavia no existe, asi que la
+ * descarta y se queda arriba. Un enlace como
+ * menu.aticoflores.com/#sec-dulces no llevaba a los dulces.
+ *
+ * Sin animacion: aqui no hay nada que seguir con la vista, se llega y ya.
+ * Y se respeta scroll-padding-top, asi que cae con el mismo aire que al
+ * pinchar un pill. */
+function irAlAncla() {
+    var id = (window.location.hash || '').slice(1);
+    if (!id) return;
+    var destino = document.getElementById(id);
+    if (destino) destino.scrollIntoView({ behavior: 'auto', block: 'start' });
 }
 
 /* Publica el alto real de la tira de secciones en --alto-nav.
