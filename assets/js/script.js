@@ -28,6 +28,26 @@
  * El fichero del repositorio se queda de respaldo: si UltraFlower no
  * contesta en ESPERA_REMOTO, o contesta algo que no es una carta, la
  * pagina abre igual. */
+/* Lo PRIMERO: quitar el #seccion de la direccion.
+ *
+ * Aqui arriba y no dentro del DOMContentLoaded, porque tiene que pasar
+ * antes de que existan las secciones.
+ *
+ * El motivo es que el salto no lo hacia mi codigo, lo hace el navegador.
+ * Cuando la direccion trae un ancla, Chrome y Safari NO miran una sola vez
+ * al cargar: lo reintentan segun va apareciendo contenido, asi que en
+ * cuanto el javascript pinta la seccion, el navegador salta a ella. Por eso
+ * quitar mi funcion no cambio nada: el que saltaba era el.
+ *
+ * Si la direccion no trae ancla cuando aparecen las secciones, no hay nada
+ * a lo que saltar, y la carta abre por arriba con el rotulo a la vista, que
+ * es lo que tiene que ver quien escanea el QR.
+ *
+ * replaceState no recarga ni deja rastro en el boton de volver. */
+if (window.location.hash && window.history && window.history.replaceState) {
+    window.history.replaceState(null, '', window.location.pathname + window.location.search);
+}
+
 var ORIGEN_REMOTO = 'https://ultraflower.vercel.app/api/menu/public';
 var ORIGEN_LOCAL  = 'assets/data/menu.yml';
 var ESPERA_REMOTO = 2500;                     // ms antes de tirar del respaldo
