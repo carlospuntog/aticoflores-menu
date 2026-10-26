@@ -18,7 +18,7 @@
  * esperar a que el navegador se canse.
  */
 
-var ORIGEN_REMOTO = '';                       // p. ej. 'https://ultraflower.vercel.app/api/menu/public'
+var ORIGEN_REMOTO = 'https://ultraflower.vercel.app/api/menu/public';
 var ORIGEN_LOCAL  = 'assets/data/menu.yml';
 var ESPERA_REMOTO = 2500;                     // ms antes de tirar del respaldo
 
@@ -28,9 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var cargando   = document.getElementById('carta-cargando');
 
     traerCarta()
-        .then(function (texto) {
-            var datos = jsyaml.load(texto);
-            if (!Array.isArray(datos) || !datos.length) throw new Error('la carta ha venido vacia');
+        .then(function (datos) {
             pintar(datos.filter(activa), contenedor, navegacion);
             if (cargando) cargando.remove();
             vigilarScroll(navegacion);
@@ -52,21 +50,47 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function traerCarta() {
-    if (!ORIGEN_REMOTO) return fetch(ORIGEN_LOCAL + '?v=' + Date.now()).then(leer);
+    if (!ORIGEN_REMOTO) return local();
 
     var aTiempo = new Promise(function (_, falla) {
-        setTimeout(function () { falla(new Error('el remoto ha tardado demasiado')); }, ESPERA_REMOTO);
+        setTimeout(function () { falla(new Error('ha tardado mas de ' + ESPERA_REMOTO + ' ms')); }, ESPERA_REMOTO);
     });
 
-    return Promise.race([fetch(ORIGEN_REMOTO).then(leer), aTiempo])
+    return Promise.race([fetch(ORIGEN_REMOTO).then(carta), aTiempo])
         .catch(function (error) {
             console.warn('Carta remota no disponible, se usa la del repositorio:', error.message);
-            return fetch(ORIGEN_LOCAL + '?v=' + Date.now()).then(leer);
+            return local();
         });
 
-    function leer(r) {
+    function local() {
+        return fetch(ORIGEN_LOCAL + '?v=' + Date.now()).then(carta);
+    }
+
+    /* No basta con que la respuesta sea 200.
+     *
+     * Mientras /api/menu/public pida identificarse, UltraFlower contesta 200
+     * con el HTML de su pantalla de acceso, porque fetch sigue la redireccion
+     * sin rechistar. Si solo se mirara el codigo, eso se daria por buena
+     * carta, el YAML no cuajaria y el cliente se quedaria mirando un hueco.
+     *
+     * Asi que se comprueba lo unico que importa: que lo que ha llegado es una
+     * lista de categorias con platos dentro. Si no, se trata como un fallo y
+     * salta el respaldo. */
+    function carta(r) {
         if (!r.ok) throw new Error('respuesta ' + r.status);
-        return r.text();
+        return r.text().then(function (texto) {
+            var datos;
+            try {
+                datos = jsyaml.load(texto);
+            } catch (e) {
+                throw new Error('lo que ha llegado no es YAML');
+            }
+            if (!Array.isArray(datos) || !datos.length) throw new Error('la carta ha venido vacia');
+            if (!datos.some(function (c) { return c && Array.isArray(c.items) && c.items.length; })) {
+                throw new Error('la carta no trae ni un plato');
+            }
+            return datos;
+        });
     }
 }
 
