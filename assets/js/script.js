@@ -18,7 +18,19 @@
  * esperar a que el navegador se canse.
  */
 
-var ORIGEN_REMOTO = 'https://ultraflower.vercel.app/api/menu/public';
+/* Vacio A PROPOSITO. El endpoint ya esta abierto y contesta, pero las
+ * tablas de Supabase tienen todavia una carta vieja: 8 secciones y 34
+ * platos, sin cafes especiales, ni smoothies, ni sin gluten.
+ *
+ * Al apuntar aqui el 26-10-2026, la carta publica paso a servir esa. El
+ * respaldo no salto porque no tenia por que: lo que llegaba era un YAML
+ * perfectamente valido, solo que de otra carta. La comprobacion sabe
+ * distinguir basura de carta, no una carta de otra, y eso no se arregla
+ * desde aqui.
+ *
+ * Se vuelve a poner la direccion DESPUES de pasar supabase/seed-carta.sql
+ * y de comprobar que el endpoint devuelve 13 secciones y 84 platos. */
+var ORIGEN_REMOTO = '';
 var ORIGEN_LOCAL  = 'assets/data/menu.yml';
 var ESPERA_REMOTO = 2500;                     // ms antes de tirar del respaldo
 
