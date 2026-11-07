@@ -30,6 +30,25 @@
 <header class="carta-cab">
     <p class="carta-cab__marca">Ático Flores</p>
     <p class="carta-cab__dir">Caleruega 50 · Madrid</p>
+
+    <!-- El puente a la tienda.
+         Quien escanea este QR ya esta sentado en la floristeria, asi que el
+         enlace no tiene que explicar quienes somos: tiene que decir lo unico
+         que no se puede hacer desde la mesa, que es mandar flores a otro sitio.
+
+         Abre en pestaña nueva a proposito: se consulta la carta mientras se
+         pide, y perderla por mirar la tienda seria un mal cambio. Para que
+         vuelva en la misma pestaña, quitar target y rel. -->
+    <a class="carta-cab__tienda"
+       href="https://aticoflores.com/tienda/"
+       target="_blank" rel="noopener">
+        Enviar flores a domicilio
+        <svg class="carta-cab__tienda-ico" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+    </a>
 </header>
 
 <nav class="carta-nav" aria-label="Secciones de la carta">
