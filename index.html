@@ -20,8 +20,8 @@
 
 <!-- El sistema de diseño de aticoflores.com, copiado tal cual por
      scripts/traer-tokens.sh. No editar aqui. -->
-<link rel="stylesheet" href="assets/css/atico-tokens-v8.css?v=202610261410a93">
-<link rel="stylesheet" href="assets/css/styles.css?v=202610261410a93">
+<link rel="stylesheet" href="assets/css/atico-tokens-v8.css?v=202611080759a93">
+<link rel="stylesheet" href="assets/css/styles.css?v=202611080759a93">
 </head>
 <body class="v8">
 
@@ -30,6 +30,25 @@
 <header class="carta-cab">
     <p class="carta-cab__marca">Ático Flores</p>
     <p class="carta-cab__dir">Caleruega 50 · Madrid</p>
+
+    <!-- El acceso a la tienda online.
+         El enlace nombra el destino, no una accion concreta: desde la tienda
+         se compra para llevar, se envia a domicilio o solo se mira el
+         catalogo. Un copy que prometa una de las tres deja fuera las otras dos.
+
+         Abre en pestaña nueva a proposito: se consulta la carta mientras se
+         pide, y perderla por mirar la tienda seria un mal cambio. Para que
+         vuelva en la misma pestaña, quitar target y rel. -->
+    <a class="carta-cab__tienda"
+       href="https://aticoflores.com/tienda/"
+       target="_blank" rel="noopener">
+        Tienda online
+        <svg class="carta-cab__tienda-ico" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+    </a>
 </header>
 
 <nav class="carta-nav" aria-label="Secciones de la carta">
@@ -53,6 +72,6 @@
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
-<script src="assets/js/script.js?v=202610261410a93"></script>
+<script src="assets/js/script.js?v=202611080759a93"></script>
 </body>
 </html>

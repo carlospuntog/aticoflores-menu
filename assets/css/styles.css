@@ -89,6 +89,60 @@ body {
   color: var(--v8-text-secondary);
 }
 
+/* El enlace a la tienda.
+ *
+ * Es el mismo pill que la navegacion de secciones (misma altura, mismo radio),
+ * pero relleno con el acento en vez de con papel. Esa diferencia es deliberada:
+ * justo debajo hay trece pills de categoria y el estado activo de esas es
+ * tinta. Si este fuera tinta o fuera de contorno, se leeria como una
+ * categoria mas de la carta, que es exactamente lo que no es.
+ *
+ * El acento es el rojo de la marca y en el sistema esta reservado para
+ * enfasis, asi que separa sin inventar un color nuevo.
+ *
+ * La flecha es la misma del sistema (el mismo path que los CTA de la portada),
+ * no un icono nuevo. */
+.carta-cab__tienda {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--v8-space-2);
+  min-height: var(--s-pill-height);
+  margin-top: var(--v8-space-4);
+  padding: 0 var(--v8-space-4);
+  border-radius: var(--v8-radius-pill);
+  background: var(--v8-accent-strong);
+  color: var(--v8-on-accent);
+  font-size: var(--v8-size-body-s);
+  font-weight: var(--v8-weight-medium);
+  line-height: 1;
+  text-decoration: none;
+  transition: transform .18s ease;
+}
+
+/* Sin cambio de color al pasar por encima, y es decision, no olvido: el
+ * sistema no define una variante oscura del acento, y esta carta se abre
+ * escaneando un QR en la mesa, o sea con el dedo. Inventar un hex de hover
+ * para un estado que casi nadie va a ver seria meter un color fuera del
+ * sistema a cambio de nada. Lo que si existe de verdad en tactil es la
+ * pulsacion y el foco de teclado, y esos si estan. */
+.carta-cab__tienda:focus-visible {
+  outline: var(--v8-focus-width) solid var(--v8-focus);
+  outline-offset: var(--v8-focus-offset);
+}
+.carta-cab__tienda:active {
+  transform: translateY(1px);
+}
+.carta-cab__tienda-ico {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carta-cab__tienda { transition: none; }
+  .carta-cab__tienda:active { transform: none; }
+}
+
 /* -------------------------------------------------------------------
  * Navegacion por secciones
  *
@@ -307,6 +361,6 @@ body {
 }
 
 @media print {
-  .carta-nav, .carta-saltar { display: none; }
+  .carta-nav, .carta-saltar, .carta-cab__tienda { display: none; }
   body { background: #fff; }
 }
